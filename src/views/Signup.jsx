@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../components/Input";
 
-function Login() {
+function Signup() {
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -21,8 +21,8 @@ function Login() {
   };
   return (
     <Container>
-      <LoginCard onSubmit={onSubmit}>
-        <h1 style={{ textAlign: "center" }}>Login</h1>
+      <SignupCard onSubmit={onSubmit}>
+        <h1 style={{ textAlign: "center" }}>Create Account</h1>
         <InnerContainer>
           <Input
             value={form.username}
@@ -41,17 +41,15 @@ function Login() {
         </InnerContainer>
 
         <div style={{ textAlign: "center", marginTop: "1.5em" }}>
-          <SubmitBtn type={"submit"} value="Login" />
+          <SubmitBtn type={"submit"} value="CreateAccount" />
           <hr style={{ width: "80%" }} />
-          <p>New to LiveFanatic?</p>
-          <NavLink to={"/signupform"}>Create account</NavLink>
         </div>
-      </LoginCard>
+      </SignupCard>
     </Container>
   );
 }
 
-export default Login;
+export default Signup;
 
 const Container = styled.div`
   display: flex;
@@ -71,7 +69,7 @@ const InnerContainer = styled.div`
   margin: 0 40px;
 `;
 
-const LoginCard = styled.form`
+const SignupCard = styled.form`
   background-color: white;
   height: 50vh;
   min-width: 320px;
@@ -79,11 +77,6 @@ const LoginCard = styled.form`
   min-height: 400px;
   border-radius: 20px;
   margin-top: 10vh;
-`;
-
-const NavLink = styled(Link)`
-  text-decoration: none;
-  color: #006992;
 `;
 
 const SubmitBtn = styled.input`
