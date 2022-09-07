@@ -44,7 +44,7 @@ function Login() {
           <SubmitBtn type={"submit"} value="Login" />
           <hr style={{ width: "80%" }} />
           <p>New to LiveFanatic?</p>
-          <NavLink to={"/signupform"}>Create account</NavLink>
+          <NavLink to={"/signup"}>Create account</NavLink>
         </div>
       </LoginCard>
     </Container>

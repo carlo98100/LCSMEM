@@ -1,6 +1,6 @@
 import Home from "./views/Home";
 import Login from "./views/Login";
-import SignupFrom from "./views/Signup";
+import Signup from "./views/Signup";
 
 export const AppRoutes = [
   {
