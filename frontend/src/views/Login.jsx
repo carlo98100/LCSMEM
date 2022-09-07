@@ -17,24 +17,20 @@ function Login() {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
-		axios.post("/data/login", form, {});
-		// try {
-		// 	const response = await fetch("http://localhost:3333/data/login", {
-		// 		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		// 		mode: "no-cors", // no-cors, *cors, same-origin
-		// 		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		// 		credentials: "same-origin", // include, *same-origin, omit
-		// 		headers: {
-		// 			"Content-Type": "application/json",
-		// 			// 'Content-Type': 'application/x-www-form-urlencoded',
-		// 		},
-		// 		redirect: "follow", // manual, *follow, error
-		// 		referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-		// 		body: JSON.stringify(form), // body data type must match "Content-Type" header
-		// 	});
-		// } catch (err) {
-		// 	console.error(err);
-		// }
+		console.log(JSON.stringify(form));
+		console.log("sending", form);
+		try {
+			const response = await fetch("/data/login", {
+				method: "POST", // GET, POST, PUT, DELETE, etc.
+				headers: {
+					"Content-Type": "application/json",
+					// 'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: JSON.stringify(form), // body data type must match "Content-Type" header
+			});
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	return (
