@@ -12,6 +12,21 @@ function PurchaseHistory() {
       </LeftContainer>
       <RightContainer>
         <TicketsTitle>Your purchased tickets</TicketsTitle>
+        <TicketHistory>
+          <span className="date">20 oktober</span>
+          <span className="name">Iron Maiden</span>
+          <span className="price">350 kr</span>
+        </TicketHistory>
+        <TicketHistory>
+          <span className="date">20 oktober</span>
+          <span className="name">Iron Maiden</span>
+          <span className="price">350 kr</span>
+        </TicketHistory>
+        <TicketHistory>
+          <span className="date">20 oktober</span>
+          <span className="name">Iron Maiden</span>
+          <span className="price">350 kr</span>
+        </TicketHistory>
       </RightContainer>
     </Container>
   );
@@ -55,6 +70,12 @@ const TextH3 = styled.h3`
 const TicketsTitle = styled.h1`
   text-align: center;
   background-color: gray;
+  padding: 15px;
+  margin: 0;
+`;
+
+const TicketHistory = styled.h3`
+  text-align: center;
   padding: 15px;
   margin: 0;
 `;
