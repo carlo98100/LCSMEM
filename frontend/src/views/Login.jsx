@@ -38,7 +38,7 @@ function Login() {
 			<LoginCard onSubmit={onSubmit}>
 				<h1 style={{ textAlign: "center" }}>Login</h1>
 				<InnerContainer>
-					<Input value={form.email} name="email" onChange={updateForm} label="Emailalksn" type="text" />
+					<Input value={form.email} name="email" onChange={updateForm} label="Email" type="text" />
 					<Input value={form.password} name="password" onChange={updateForm} label="Password" type="password" />
 				</InnerContainer>
 
