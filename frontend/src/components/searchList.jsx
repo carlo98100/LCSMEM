@@ -4,15 +4,18 @@ const artists = [
     {
       name: "Queen",
       id: 1,
+      genre: "Rock",
     },
     {
       name: "Pink Floyd",
       id: 2,
+      genre: "psychedelic"
     },
     {
-      name: "A$AP Rocky",
+      name: "50cent",
       id: 3,
-    },
+      genre: "HipHop"
+    }
 ];
 
 function searchList(props) {
@@ -22,7 +25,7 @@ function searchList(props) {
             return el;
         }
         else{
-            return el.name.toLowerCase().includes(props.input);
+            return el.name.toLowerCase().includes(props.input) || el.genre.toLowerCase().includes(props.input);
         }
         console.log(filterdList);
     })
