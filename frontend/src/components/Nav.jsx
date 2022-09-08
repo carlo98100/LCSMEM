@@ -5,6 +5,7 @@ import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
+import Dropdown from "./Dropdown";
 
 function Nav() {
   return (
@@ -28,48 +29,11 @@ function Nav() {
           </Link>
         </NavbarRight>
       </Navbar>
-      <Dropdown />
+      {<Dropdown />}
     </>
   );
 }
 
-//Dropdown categories
-const categories = [
-  {
-    id: 1,
-    title: "login",
-    path: "/login",
-    cName: "login",
-  },
-  {
-    id: 2,
-    title: "signup",
-    path: "/signup",
-    cName: "signup",
-  },
-  {
-    id: 3,
-    title: "profilepage",
-    path: "/profilepage",
-    cName: "profilepage",
-  },
-];
-
-function Dropdown() {
-  return (
-    <ul>
-      {categories.map((item) => {
-        return (
-          <li key={item.key}>
-            <link to={item.path} className={item.title}>
-              {/* {item.title} */}
-            </link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
 const Navbar = styled.nav`
   background-color: #006992;
   height: 70px;
@@ -102,27 +66,6 @@ const NavbarRight = styled.div``;
 
 const LoginBtn = styled(Link)`
   color: #eca400;
-`;
-
-const subMenu = styled.div`
-  width: 10 rem;
-  position: absolute;
-  list-style: none;
-  text-align: start;
-`;
-
-const subMenuLi = styled.div`
-  background: rgb(0, 212, 212);
-  cursor: pointer;
-`;
-
-const subMenuItems = styled.div`
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: white;
-  padding: 16px;
 `;
 
 export default Nav;
