@@ -22,6 +22,9 @@ server.use( session( {
 // bypass 2FA verification (dev only)
 server.use(function(req,res,next){req.bypassVerification = true; next()})
 
+// set bypass 2FA verification 
+server.use(function(req,res,next){req.bypassVerification = bypass2FA; next()})
+
 // ACL
 const acl = require('./services/acl.js')
 server.use(acl)
@@ -44,6 +47,9 @@ require('./routes/audio-example.js')(server, db)
 require('./api-description.js')(host, server)
 require('./routes/users.js')(server, db)
 require('./routes/login.js')(server, db)
+
+// stream routes
+require('./routes/video-stream.js')(server, db)
 
 // generic REST API one-to-one table mappings
 require('./routes/generic-routes.js')(server, db)
