@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Search from "../components/Search";
 
 function ConsertPage() {
 	return (
@@ -28,6 +29,7 @@ function ConsertPage() {
 
 			<RightContainer>
 				<TicketsTitle>Upcoming events</TicketsTitle>
+				<Search/>
 			</RightContainer>
 		</Container>
 	);
