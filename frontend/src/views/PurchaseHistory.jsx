@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import "../css/Ticket.css";
 
 function PurchaseHistory() {
   return (
@@ -11,37 +12,121 @@ function PurchaseHistory() {
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
-        <TicketsTitle>Your purchased tickets</TicketsTitle>
-        <TicketHistory>
-          <TicketUl>
-            <TicketLi>
-              <TextSpan className="date">20 oktober</TextSpan>
-              <TextSpan className="name">Iron Maiden</TextSpan>
-              <TextSpan className="price">350 kr</TextSpan>
-              <Link to="/TicketInfo">More info</Link>
-            </TicketLi>
-          </TicketUl>
-        </TicketHistory>
-        <TicketHistory>
-          <TicketUl>
-            <TicketLi>
-              <TextSpan className="date">20 oktober</TextSpan>
-              <TextSpan className="name">Iron Maiden</TextSpan>
-              <TextSpan className="price">350 kr</TextSpan>
-              <Link to="/TicketInfo">More info</Link>
-            </TicketLi>
-          </TicketUl>
-        </TicketHistory>
-        <TicketHistory>
-          <TicketUl>
-            <TicketLi>
-              <TextSpan className="date">20 oktober</TextSpan>
-              <TextSpan className="name">Iron Maiden</TextSpan>
-              <TextSpan className="price">350 kr</TextSpan>
-              <Link to="/TicketInfo">More info</Link>
-            </TicketLi>
-          </TicketUl>
-        </TicketHistory>
+        <TicketsTitle>Your purchased tickets</TicketsTitle>'
+        <TicketBody>
+          <div class="ticketbody"></div>
+          <div class="ticket">
+            <div class="left">
+              <div class="image">
+                <p class="admit-one">
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                </p>
+                <div class="ticket-number">
+                  <p>#20030220</p>
+                </div>
+              </div>
+              <div class="ticket-info">
+                <p class="date">
+                  <span>TUESDAY</span>
+                  <span class="june-29">JUNE 29TH</span>
+                  <span>2021</span>
+                </p>
+                <div class="show-name">
+                  <h1>Bamse R-Rated</h1>
+                  <h2>Live</h2>
+                </div>
+                <div class="time">
+                  <p>
+                    8:00 PM <span>TO</span> 11:00 PM
+                  </p>
+                  <p>
+                    DOORS <span>@</span> 7:00 PM
+                  </p>
+                </div>
+                <p class="location">
+                  <span>Malmö Arena</span>
+                  <span class="separator">
+                    <i class="far fa-smile"></i>
+                  </span>
+                  <span>Malmö, Skåne</span>
+                </p>
+              </div>
+            </div>
+            <div class="right">
+              <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+              </p>
+              <div class="right-info-container">
+                <div class="show-name">
+                  <h1>Bamse R-Rated</h1>
+                </div>
+                <div class="time">
+                  <p>
+                    8:00 PM <span>TO</span> 11:00 PM
+                  </p>
+                  <p>
+                    DOORS <span>@</span> 7:00 PM
+                  </p>
+                </div>
+                <div class="barcode"></div>
+                <p class="ticket-number">#20030220</p>
+              </div>
+            </div>
+          </div>
+          <div class="ticket">
+            <div class="left">
+              <div class="image">
+                <p class="admit-one">
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                </p>
+                <div class="ticket-number">
+                  <p>#20030220</p>
+                </div>
+              </div>
+              <div class="ticket-info">
+                <p class="date">
+                  <span>TUESDAY</span>
+                  <span class="june-29">JUNE 29TH</span>
+                  <span>2021</span>
+                </p>
+                <div class="show-name">
+                  <h1>Bamse R-Rated</h1>
+                  <h2>Online</h2>
+                </div>
+                <div class="time">
+                  <p>
+                    8:00 PM <span>TO</span> 11:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+              </p>
+              <div class="right-info-container">
+                <div class="show-name">
+                  <h1>Bamse R-Rated</h1>
+                </div>
+                <div class="time">
+                  <p>
+                    8:00 PM <span>TO</span> 11:00 PM
+                  </p>
+                </div>
+                <div class="barcode"></div>
+                <p class="ticket-number">#20030220</p>
+              </div>
+            </div>
+          </div>
+        </TicketBody>
       </RightContainer>
     </Container>
   );
@@ -113,7 +198,59 @@ const TicketsTitle = styled.h1`
   margin: 0;
 `;
 
-const TicketHistory = styled.body`
-  margin: 0;
-  padding: 0;
+const TicketBody = styled.body`
+  background: var(--background);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const Ticket = styled.div`
+  width: 650px;
+  height: 320px;
+  margin: 100px auto;
+  position: relative;
+  transition: all 300ms cubic-bezier(0.03, 0.98, 0.53, 0.99) 0s;
+  background: linear-gradient(
+    to right,
+    var(--color1),
+    var(--color2),
+    var(--color3),
+    var(--color4)
+  );
+  border-radius: 20px;
+  padding: 5px;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 130px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  &:before {
+    background: var(--color1);
+    left: -30px;
+  }
+`;
+
+const TicketRight = styled.div`
+  background: var(--background);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const TicketLeft = styled.div`
+  background: var(--background);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const TicketContentWrapper = styled.div`
+  background: var(--background);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 `;
