@@ -5,7 +5,7 @@ import Signup from "./views/Signup";
 import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
-import TicketInfo from "./views/TicketInfo";
+import YourTickets from "./views/YourTickets";
 
 export const AppRoutes = [
   {
@@ -68,6 +68,6 @@ export const AppRoutes = [
     name: "TicketInfo",
     path: "/TicketInfo",
     display: false,
-    component: <TicketInfo />,
+    component: <YourTickets />,
   },
 ];
