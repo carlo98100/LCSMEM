@@ -4,59 +4,68 @@ import styled from "styled-components";
 import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
+import Login from "../views/Login";
+import Dropdown from "./Dropdown";
 
 function Nav() {
-	return (
-		<Navbar>
-			<NavbarLeft>
-				{AppRoutes.filter((item) => item.display === true).map((item, index) => {
-					return (
-						<NavLink key={index} to={item.path}>
-							{item.name}
-						</NavLink>
-					);
-				})}
-			</NavbarLeft>
-			<NavbarRight>
-				<AutoComplete placeholder="Sök" />
-				<Link to={"/login"}>
-					<FaUserCircle size={40} color={"#ECA400"} />
-				</Link>
-			</NavbarRight>
-		</Navbar>
-	);
+  return (
+    <>
+      <Navbar>
+        <NavbarLeft>
+          {AppRoutes.filter((item) => item.display === true).map(
+            (item, index) => {
+              return (
+                <NavLink key={index} to={item.path}>
+                  {item.name}
+                </NavLink>
+              );
+            }
+          )}
+        </NavbarLeft>
+        <NavbarRight>
+          <AutoComplete placeholder="Sök" />
+          <Link to={"/login"}>
+            <FaUserCircle size={40} color={"#ECA400"} />
+          </Link>
+        </NavbarRight>
+      </Navbar>
+      {<Dropdown />}
+    </>
+  );
 }
+
 const Navbar = styled.nav`
-	background-color: #006992;
-	height: 70px;
-	text-decoration: none;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 1em;
-	z-index: 100;
+  background-color: #006992;
+  height: 70px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  z-index: 100;
 `;
 
 const NavLink = styled(Link)`
-	padding: 26px 10px;
-	color: white;
-	text-decoration: none;
-	height: 100%;
+  padding: 26px 10px;
+  color: white;
+  text-decoration: none;
+  height: 100%;
 
-	&:hover {
-		background-color: grey;
-	}
-	&.active {
-		color: #eca400;
-	}
+  &:hover {
+    background-color: grey;
+  }
+  &.active {
+    color: #eca400;
+  }
 `;
 
 const NavbarLeft = styled.div`
-	display: flex;
+  display: flex;
 `;
 const NavbarRight = styled.div``;
 
 const LoginBtn = styled(Link)`
-	color: #eca400;
+  color: #eca400;
 `;
+
 export default Nav;

@@ -1,4 +1,3 @@
-import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
@@ -28,17 +27,10 @@ export const AppRoutes = [
     display: false,
     component: <Login />,
   },
-  ,
   {
     name: "Signup",
     path: "/signup",
     display: false,
     component: <Signup />,
-  },
-  {
-    name: "ConsertPage",
-    path: "/ConsertPage",
-    display: true,
-    component: <ConsertPage />,
   },
 ];
