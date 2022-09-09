@@ -18,6 +18,7 @@ function PurchaseHistory() {
               <TextSpan className="date">20 oktober</TextSpan>
               <TextSpan className="name">Iron Maiden</TextSpan>
               <TextSpan className="price">350 kr</TextSpan>
+              <Link to="/TicketInfo">More info</Link>
             </TicketLi>
           </TicketUl>
         </TicketHistory>
@@ -27,6 +28,7 @@ function PurchaseHistory() {
               <TextSpan className="date">20 oktober</TextSpan>
               <TextSpan className="name">Iron Maiden</TextSpan>
               <TextSpan className="price">350 kr</TextSpan>
+              <Link to="/TicketInfo">More info</Link>
             </TicketLi>
           </TicketUl>
         </TicketHistory>
@@ -36,6 +38,7 @@ function PurchaseHistory() {
               <TextSpan className="date">20 oktober</TextSpan>
               <TextSpan className="name">Iron Maiden</TextSpan>
               <TextSpan className="price">350 kr</TextSpan>
+              <Link to="/TicketInfo">More info</Link>
             </TicketLi>
           </TicketUl>
         </TicketHistory>
