@@ -8,7 +8,7 @@ const ProfilePage = () => {
       <LeftContainer>
         <Text>Your profile</Text>
         <Link to="/PurchaseHistory">Purchase History</Link>
-        <Link to="/UserDetails">User Details</Link>
+        <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
         <TicketsTitle>Your upcoming concerts</TicketsTitle>
@@ -28,6 +28,8 @@ const LeftContainer = styled.div`
   flex: 1 1 30%;
   min-width: 15ch;
   height: calc(100vh - 70px);
+  justify-content: center;
+  align-items: center;
 `;
 
 const RightContainer = styled.div`
@@ -39,13 +41,6 @@ const RightContainer = styled.div`
 `;
 
 const Text = styled.h1`
-  text-align: center;
-  background-color: gray;
-  padding: 15px;
-  border-radius: 10px;
-`;
-
-const TextH3 = styled.h3`
   text-align: center;
   background-color: gray;
   padding: 15px;

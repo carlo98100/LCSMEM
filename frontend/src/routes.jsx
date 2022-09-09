@@ -26,9 +26,15 @@ export const AppRoutes = [
     component: <Home />,
   },
   {
+    name: "ConsertPage",
+    path: "/ConsertPage",
+    display: true,
+    component: <ConsertPage />,
+  },
+  {
     name: "Login",
     path: "/login",
-    display: false,
+    display: true,
     component: <Login />,
   },
   ,
@@ -38,12 +44,7 @@ export const AppRoutes = [
     display: false,
     component: <Signup />,
   },
-  {
-    name: "ConsertPage",
-    path: "/ConsertPage",
-    display: true,
-    component: <ConsertPage />,
-  },
+
   {
     name: "ProfilePage",
     path: "/ProfilePage",

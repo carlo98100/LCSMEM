@@ -9,7 +9,7 @@ function UserDetails() {
       <LeftContainer>
         <Text>Your profile</Text>
         <Link to="/PurchaseHistory">Purchase History</Link>
-        <Link to="/UserDetails">User Details</Link>
+        <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
         <TicketsTitle>Your information</TicketsTitle>

@@ -16,6 +16,9 @@ function Nav() {
         <NavbarLeft>
           {AppRoutes.filter((item) => item.display === true).map(
             (item, index) => {
+              if (item.name === "Login"){
+
+              }
               return (
                 <NavLink key={index} to={item.path}>
                   {item.name}
@@ -23,9 +26,6 @@ function Nav() {
               );
             }
           )}
-        </NavbarLeft>
-        <NavbarRight>
-          <AutoComplete placeholder="Sök" />
           <Link
             to={"/login"}
             onMouseEnter={() => setDropdown(true)}
@@ -35,6 +35,10 @@ function Nav() {
             {dropdown && <Dropdown />}
             {/* <FaUserCircle size={40} color={"#ECA400"} /> */}
           </Link>
+        </NavbarLeft>
+        <NavbarRight>
+          <AutoComplete placeholder="Sök" />
+          
         </NavbarRight>
       </Navbar>
     </>
