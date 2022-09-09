@@ -8,6 +8,8 @@ import Login from "../views/Login";
 import Dropdown from "./Dropdown";
 
 function Nav() {
+  const [dropdown, setDropdown] = useState(false);
+
   return (
     <>
       <Navbar>
@@ -24,12 +26,17 @@ function Nav() {
         </NavbarLeft>
         <NavbarRight>
           <AutoComplete placeholder="Sök" />
-          <Link to={"/login"}>
-            <FaUserCircle size={40} color={"#ECA400"} />
+          <Link
+            to={"/login"}
+            onMouseEnter={() => setDropdown(true)}
+            onMouseLeave={() => setDropdown(false)}
+          >
+            <a>Login</a>
+            {dropdown && <Dropdown />}
+            {/* <FaUserCircle size={40} color={"#ECA400"} /> */}
           </Link>
         </NavbarRight>
       </Navbar>
-      {<Dropdown />}
     </>
   );
 }
