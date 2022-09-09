@@ -25,11 +25,31 @@ let fakeEvents = [
 	},
 ];
 
-function ConsertEventBoard() {
+async function GetEventInformation(eventId) {
+	console.log(eventId);
+	try {
+		const response = await fetch("http://localhost:3333/data/events/" + eventId, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		const jsonData = await response.json();
+
+		console.log(jsonData);
+		return jsonData;
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+function ConsertEventBoard(artistId) {
+	const events = GetEventInformation();
 	return (
 		<Container>
 			<EventsTitle>Upcoming events</EventsTitle>
-			{fakeEvents.map((item) => {
+			{events.map((item) => {
 				return <ConsertEvent date={item.date} location={item.location} type={item.type}></ConsertEvent>;
 			})}
 		</Container>

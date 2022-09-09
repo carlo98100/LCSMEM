@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
+import { UserContext } from "../contexts/UserContext";
+import UserMenu from "./UserMenu";
 
 function Nav() {
+	const { user, logOut } = useContext(UserContext);
+
 	return (
 		<Navbar>
 			<NavbarLeft>
@@ -18,10 +22,28 @@ function Nav() {
 				})}
 			</NavbarLeft>
 			<NavbarRight>
-				<AutoComplete placeholder="Sök" />
-				<Link to={"/login"}>
-					<FaUserCircle size={40} color={"#ECA400"} />
-				</Link>
+				<RightContainer>
+					<AutoComplete placeholder="Sök" />
+
+					{/* <Link to={"/login"}>
+						<FaUserCircle size={40} color={"#ECA400"} />
+					</Link> */}
+					{user.loggedIn ? (
+						<>
+							{/* <Link to={"/"}>
+								<FaUserCircle size={40} color={"#ECA400"} />
+							</Link> */}
+							{/* <LogOutBtn onClick={logOut}>Logout</LogOutBtn> */}
+							<NavLink onClick={logOut} to="/login">
+								Logout
+							</NavLink>
+						</>
+					) : (
+						<NavLink to="/login">LogIn</NavLink>
+					)}
+
+					{/* <UserLoggedIn isLoggedIn={user.loggedIn} /> */}
+				</RightContainer>
 			</NavbarRight>
 		</Navbar>
 	);
@@ -59,4 +81,11 @@ const NavbarRight = styled.div``;
 const LoginBtn = styled(Link)`
 	color: #eca400;
 `;
+
+const RightContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`;
+
 export default Nav;
