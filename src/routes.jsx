@@ -1,7 +1,5 @@
-import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
-import Stream from "./views/Stream";
 import Signup from "./views/Signup";
 
 export const AppRoutes = [
@@ -29,23 +27,10 @@ export const AppRoutes = [
     display: false,
     component: <Login />,
   },
-  ,
   {
     name: "Signup",
     path: "/signup",
     display: false,
     component: <Signup />,
   },
-  {
-    name: "ConsertPage",
-    path: "/ConsertPage",
-    display: true,
-    component: <ConsertPage />,
-  },
-	{
-		name: "Stream",
-		path: "/Stream",
-		display: true,
-		component: <Stream />,
-	},
 ];

@@ -5,7 +5,7 @@ import Input from "../components/Input";
 
 function Login() {
   const [form, setForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -15,34 +15,20 @@ function Login() {
     });
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(form));
     console.log("sending", form);
-    try {
-      const response = await fetch("/data/login", {
-        method: "POST", // GET, POST, PUT, DELETE, etc.
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(form), // body data type must match "Content-Type" header
-      });
-    } catch (err) {
-      console.error(err);
-    }
   };
-
   return (
     <Container>
       <LoginCard onSubmit={onSubmit}>
         <h1 style={{ textAlign: "center" }}>Login</h1>
         <InnerContainer>
           <Input
-            value={form.email}
-            name="email"
+            value={form.username}
+            name="username"
             onChange={updateForm}
-            label="Email"
+            label="Username"
             type="text"
           />
           <Input
