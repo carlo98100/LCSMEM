@@ -47,3 +47,7 @@ require('./routes/login.js')(server, db)
 
 // generic REST API one-to-one table mappings
 require('./routes/generic-routes.js')(server, db)
+
+server.get('*', (request, response)=>{
+  response.sendFile(__dirname + '/frontend/dist/index.html')
+})
