@@ -1,8 +1,9 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Input from "../components/Input";
 
-const ProfilePage = () => {
+function UserDetails() {
   return (
     <Container>
       <LeftContainer>
@@ -11,13 +12,13 @@ const ProfilePage = () => {
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
-        <TicketsTitle>Your upcoming concerts</TicketsTitle>
+        <TicketsTitle>Your information</TicketsTitle>
       </RightContainer>
     </Container>
   );
-};
+}
 
-export default ProfilePage;
+export default UserDetails;
 
 const Container = styled.div`
   display: flex;
@@ -28,12 +29,10 @@ const LeftContainer = styled.div`
   flex: 1 1 30%;
   min-width: 15ch;
   height: calc(100vh - 70px);
-  justify-content: center;
-  align-items: center;
 `;
 
 const RightContainer = styled.div`
-  background-color: #6767b9;
+  background-color: #67b98d;
   flex: 1 1 70%;
   // ch = how many characters wide
   min-width: 25ch;
@@ -41,6 +40,13 @@ const RightContainer = styled.div`
 `;
 
 const Text = styled.h1`
+  text-align: center;
+  background-color: gray;
+  padding: 15px;
+  border-radius: 10px;
+`;
+
+const TextH3 = styled.h3`
   text-align: center;
   background-color: gray;
   padding: 15px;

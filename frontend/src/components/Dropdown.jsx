@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppRoutes } from "../routes";
-import { FaUserCircle } from "react-icons/fa";
-import AutoComplete from "./AutoComplete";
 
 //Dropdown categories
 const categories = [
@@ -25,17 +22,34 @@ const categories = [
     path: "/profilepage",
     cName: "profilepage",
   },
+  {
+    id: 4,
+    title: "begone",
+    path: "/",
+    cName: "begone",
+  },
 ];
 
 function Dropdown() {
+  const [dropdown, setDropdown] = useState(false);
+
   return (
-    <SubMenu>
+    <SubMenu
+      className={dropdown ? SubMenuClicked : SubMenu}
+      onClick={() => setDropdown(!dropdown)}
+    >
       {categories.map((item) => {
         return (
           <SubMenuLi key={item.id}>
-            <Link to={item.path} className={item.title}>
-              {item.title}
-            </Link>
+            <SubMenuItems>
+              <Link
+                to={item.path}
+                className={item.title}
+                onClick={() => setDropdown(false)}
+              >
+                {item.title}
+              </Link>
+            </SubMenuItems>
           </SubMenuLi>
         );
       })}
@@ -46,6 +60,7 @@ function Dropdown() {
 const SubMenu = styled.div`
   width: 10 rem;
   position: absolute;
+  top: 60px;
   list-style: none;
   text-align: start;
 `;
@@ -62,5 +77,13 @@ const SubMenuItems = styled.div`
   text-decoration: none;
   color: white;
   padding: 16px;
+  &:hover {
+    background-color: grey;
+  }
 `;
+
+const SubMenuClicked = styled.div`
+  display: none;
+`;
+
 export default Dropdown;

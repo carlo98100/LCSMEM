@@ -8,12 +8,17 @@ import Login from "../views/Login";
 import Dropdown from "./Dropdown";
 
 function Nav() {
+  const [dropdown, setDropdown] = useState(false);
+
   return (
     <>
       <Navbar>
         <NavbarLeft>
           {AppRoutes.filter((item) => item.display === true).map(
             (item, index) => {
+              if (item.name === "Login"){
+
+              }
               return (
                 <NavLink key={index} to={item.path}>
                   {item.name}
@@ -21,15 +26,21 @@ function Nav() {
               );
             }
           )}
+          <Link
+            to={"/login"}
+            onMouseEnter={() => setDropdown(true)}
+            onMouseLeave={() => setDropdown(false)}
+          >
+            <a>Login</a>
+            {dropdown && <Dropdown />}
+            {/* <FaUserCircle size={40} color={"#ECA400"} /> */}
+          </Link>
         </NavbarLeft>
         <NavbarRight>
           <AutoComplete placeholder="Sök" />
-          <Link to={"/login"}>
-            <FaUserCircle size={40} color={"#ECA400"} />
-          </Link>
+          
         </NavbarRight>
       </Navbar>
-      {<Dropdown />}
     </>
   );
 }
