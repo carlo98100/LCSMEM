@@ -51,8 +51,16 @@ require("./routes/users.js")(server, db);
 require("./routes/login.js")(server, db);
 
 // generic REST API one-to-one table mappings
+<<<<<<< HEAD
 require("./routes/generic-routes.js")(server, db);
 
 server.get("*", (request, response) => {
 	response.sendFile(__dirname + "/frontend/dist/index.html");
 });
+=======
+require('./routes/generic-routes.js')(server, db)
+
+server.get('*', (request, response)=>{
+  response.sendFile(__dirname + '/frontend/dist/index.html')
+})
+>>>>>>> d736bee404f574a512c35e7e628dc0f777772061
