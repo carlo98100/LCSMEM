@@ -9,7 +9,7 @@ const host = `http://localhost:${port}`
 let cookieParser = require('cookie-parser')
 server.use(cookieParser())
 let session = require('express-session')
-server.use( session( {
+server.use(session({
   secret: 'keyboard cat jksfj<khsdka',
   resave: false,
   saveUninitialized: true,
@@ -20,17 +20,17 @@ server.use( session( {
 }))
 
 // bypass 2FA verification (dev only)
-server.use(function(req,res,next){req.bypassVerification = true; next()})
+server.use(function (req, res, next) { req.bypassVerification = true; next() })
 
 // set bypass 2FA verification 
-server.use(function(req,res,next){req.bypassVerification = bypass2FA; next()})
+// server.use(function (req, res, next) { req.bypassVerification = bypass2FA; next() })
 
 // ACL
 const acl = require('./services/acl.js')
 server.use(acl)
 
 // start
-server.listen(port,() => {
+server.listen(port, () => {
   console.log(host)
   console.log('server running on port ' + port)
 })
@@ -54,6 +54,6 @@ require('./routes/video-stream.js')(server, db)
 // generic REST API one-to-one table mappings
 require('./routes/generic-routes.js')(server, db)
 
-server.get('*', (request, response)=>{
+server.get('*', (request, response) => {
   response.sendFile(__dirname + '/frontend/dist/index.html')
 })

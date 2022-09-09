@@ -11,3 +11,5 @@ function playVideo(id){
     videoPlayer.setAttribute('src','/data/video-stream/' + id);
   }
 }
+
+console.log(videoPlayer)

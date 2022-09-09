@@ -1,22 +1,26 @@
+import React, { useEffect, useState } from 'react'
+import styled from "styled-components";
 
 const VideoPlayer = () => {
-    const videoPlayer = document.createElement('video');
 
-    if (videoPlayer.canPlayType('video/mp4')) { // there are other formats that can be switched to
-        videoPlayer.setAttribute('src', '/data/video-example');
-    }
+    const [video, setVideo] = useState(null)
 
-    //videoPlayer.width = 480; // fixed size
-    //videoPlayer.height = 320;
-
-    videoPlayer.style.width = '100%' // fills the width of the parent
-
-    videoPlayer.controls = true; // if we want to use our own controls, set this to false
-
+    useEffect(async () => {
+        console.log(JSON.stringify(video));
+        await fetch('/data/video-example')
+            .then(res => {
+                return res.json()
+            }).then(data => {
+                console.log(data)
+                setVideo(data)
+                console.log(video)
+            })
+    }, [])
 
     return <>
-        <h1>Video</h1>
-        <videoPlayer/>
+        <video controls muted autoPlay>
+            {/* <source src={video.} type="video/mp4"></source> */}
+        </video>
     </>
 }
 
