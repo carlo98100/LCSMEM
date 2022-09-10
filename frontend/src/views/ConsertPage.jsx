@@ -1,7 +1,11 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import ConsertEventBoard from "../Components/ConsertEventBoard";
 
 function ConsertPage() {
+	const { artistId } = useParams();
+
 	return (
 		<Container>
 			<LeftContainer>
@@ -27,8 +31,7 @@ function ConsertPage() {
 			</LeftContainer>
 
 			<RightContainer>
-				<TicketsTitle>Upcoming events</TicketsTitle>
-				<Search/>
+				<ConsertEventBoard artistId={artistId} />
 			</RightContainer>
 		</Container>
 	);
@@ -42,14 +45,16 @@ const Container = styled.div`
 
 const LeftContainer = styled.div`
 	background-color: Red;
-	height: calc(100vh - 70px);
-	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 60%;
 `;
 
 const RightContainer = styled.div`
 	background-color: Blue;
-	height: calc(100vh - 70px);
-	width: 50%;
+	/* height: calc(100vh - 70px); */
+	width: 40%;
 `;
 
 const ConsertImage = styled.img`
@@ -58,8 +63,9 @@ const ConsertImage = styled.img`
 `;
 
 const ConsertTitle = styled.h1`
+	display: inline-block;
 	text-align: center;
-	background-color: gray;
+	background-color: #eae6e7;
 	padding: 15px;
 	border-radius: 10px;
 `;
@@ -68,11 +74,4 @@ const ConsertDescription = styled.p`
 	font-size: 1.25em;
 	margin: 2em;
 	border: 2px solid green;
-`;
-
-const TicketsTitle = styled.h1`
-	text-align: center;
-	background-color: gray;
-	padding: 15px;
-	margin: 0;
 `;
