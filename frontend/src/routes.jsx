@@ -34,4 +34,10 @@ export const AppRoutes = [
 		display: true,
 		component: <ConsertPage />,
 	},
+	{
+		name: "Conserts",
+		path: "/Conserts",
+		display: true,
+		component: <Conserts/>
+	}
 ];
