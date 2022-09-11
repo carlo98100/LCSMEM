@@ -2,6 +2,10 @@ import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
+import ProfilePage from "./views/ProfilePage";
+import PurchaseHistory from "./views/PurchaseHistory";
+import UserDetails from "./views/UserDetails";
+import TicketInfo from "./views/TicketInfo";
 
 export const AppRoutes = [
   {
@@ -23,9 +27,15 @@ export const AppRoutes = [
     component: <Home />,
   },
   {
+    name: "ConsertPage",
+    path: "/ConsertPage",
+    display: true,
+    component: <ConsertPage />,
+  },
+  {
     name: "Login",
     path: "/login",
-    display: false,
+    display: true,
     component: <Login />,
   },
   ,
@@ -35,10 +45,29 @@ export const AppRoutes = [
     display: false,
     component: <Signup />,
   },
+
   {
-    name: "ConsertPage",
-    path: "/ConsertPage",
-    display: true,
-    component: <ConsertPage />,
+    name: "ProfilePage",
+    path: "/ProfilePage",
+    display: false,
+    component: <ProfilePage />,
+  },
+  {
+    name: "PurchaseHistory",
+    path: "/PurchaseHistory",
+    display: false,
+    component: <PurchaseHistory />,
+  },
+  {
+    name: "UserDetails",
+    path: "/UserDetails",
+    display: false,
+    component: <UserDetails />,
+  },
+  {
+    name: "TicketInfo",
+    path: "/TicketInfo",
+    display: false,
+    component: <TicketInfo />,
   },
 ];
