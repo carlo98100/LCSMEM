@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import styled from "styled-components";
 
 const VideoPlayer = () => {
 
     const [video, setVideo] = useState(null)
 
-    useEffect(async () => {
-        console.log(JSON.stringify(video));
-        await fetch('/data/video-example')
+    useEffect(() => {
+        fetch('/data/video-stream/1')
             .then(res => {
                 return res.json()
             }).then(data => {
@@ -18,8 +16,8 @@ const VideoPlayer = () => {
     }, [])
 
     return <>
-        <video controls muted autoPlay>
-            {/* <source src={video.} type="video/mp4"></source> */}
+        <video controls autoPlay>
+            <source src="${video}" type="video/mp4" />
         </video>
     </>
 }

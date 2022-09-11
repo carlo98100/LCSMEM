@@ -6,7 +6,6 @@ module.exports = function(server, db){
         let query = "SELECT * FROM videos WHERE id = @id"
         let result = db.prepare(query).all(req.params)
         result = result[0]
-        console.log(result)
 
         const range = req.headers.range;
         
