@@ -5,7 +5,6 @@ import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
 import { UserContext } from "../contexts/UserContext";
-import UserMenu from "./UserMenu";
 
 function Nav() {
 	const { user, logOut } = useContext(UserContext);

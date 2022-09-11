@@ -7,6 +7,10 @@
 		"route": "/data/events*",
 		"roles": [{ "role": "anonymous", "methods": ["GET"] }]
 	},
+	{
+		"route": "/data/Artist*",
+		"roles": [{ "role": "anonymous", "methods": ["GET"] }]
+	},
 
 	{
 		"route": "/data/video_streams*",

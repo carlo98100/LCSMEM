@@ -10,25 +10,42 @@
 module.exports = function (server, db) {
 	server.get("/data/events/:artistId", (req, res) => {
 		let query =
-			"select e.Id as eventId " +
-			", e.StreetName as eventStreetName " +
-			",  e.StreetNumber as eventStreetNumber " +
-			", e.ZipCode as eventZipCode " +
-			", e.City as eventCity " +
-			", e.Date as eventDate " +
-			", case " +
-			"when e.LiveStream == 1 then 'true' " +
-			"else  'false' " +
-			"end as IsLiveStream " +
-			", e.AmountOfTickets as eventTotalAmountOfTickets " +
-			", e.AmountOfTickets - count(*) as AvailableTickets " +
-			"from Event as e " +
-			"join Ticket as t on t.EventId = e.Id " +
-			"where e.ArtistId = " +
-			req.params.artistId +
-			" " +
-			"group by t.EventId " +
-			"order by e.Date asc;";
+			// "select distinct e.Id as eventId " +
+			// ", e.StreetName as eventStreetName " +
+			// ",  e.StreetNumber as eventStreetNumber " +
+			// ", e.ZipCode as eventZipCode " +
+			// ", e.City as eventCity " +
+			// ", e.Date as eventDate " +
+			// ", case " +
+			// "when e.LiveStream == 1 then 'true' " +
+			// "else  'false' " +
+			// "end as IsLiveStream " +
+			// ", e.AmountOfTickets as eventTotalAmountOfTickets " +
+			// ", e.AmountOfTickets - count(*) as AvailableTickets " +
+			// "from Event as e " +
+			// "left join Ticket as t on t.EventId = e.Id " +
+			// "where e.ArtistId = " +
+			// req.params.artistId +
+			// " " +
+			// "group by t.EventId " +
+			// "order by e.Date asc;";
+			`select distinct
+			e.Id as eventId,
+			e.StreetName as eventStreetName,
+			e.StreetNumber as eventStreetNumber,
+			e.ZipCode as eventZipCode,
+			e.City as eventCity,
+			e.Date as eventDate,
+			case
+				when e.LiveStream == 1 then 'true'
+				else 'false'
+			end as IsLiveStream,
+			e.AmountOfTickets as eventTotalAmountOfTickets,
+			e.AmountOfTickets - (select count(*) from Ticket where eventid = e.id) as AvailableTickets
+			from Event e
+			left join Ticket t on t.EventId = e.Id
+			where e.ArtistId = ${req.params.artistId}
+			order by e.Date asc;`;
 
 		let result = db.prepare(query).all();
 		res.json(result);
