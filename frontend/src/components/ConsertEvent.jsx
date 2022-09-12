@@ -2,36 +2,23 @@ import React from "react";
 import { RiComputerLine } from "react-icons/ri";
 import { GiTempleDoor } from "react-icons/gi";
 import styled from "styled-components";
+import { parseBoolean } from "../utils";
 
-function getDate(dateTime) {
-	let date = new Date(dateTime);
-	let day = date.getDate();
+function ConsertEvent({ event }) {
+	var options = { month: "long", day: "numeric" };
 
-	return day;
-}
-
-function getMonth(dateTime) {
-	let date = new Date(dateTime);
-	let month = months[date.getMonth()];
-
-	return month;
-}
-
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-function ConsertEvent({ date, location, type, amountOfticketsAvailable, totalAmountOftickets }) {
 	return (
 		<Container>
 			<DateContainer>
-				<h2 style={{ margin: 0 }}>{getDate(date)}</h2>
-				<h2 style={{ margin: 0 }}>{getMonth(date)}</h2>
+				<h2 style={{ margin: 0 }}>{new Date(event.eventDate).toLocaleDateString("en-GB", { day: "numeric" })}</h2>
+				<h2 style={{ margin: 0 }}>{new Date(event.eventDate).toLocaleDateString("en-GB", { month: "long" })}</h2>
 			</DateContainer>
 
-			<LocationLink>{location}</LocationLink>
-			{/* <h1>{type}</h1> */}
-			{type == "liveStream" ? <RiComputerLine size={40} /> : <GiTempleDoor size={40} />}
+			<LocationLink>{`${event.eventStreetName} ${event.eventStreetNumber}`}</LocationLink>
+
+			{parseBoolean(event.IsLiveStream) ? <RiComputerLine size={40} /> : <GiTempleDoor size={40} />}
 			<TicketsContainer>
-				<h3>1 / 15</h3>
+				<h3>{`${event.AvailableTickets} / ${event.eventTotalAmountOfTickets}`}</h3>
 				<BuyTicketBtn>Buy ticket</BuyTicketBtn>
 			</TicketsContainer>
 		</Container>
