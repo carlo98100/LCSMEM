@@ -17,25 +17,33 @@
 		"roles": [{ "role": "user", "methods": ["GET"] }]
 	},
 
-	{
-		"route": "/data/video_example",
-		"roles": [{ "role": "*", "methods": ["GET"] }]
-	},
+  {
+    "route": "/data/video-stream",
+    "roles":[
+      {"role": "*", "methods": ["GET"]}
+    ]
+  },
 
-	{
-		"route": "/data/audio_streams*",
-		"roles": [{ "role": "*", "methods": ["GET"] }]
-	},
+  {
+    "route": "/data/video-example",
+    "roles":[
+      {"role": "*", "methods": ["GET"]}      
+    ]
+  },
 
-	{
-		"route": "/data/audio_example",
-		"roles": [{ "role": "*", "methods": ["GET"] }]
-	},
+  {
+    "route": "/data/audio-stream*",
+    "roles":[
+      {"role": "*", "methods": ["GET"]}
+    ]
+  },
 
-	{
-		"route": "/data/users*",
-		"roles": [{ "role": "user", "methods": ["GET", "PUT", "POST", "DELETE"] }]
-	},
+  {
+    "route": "/data/audio-example",
+    "roles":[
+      {"role": "*", "methods": ["GET"]}
+    ]
+  },
 
 	{
 		"route": "/data/users/password",

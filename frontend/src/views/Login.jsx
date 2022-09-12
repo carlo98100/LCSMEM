@@ -26,24 +26,36 @@ function Login(props) {
 		navigate("/", { replace: true });
 	};
 
-	return (
-		<Container>
-			<LoginCard onSubmit={onSubmit}>
-				<h1 style={{ textAlign: "center" }}>Login</h1>
-				<InnerContainer>
-					<Input value={form.email} name="email" onChange={updateForm} label="Email" type="text" />
-					<Input value={form.password} name="password" onChange={updateForm} label="Password" type="password" />
-				</InnerContainer>
+  return (
+    <Container>
+      <LoginCard onSubmit={onSubmit}>
+        <h1 style={{ textAlign: "center" }}>Login</h1>
+        <InnerContainer>
+          <Input
+            value={form.email}
+            name="email"
+            onChange={updateForm}
+            label="Email"
+            type="text"
+          />
+          <Input
+            value={form.password}
+            name="password"
+            onChange={updateForm}
+            label="Password"
+            type="password"
+          />
+        </InnerContainer>
 
-				<div style={{ textAlign: "center", marginTop: "1.5em" }}>
-					<SubmitBtn type={"submit"} value="Login" />
-					<hr style={{ width: "80%" }} />
-					<p>New to LiveFanatic?</p>
-					<NavLink to={"/"}>Create account</NavLink>
-				</div>
-			</LoginCard>
-		</Container>
-	);
+        <div style={{ textAlign: "center", marginTop: "1.5em" }}>
+          <SubmitBtn type={"submit"} value="Login" />
+          <hr style={{ width: "80%" }} />
+          <p>New to LiveFanatic?</p>
+          <NavLink to={"/signup"}>Create account</NavLink>
+        </div>
+      </LoginCard>
+    </Container>
+  );
 }
 
 export default Login;
@@ -63,7 +75,7 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-	margin: 0 40px;
+  margin: 0 40px;
 `;
 
 const LoginCard = styled.form`
@@ -86,11 +98,11 @@ const NavLink = styled(Link)`
 `;
 
 const SubmitBtn = styled.input`
-	font-size: 1em;
-	padding: 0.5em 1em;
-	border-radius: 1.25em;
-	cursor: pointer;
-	background-color: #eca400;
-	border: none;
-	margin-bottom: 1em;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border-radius: 1.25em;
+  cursor: pointer;
+  background-color: #eca400;
+  border: none;
+  margin-bottom: 1em;
 `;
