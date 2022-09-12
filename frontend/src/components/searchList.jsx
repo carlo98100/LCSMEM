@@ -1,25 +1,27 @@
-import { React, useState } from 'react'
-
-const artists = [
-    {
-      name: "Queen",
-      id: 1,
-      genre: "Rock",
-    },
-    {
-      name: "Pink Floyd",
-      id: 2,
-      genre: "psychedelic"
-    },
-    {
-      name: "50cent",
-      id: 3,
-      genre: "HipHop"
-    }
-];
+import { React, useEffect, useState } from 'react'
 
 function searchList(props) {
 
+const [artists, setArtists] = useState([]);   
+
+useEffect(() => {
+    GetArtists();
+}, []);
+async function GetArtists() {
+    try {
+        const response = await fetch(`/data/artist`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const jsonData = await response.json();
+        setArtists(jsonData);
+        console.log(jsonData)
+    } catch (err) {
+        console.error(err);
+    }
+}
     const filterdList = artists.filter((el) => {
         if (props.input === "") {
             return el;
