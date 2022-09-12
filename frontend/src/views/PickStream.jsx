@@ -1,12 +1,13 @@
 import React from 'react';
-import VideoPlayer from '../components/StreamButton'
+import StreamButton from '../components/StreamButton'
 import styled from "styled-components";
 
 const PickStream = () => {
 
 	return (
 		<Container>
-			<VideoPlayer/>
+			<h1>Select a video</h1>
+			<StreamButton/>
 		</Container>
 	)
 }

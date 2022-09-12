@@ -1,13 +1,12 @@
 import React from 'react';
-import StreamButton from '../components/StreamButton'
 import styled from "styled-components";
 
 const Stream = () => {
 
 	return (
 		<Container>
-			<h1>Stream Video</h1>
-			<video controls> </video>
+			<h1>${video.name}</h1>
+			<video controls src={`/data/video-stream/${video.id}`}></video>
 		</Container>
 	)
 }

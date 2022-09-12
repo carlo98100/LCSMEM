@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Stream from '../views/Stream'
 
 const StreamButton = () => {
 
@@ -14,13 +15,11 @@ const StreamButton = () => {
         getVideos()
     }, [])
 
-    async function loadVideos() {
-        for (let video of videos) { 
-            <a>${video.name}</a>
-        }
-    }
-    
-    return loadVideos()
+    return <>
+        <div>
+            {videos.map(video => <a href={`/Stream`}>{video.name}</a>)}
+        </div>
+    </>
 }
 
 export default StreamButton
