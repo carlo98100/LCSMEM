@@ -9,6 +9,7 @@ function YourTickets() {
       <LeftContainer>
         <Text>Your profile</Text>
         <Link to="/YourTickets">Your Tickets</Link>
+        <Link to="/ProfilePage">Your upcoming concerts</Link>
         <Link to="/PurchaseHistory">Purchase History</Link>
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
@@ -159,4 +160,43 @@ const TicketsTitle = styled.h1`
   background-color: gray;
   padding: 15px;
   margin: 0;
+`;
+
+const TicketBody = styled.body`
+  background: var(--background);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const Ticket = styled.div`
+  width: 650px;
+  height: 320px;
+  margin: 100px auto;
+  position: relative;
+  transition: all 300ms cubic-bezier(0.03, 0.98, 0.53, 0.99) 0s;
+  background: linear-gradient(
+    to right,
+    var(--color1),
+    var(--color2),
+    var(--color3),
+    var(--color4)
+  );
+  border-radius: 20px;
+  padding: 5px;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 130px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  &:before {
+    background: var(--color1);
+    left: -30px;
+  }
 `;

@@ -22,12 +22,6 @@ const categories = [
     path: "/profilepage",
     cName: "profilepage",
   },
-  {
-    id: 4,
-    title: "begone",
-    path: "/",
-    cName: "begone",
-  },
 ];
 
 function Dropdown() {
@@ -35,8 +29,8 @@ function Dropdown() {
 
   return (
     <SubMenu
-      className={dropdown ? SubMenuClicked : SubMenu}
-      onClick={() => setDropdown(!dropdown)}
+    // className={dropdown ? SubMenuClicked : SubMenu}
+    // onClick={() => setDropdown(!dropdown)}
     >
       {categories.map((item) => {
         return (
@@ -45,7 +39,8 @@ function Dropdown() {
               <Link
                 to={item.path}
                 className={item.title}
-                onClick={() => setDropdown(false)}
+                onMouseEnter={() => setDropdown(true)}
+                onMouseLeave={() => setDropdown(false)}
               >
                 {item.title}
               </Link>

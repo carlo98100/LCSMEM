@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-// import "../css/Ticket.css";
+import "../css/PurchaseHistory.css";
 
 function PurchaseHistory() {
   return (
@@ -9,116 +9,55 @@ function PurchaseHistory() {
       <LeftContainer>
         <Text>Your profile</Text>
         <Link to="/YourTickets">Your Tickets</Link>
+        <Link to="/ProfilePage">Your upcoming concerts</Link>
         <Link to="/PurchaseHistory">Purchase History</Link>
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
-        <TicketsTitle>Your purchased tickets</TicketsTitle>'
-        {/* <TicketBody>
-          <div class="ticketbody"></div>
-          <div class="ticket">
-            <div class="left">
-              <div class="image">
-                <p class="admit-one">
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                </p>
-                <div class="ticket-number">
-                  <p>#20030220</p>
-                </div>
-              </div>
-              <div class="ticket-info">
-                <p class="date">
-                  <span>TUESDAY</span>
-                  <span class="june-29">JUNE 29TH</span>
-                  <span>2021</span>
-                </p>
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                  <h2>Live</h2>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                  <p>Malmö Arena @ Malmö</p>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-              </p>
-              <div class="right-info-container">
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                  <p>
-                    DOORS <span>@</span> 7:00 PM
-                  </p>
-                </div>
-                <div class="barcode"></div>
-                <p class="ticket-number">#20030220</p>
-              </div>
-            </div>
-          </div>
-          <div class="ticket">
-            <div class="left">
-              <div class="image">
-                <p class="admit-one">
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                </p>
-                <div class="ticket-number">
-                  <p>#20030220</p>
-                </div>
-              </div>
-              <div class="ticket-info">
-                <p class="date">
-                  <span>TUESDAY</span>
-                  <span class="june-29">JUNE 29TH</span>
-                  <span>2021</span>
-                </p>
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                  <h2>Online</h2>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-              </p>
-              <div class="right-info-container">
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                </div>
-                <div class="barcode"></div>
-                <p class="ticket-number">#20030220</p>
-              </div>
-            </div>
-          </div>
-        </TicketBody> */}
+        <TicketsTitle>Your purchased tickets</TicketsTitle>
+        <body>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+
+          <table>
+            <thead>
+              <tr>
+                <th> Chair </th>
+                <th> The Laid Back</th>
+                <th> The Worker Bee</th>
+                <th> The Chair 4/2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th> Width </th>
+                <td> 80 cm </td>
+                <td> 60 cm </td>
+                <td> 220 cm </td>
+              </tr>
+              <tr>
+                <th> Depth </th>
+                <td> 70 cm </td>
+                <td> 65 cm </td>
+                <td> 80 cm </td>
+              </tr>
+              <tr>
+                <th> Weight </th>
+                <td> 16 kg </td>
+                <td> 22 kg </td>
+                <td> 31 kg </td>
+              </tr>
+              <tr>
+                <th> Height </th>
+                <td> 120 cm </td>
+                <td> 92 cm </td>
+                <td> 80 cm </td>
+              </tr>
+            </tbody>
+          </table>
+        </body>
       </RightContainer>
     </Container>
   );

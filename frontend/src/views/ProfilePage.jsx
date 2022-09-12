@@ -8,6 +8,7 @@ const ProfilePage = () => {
       <LeftContainer>
         <Text>Your profile</Text>
         <Link to="/YourTickets">Your Tickets</Link>
+        <Link to="/ProfilePage">Your upcoming concerts</Link>
         <Link to="/PurchaseHistory">Purchase History</Link>
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>

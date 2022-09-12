@@ -16,8 +16,7 @@ function Nav() {
         <NavbarLeft>
           {AppRoutes.filter((item) => item.display === true).map(
             (item, index) => {
-              if (item.name === "Login"){
-
+              if (item.name === "Login") {
               }
               return (
                 <NavLink key={index} to={item.path}>
@@ -27,7 +26,7 @@ function Nav() {
             }
           )}
           <Link
-            to={"/login"}
+            to={"/dropdown"}
             onMouseEnter={() => setDropdown(true)}
             onMouseLeave={() => setDropdown(false)}
           >
@@ -38,7 +37,6 @@ function Nav() {
         </NavbarLeft>
         <NavbarRight>
           <AutoComplete placeholder="Sök" />
-          
         </NavbarRight>
       </Navbar>
     </>

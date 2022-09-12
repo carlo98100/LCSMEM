@@ -6,6 +6,7 @@ import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
+import Dropdown from "./components/Dropdown";
 
 export const AppRoutes = [
   {
@@ -35,7 +36,7 @@ export const AppRoutes = [
   {
     name: "Login",
     path: "/login",
-    display: true,
+    display: false,
     component: <Login />,
   },
   ,
@@ -65,9 +66,16 @@ export const AppRoutes = [
     component: <UserDetails />,
   },
   {
-    name: "TicketInfo",
-    path: "/TicketInfo",
+    name: "YourTickets",
+    path: "/YourTickets",
     display: false,
     component: <YourTickets />,
+  },
+
+  {
+    name: "Login",
+    path: "/Dropdown",
+    display: true,
+    component: <Dropdown />,
   },
 ];
