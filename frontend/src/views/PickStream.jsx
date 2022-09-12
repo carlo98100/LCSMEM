@@ -1,18 +1,17 @@
 import React from 'react';
-import StreamButton from '../components/StreamButton'
+import VideoPlayer from '../components/StreamButton'
 import styled from "styled-components";
 
-const Stream = () => {
+const PickStream = () => {
 
 	return (
 		<Container>
-			<h1>Stream Video</h1>
-			<video controls> </video>
+			<VideoPlayer/>
 		</Container>
 	)
 }
 
-export default Stream
+export default PickStream
 
 const Container = styled.div`
 	text-align: center;

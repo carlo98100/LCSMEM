@@ -1,12 +1,13 @@
 import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
-import Stream from "./views/Stream";
+import PickStream from "./views/PickStream";
 import Signup from "./views/Signup";
 import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import TicketInfo from "./views/TicketInfo";
+import Stream from "./views/Stream";
 
 export const AppRoutes = [
   {
@@ -72,9 +73,14 @@ export const AppRoutes = [
     component: <TicketInfo />,
   },
 	{
+		name: "Pick Stream",
+		path: "/PickStream",
+		display: true,
+		component: <PickStream />,
+	},{
 		name: "Stream",
 		path: "/Stream",
-		display: true,
+		display: false,
 		component: <Stream />,
-	},
+	}
 ];
