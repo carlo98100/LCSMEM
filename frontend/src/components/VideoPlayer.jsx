@@ -2,22 +2,21 @@ import React, { useEffect, useState } from 'react'
 
 const VideoPlayer = () => {
 
-    const [video, setVideo] = useState(null)
+    const [videos, setVideos] = useState([])
 
-    useEffect(() => {
-        fetch('/data/video-stream/1')
-            .then(res => {
-                return res.json()
-            }).then(data => {
-                console.log(data)
-                setVideo(data)
-                console.log(video)
-            })
-    }, [])
+    useEffect(() => {        
+        async function getVideos(){
+            let videoList = await fetch('/data/videos')
+            videoList = await videoList.json()
+            console.log(videoList)
+            setVideos(videoList)    
+        }
+        getVideos()
+    },[])
 
     return <>
-        <video controls autoPlay>
-            <source src="${video}" type="video/mp4" />
+        <video controls>
+            <source src="/data/video-stream/`${videos.id}" type="video/mp4" />
         </video>
     </>
 }

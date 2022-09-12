@@ -1,18 +1,15 @@
 import React from 'react';
-// import VideoPlayer from '../components/VideoPlayer'
+import video from '../components/VideoPlayer'
 import styled from "styled-components";
-import {playVideo} from '../components/VideoPlayer';
 
 const Stream = () => {
 
-	return <>
+	return (
 		<Container>
 			<h1>Stream Video</h1>
-			<video controls>
-				
-			</video>
+			video(1)
 		</Container>
-	</>
+	)
 }
 
 export default Stream
