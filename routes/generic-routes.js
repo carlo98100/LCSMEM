@@ -9,6 +9,49 @@
 
 module.exports = function (server, db) {
 
+server.get("/data/events/:artistId", (req, res) => {
+	let query =
+		// "select distinct e.Id as eventId " +
+		// ", e.StreetName as eventStreetName " +
+		// ",  e.StreetNumber as eventStreetNumber " +
+		// ", e.ZipCode as eventZipCode " +
+		// ", e.City as eventCity " +
+		// ", e.Date as eventDate " +
+		// ", case " +
+		// "when e.LiveStream == 1 then 'true' " +
+		// "else  'false' " +
+		// "end as IsLiveStream " +
+		// ", e.AmountOfTickets as eventTotalAmountOfTickets " +
+		// ", e.AmountOfTickets - count(*) as AvailableTickets " +
+		// "from Event as e " +
+		// "left join Ticket as t on t.EventId = e.Id " +
+		// "where e.ArtistId = " +
+		// req.params.artistId +
+		// " " +
+		// "group by t.EventId " +
+		// "order by e.Date asc;";
+		`select distinct
+		e.Id as eventId,
+		e.StreetName as eventStreetName,
+		e.StreetNumber as eventStreetNumber,
+		e.ZipCode as eventZipCode,
+		e.City as eventCity,
+		e.Date as eventDate,
+		case
+			when e.LiveStream == 1 then 'true'
+			else 'false'
+		end as IsLiveStream,
+		e.AmountOfTickets as eventTotalAmountOfTickets,
+		e.AmountOfTickets - (select count(*) from Ticket where eventid = e.id) as AvailableTickets
+		from Event e
+		left join Ticket t on t.EventId = e.Id
+		where e.ArtistId = ${req.params.artistId}
+		order by e.Date asc;`;
+
+	let result = db.prepare(query).all();
+	res.json(result);
+});
+
   server.get('/data/:table', (req, res) => {
     let query = "SELECT * FROM " + req.params.table
     let result = db.prepare(query).all()
@@ -60,4 +103,14 @@ module.exports = function (server, db) {
     res.json(result)
   })
 
-}
+	server.delete("/data/:table/:id", (req, res) => {
+		let query = "DELETE FROM " + req.params.table + " WHERE id = @id";
+		let result;
+		try {
+			result = db.prepare(query).run({ id: req.params.id });
+		} catch (e) {
+			console.error(e);
+		}
+		res.json(result);
+	});
+};

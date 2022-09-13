@@ -29,7 +29,7 @@ export const AppRoutes = [
   },
   {
     name: "ConsertPage",
-    path: "/ConsertPage",
+    path: "/ConsertPage/:artistId",
     display: true,
     component: <ConsertPage />,
   },

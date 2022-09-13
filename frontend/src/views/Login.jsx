@@ -1,37 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../components/Input";
+import { UserContext } from "../contexts/UserContext";
+// import { useLoggedIn } from "../context/LoggedInContext";
 
-function Login() {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+function Login(props) {
+	const [form, setForm] = useState({
+		email: "exempel@nodehill.com",
+		password: "abc123",
+	});
 
-  const updateForm = (event) => {
-    setForm((prevState) => {
-      return { ...prevState, [event.target.name]: event.target.value };
-    });
-  };
+	const updateForm = (event) => {
+		setForm((prevState) => {
+			return { ...prevState, [event.target.name]: event.target.value };
+		});
+	};
+	const { logIn } = useContext(UserContext);
+	const navigate = useNavigate();
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    console.log(JSON.stringify(form));
-    console.log("sending", form);
-    try {
-      const response = await fetch("/data/login", {
-        method: "POST", // GET, POST, PUT, DELETE, etc.
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(form), // body data type must match "Content-Type" header
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+	const onSubmit = async (event) => {
+		event.preventDefault();
+
+		await logIn(form);
+		navigate("/", { replace: true });
+	};
 
   return (
     <Container>
@@ -68,17 +61,17 @@ function Login() {
 export default Login;
 
 const Container = styled.div`
-  display: flex;
-  position: fixed;
-  margin-top: 70px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #27476e;
-  z-index: 1;
-  justify-content: center;
-  align-content: center;
+	display: flex;
+	position: fixed;
+	margin-top: 70px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/* background-color: #27476e; */
+	z-index: 1;
+	justify-content: center;
+	align-content: center;
 `;
 
 const InnerContainer = styled.div`
@@ -86,18 +79,22 @@ const InnerContainer = styled.div`
 `;
 
 const LoginCard = styled.form`
-  background-color: white;
-  height: 50vh;
-  min-width: 320px;
-  width: 20vw;
-  min-height: 400px;
-  border-radius: 20px;
-  margin-top: 10vh;
+	background-color: white;
+	height: 50vh;
+	min-width: 320px;
+	width: 20vw;
+	min-height: 400px;
+	border-radius: 20px;
+	margin-top: 10vh;
+	padding: 20px;
+	/* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; */
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 `;
 
 const NavLink = styled(Link)`
-  text-decoration: none;
-  color: #006992;
+	text-decoration: none;
+	color: #006992;
+	margin-bottom: 10em;
 `;
 
 const SubmitBtn = styled.input`
