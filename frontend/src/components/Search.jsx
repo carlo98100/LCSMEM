@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import List from "./searchList";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ function Search() {
   return (
     <Container>
       <SearchContainer className="Search">
-        <input type="text" placeholder="Search" onChange={inputHandler}/>
+        <input type="text" placeholder="Search" onLoad={inputHandler} onChange={inputHandler}/>
       </SearchContainer>
       <ListContainer>
         <List input={inputText}/>
