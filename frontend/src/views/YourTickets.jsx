@@ -4,6 +4,47 @@ import { Link } from "react-router-dom";
 import "../css/Ticket.css";
 
 function YourTickets() {
+  const [artists, setArtists] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [artistInformation, setArtistInformation] = useState([]);
+
+  useEffect(() => {
+    GetArtists();
+    GetEvents();
+  }, []);
+
+  async function GetArtists(id) {
+    try {
+      const response = await fetch(`/data/artist/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setArtistInformation(jsonData);
+      console.log(artistInformation);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function GetEvents(id) {
+    const id = filterdList[0].id;
+    try {
+      const response = await fetch(`/data/events/${id} `, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setEvents(jsonData);
+      console.log(getEvents);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   return (
     <Container>
       <LeftContainer>
@@ -16,7 +57,62 @@ function YourTickets() {
       <RightContainer>
         <TicketsTitle>Your tickets</TicketsTitle>
         <TicketBody>
-          <div class="ticketbody"></div>
+          {artistInformation.map((artist) => (
+            <div class="ticket">
+              <div class="left">
+                <div class="image">
+                  <p class="admit-one">
+                    <span>ADMIT ONE</span>
+                    <span>ADMIT ONE</span>
+                    <span>ADMIT ONE</span>
+                  </p>
+                  <div class="ticket-number">
+                    <p>#20030220</p>
+                  </div>
+                </div>
+                <div class="ticket-info">
+                  <p class="date">
+                    <span>TUESDAY</span>
+                    <span class="june-29">JUNE 29TH</span>
+                    <span>2021</span>
+                  </p>
+                  <div class="show-name">
+                    <h1>artist.Name</h1>
+                    <h2>Live</h2>
+                  </div>
+                  <div class="time">
+                    <p>
+                      8:00 PM <span>TO</span> 11:00 PM
+                    </p>
+                    <p>Malmö Arena @ Malmö</p>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <p class="admit-one">
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                  <span>ADMIT ONE</span>
+                </p>
+                <div class="right-info-container">
+                  <div class="show-name">
+                    <h1>{artistInformation.Name}</h1>
+                  </div>
+                  <div class="time">
+                    <p>
+                      8:00 PM <span>TO</span> 11:00 PM
+                    </p>
+                    <p>
+                      DOORS <span>@</span> 7:00 PM
+                    </p>
+                  </div>
+                  <div class="barcode"></div>
+                  <p class="ticket-number">#20030220</p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* <div class="ticketbody"></div>
           <div class="ticket">
             <div class="left">
               <div class="image">
@@ -36,7 +132,7 @@ function YourTickets() {
                   <span>2021</span>
                 </p>
                 <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
+                  <h1>.</h1>
                   <h2>Live</h2>
                 </div>
                 <div class="time">
@@ -55,8 +151,8 @@ function YourTickets() {
               </p>
               <div class="right-info-container">
                 <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
+                  {/* <h1>{artistInformation.Name}</h1> */}
+          {/* </div>
                 <div class="time">
                   <p>
                     8:00 PM <span>TO</span> 11:00 PM
@@ -68,10 +164,10 @@ function YourTickets() {
                 <div class="barcode"></div>
                 <p class="ticket-number">#20030220</p>
               </div>
-            </div>
-          </div>
-          <div class="ticket">
-            <div class="left">
+            </div> */}
+          {/* </div> */}
+          {/* <div class="ticket"> */}
+          {/* <div class="left">
               <div class="image">
                 <p class="admit-one">
                   <span>ADMIT ONE</span>
@@ -99,26 +195,7 @@ function YourTickets() {
                 </div>
               </div>
             </div>
-            <div class="right">
-              <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-              </p>
-              <div class="right-info-container">
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                </div>
-                <div class="barcode"></div>
-                <p class="ticket-number">#20030220</p>
-              </div>
-            </div>
-          </div>
+          </div> */}
         </TicketBody>
       </RightContainer>
     </Container>
