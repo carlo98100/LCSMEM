@@ -6,9 +6,6 @@ const Stream = () => {
 
 	const videoId = useParams();
 
-	console.log("Video id")
-	console.log(videoId.id)
-
 	return (
 		<Container>
 			<video controls src={`/data/video-stream/${videoId.id}`}></video>

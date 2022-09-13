@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Stream from '../views/Stream'
+import styled from "styled-components";
 
 const StreamButton = () => {
 
@@ -23,3 +23,5 @@ const StreamButton = () => {
 }
 
 export default StreamButton
+
+const videoLinks = styled.div
