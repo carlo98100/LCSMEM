@@ -1,12 +1,17 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Stream = () => {
 
+	const videoId = useParams();
+
+	console.log("Video id")
+	console.log(videoId.id)
+
 	return (
 		<Container>
-			<h1>${video.name}</h1>
-			<video controls src={`/data/video-stream/${video.id}`}></video>
+			<video controls src={`/data/video-stream/${videoId.id}`}></video>
 		</Container>
 	)
 }

@@ -17,7 +17,7 @@ const StreamButton = () => {
 
     return <>
         <div>
-            {videos.map(video => <a href={`/Stream`}>{video.name}</a>)}
+            {videos.map(video => <a href={`/Stream/${video.id}`}>{video.name}</a>)}
         </div>
     </>
 }
