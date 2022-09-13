@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 const Stream = () => {
 
-	const videoId = useParams();
+	const video = useParams();
+	console.log(video)
 
 	return (
 		<Container>
-			<video controls src={`/data/video-stream/${videoId.id}`}></video>
+			<video controls src={`/data/video-stream/${video.id}`}></video>
 		</Container>
 	)
 }
