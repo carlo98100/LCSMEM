@@ -1,4 +1,3 @@
-import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
@@ -6,6 +5,7 @@ import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
+import ArtistPage from "./views/ArtistPage";
 
 export const AppRoutes = [
 	{
@@ -27,10 +27,10 @@ export const AppRoutes = [
 		component: <Home />,
 	},
 	{
-		name: "ConsertPage",
-		path: "/ConsertPage/:artistId",
+		name: "ArtistPage",
+		path: "/ArtistPage/:artistId",
 		display: true,
-		component: <ConsertPage />,
+		component: <ArtistPage />,
 	},
 	{
 		name: "Login",

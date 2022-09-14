@@ -53,7 +53,7 @@ function Dropdown() {
         );
       })} */}
 
-			<SubMenuLi key="">
+			<SubMenuLi>
 				<SubMenuItems>
 					<Link
 						to="/profilepage"
@@ -66,7 +66,7 @@ function Dropdown() {
 					</Link>
 				</SubMenuItems>
 			</SubMenuLi>
-			<SubMenuLi key="">
+			<SubMenuLi>
 				<SubMenuItems>
 					<Link
 						to="/login"
