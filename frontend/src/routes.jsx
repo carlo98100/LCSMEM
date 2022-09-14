@@ -7,7 +7,6 @@ import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 import Dropdown from "./components/Dropdown";
-import Checkout from "./views/Checkout";
 
 export const AppRoutes = [
   {
@@ -71,11 +70,5 @@ export const AppRoutes = [
     path: "/TicketInfo/:userId",
     display: false,
     component: <YourTickets />,
-  },
-  {
-    name: "Checkout",
-    path: "/Checkout",
-    display: false,
-    component: <Checkout />,
   },
 ];
