@@ -9,10 +9,13 @@ function YourTickets() {
   const { userId } = useParams();
   // const [form, setForm] = useState([]);
   const [ticketInformation, setTicketInformation] = useState([]);
+  const [artistInformation, setArtistInformation] = useState([]);
 
   useEffect(() => {
+    if (!userId) return;
     GetTicketInformation(userId);
-  }, []);
+    GetArtistInformation();
+  }, [userId]);
 
   async function GetTicketInformation(id) {
     try {
@@ -24,7 +27,22 @@ function YourTickets() {
       });
       const jsonData = await response.json();
       setTicketInformation(jsonData);
-      console.log(ticketInformation);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function GetArtistInformation(id) {
+    try {
+      const response = await fetch(`/data/Artist`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setArtistInformation(jsonData);
     } catch (err) {
       console.error(err);
     }
@@ -62,7 +80,7 @@ function YourTickets() {
                     <span>2021</span>
                   </p>
                   <div class="show-name">
-                    <h1>{ticketInformation.ArtistName}</h1>
+                    <h1>{artistInformation.ArtistName}</h1>
                     <h2>Live</h2>
                   </div>
                   <div class="time">
