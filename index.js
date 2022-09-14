@@ -36,7 +36,7 @@ server.listen(port,() => {
 })
 
 // front end directories
-server.use('/', express.static('whatever-directory-for-react-build')) // change 
+server.use('/', express.static('frontend/dist')) // change 
 server.use('/examples', express.static('examples'))
 
 // example REST API routes
@@ -59,5 +59,5 @@ require('./routes/checkout.js')(server, db, host)
 require('./routes/generic-routes.js')(server, db)
 
 server.get('*', (req, res)=>{
-  res.sendFile(__dirname + '/whatever-directory-for-react-build/index.html')
+  res.sendFile(__dirname + '/frontend/dist/index.html')
 })

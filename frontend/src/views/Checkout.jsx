@@ -1,23 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import "../css/checkout.css";
 
-function TicketInfo() {
+const Checkout = () => {
   return (
     <Container>
       <LeftContainer>
         <Text>Your profile</Text>
+        <Link to="/YourTickets">Your Tickets</Link>
         <Link to="/PurchaseHistory">Purchase History</Link>
         <Link to="/UserDetails">Change user info</Link>
       </LeftContainer>
       <RightContainer>
-        <TicketsTitle>Ticket information</TicketsTitle>
+        <TicketsTitle>Your upcoming concerts</TicketsTitle>
       </RightContainer>
     </Container>
   );
-}
+};
 
-export default TicketInfo;
+export default Checkout;
 
 const Container = styled.div`
   display: flex;
@@ -28,10 +30,12 @@ const LeftContainer = styled.div`
   flex: 1 1 30%;
   min-width: 15ch;
   height: calc(100vh - 70px);
+  justify-content: center;
+  align-items: center;
 `;
 
 const RightContainer = styled.div`
-  background-color: #c15067;
+  background-color: #6767b9;
   flex: 1 1 70%;
   // ch = how many characters wide
   min-width: 25ch;
@@ -39,13 +43,6 @@ const RightContainer = styled.div`
 `;
 
 const Text = styled.h1`
-  text-align: center;
-  background-color: gray;
-  padding: 15px;
-  border-radius: 10px;
-`;
-
-const TextH3 = styled.h3`
   text-align: center;
   background-color: gray;
   padding: 15px;
