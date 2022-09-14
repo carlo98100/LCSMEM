@@ -67,7 +67,7 @@ export const AppRoutes = [
   },
   {
     name: "TicketInfo",
-    path: "/TicketInfo",
+    path: "/TicketInfo/:userId",
     display: false,
     component: <YourTickets />,
   },

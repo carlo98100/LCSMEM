@@ -1,50 +1,35 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "../css/Ticket.css";
 
 function YourTickets() {
-  // const [artists, setArtists] = useState([]);
-  // const [events, setEvents] = useState([]);
-  // const [artistInformation, setArtistInformation] = useState([]);
+  const { userId } = useParams();
+  // const [form, setForm] = useState([]);
+  const [ticketInformation, setTicketInformation] = useState([]);
 
-  // useEffect(() => {
-  //   GetArtists();
-  //   GetEvents();
-  // }, []);
+  useEffect(() => {
+    GetTicketInformation(userId);
+  }, []);
 
-  // async function GetArtists(id) {
-  //   try {
-  //     const response = await fetch(`/data/artist/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonData = await response.json();
-  //     setArtistInformation(jsonData);
-  //     console.log(artistInformation);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
+  async function GetTicketInformation(id) {
+    try {
+      const response = await fetch(`/data/Ticket/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setTicketInformation(jsonData);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
-  // async function GetEvents(id) {
-  //   const id = filterdList[0].id;
-  //   try {
-  //     const response = await fetch(`/data/events/${id} `, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonData = await response.json();
-  //     setEvents(jsonData);
-  //     console.log(getEvents);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
   return (
     <Container>
       <LeftContainer>
@@ -57,7 +42,7 @@ function YourTickets() {
       <RightContainer>
         <TicketsTitle>Your tickets</TicketsTitle>
         <TicketBody>
-          {/* {artistInformation.map((artist) => (
+          {ticketInformation.map((ticket) => (
             <div class="ticket">
               <div class="left">
                 <div class="image">
@@ -77,7 +62,7 @@ function YourTickets() {
                     <span>2021</span>
                   </p>
                   <div class="show-name">
-                    <h1>artist.Name</h1>
+                    <h1>{ticketInformation.ArtistName}</h1>
                     <h2>Live</h2>
                   </div>
                   <div class="time">
@@ -96,7 +81,7 @@ function YourTickets() {
                 </p>
                 <div class="right-info-container">
                   <div class="show-name">
-                    <h1>{artistInformation.Name}</h1>
+                    <h1>{ticketInformation.ArtistName}</h1>
                   </div>
                   <div class="time">
                     <p>
@@ -111,8 +96,8 @@ function YourTickets() {
                 </div>
               </div>
             </div>
-          ))}   */}
-          <div class="ticketbody"></div>
+          ))}
+          {/* <div class="ticketbody"></div>
           <div class="ticket">
             <div class="left">
               <div class="image">
@@ -150,9 +135,7 @@ function YourTickets() {
                 <span>ADMIT ONE</span>
               </p>
               <div class="right-info-container">
-                <div class="show-name">
-                  {/* <h1>{artistInformation.Name}</h1> */}
-                </div>
+                <div class="show-name"></div>
                 <div class="time">
                   <p>
                     8:00 PM <span>TO</span> 11:00 PM
@@ -204,9 +187,7 @@ function YourTickets() {
                 <span>ADMIT ONE</span>
               </p>
               <div class="right-info-container">
-                <div class="show-name">
-                  {/* <h1>{artistInformation.Name}</h1> */}
-                </div>
+                <div class="show-name"></div>
                 <div class="time">
                   <p>
                     8:00 PM <span>TO</span> 11:00 PM
@@ -219,7 +200,7 @@ function YourTickets() {
                 <p class="ticket-number">#20030220</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </TicketBody>
       </RightContainer>
     </Container>
