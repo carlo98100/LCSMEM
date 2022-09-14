@@ -66,16 +66,9 @@ export const AppRoutes = [
     component: <UserDetails />,
   },
   {
-    name: "YourTickets",
-    path: "/YourTickets",
+    name: "TicketInfo",
+    path: "/TicketInfo",
     display: false,
     component: <YourTickets />,
-  },
-
-  {
-    name: "Login",
-    path: "/Dropdown",
-    display: true,
-    component: <Dropdown />,
   },
 ];

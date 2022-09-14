@@ -22,7 +22,6 @@ function UserContextProvider(props) {
 
 			const jsonData = await response.json();
 
-			// console.log("email: " + form.email + ", loggedIn:" + jsonData.loggedIn);
 			setUser({ email: form.email, loggedIn: jsonData.loggedIn });
 
 			if (response.status == 403) {

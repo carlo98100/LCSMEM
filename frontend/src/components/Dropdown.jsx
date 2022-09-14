@@ -1,38 +1,46 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
+import { UserContext } from "../contexts/UserContext";
 
 //Dropdown categories
 const categories = [
-  {
-    id: 1,
-    title: "login",
-    path: "/login",
-    cName: "login",
-  },
-  {
-    id: 2,
-    title: "signup",
-    path: "/signup",
-    cName: "signup",
-  },
-  {
-    id: 3,
-    title: "profilepage",
-    path: "/profilepage",
-    cName: "profilepage",
-  },
+  // {
+  //   id: 1,
+  //   title: "login",
+  //   path: "/login",
+  //   cName: "login",
+  // },
+  // {
+  //   id: 2,
+  //   title: "signup",
+  //   path: "/signup",
+  //   cName: "signup",
+  // },
+  // {
+  //   id: 3,
+  //   title: "profilepage",
+  //   path: "/profilepage",
+  //   cName: "profilepage",
+  // },
+  // {
+  //   id: 4,
+  //   title: "Logout",
+  //   path: "/",
+  //   cName: "begone",
+  // },
 ];
 
 function Dropdown() {
   const [dropdown, setDropdown] = useState(false);
+  const { logOut } = useContext(UserContext);
 
   return (
     <SubMenu
-    // className={dropdown ? SubMenuClicked : SubMenu}
-    // onClick={() => setDropdown(!dropdown)}
+      className={dropdown ? SubMenuClicked : SubMenu}
+      onClick={() => setDropdown(!dropdown)}
     >
-      {categories.map((item) => {
+      {/* {categories.map((item) => {
         return (
           <SubMenuLi key={item.id}>
             <SubMenuItems>
@@ -47,7 +55,35 @@ function Dropdown() {
             </SubMenuItems>
           </SubMenuLi>
         );
-      })}
+      })} */}
+
+      <SubMenuLi key="">
+        <SubMenuItems>
+          <Link
+            to="/profilepage"
+            className="profilepage"
+            onClick={() => {
+              setDropdown(false);
+            }}
+          >
+            Profilepage
+          </Link>
+        </SubMenuItems>
+      </SubMenuLi>
+      <SubMenuLi key="">
+        <SubMenuItems>
+          <Link
+            to="/login"
+            className="logout"
+            onClick={() => {
+              setDropdown(false);
+              logOut();
+            }}
+          >
+            Logout
+          </Link>
+        </SubMenuItems>
+      </SubMenuLi>
     </SubMenu>
   );
 }
