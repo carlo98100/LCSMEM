@@ -83,7 +83,7 @@ export const AppRoutes = [
 		path: "/Stream/:id",
 		display: false,
 		component: <Stream />,
-	}
+	},
   {
     name: "Checkout",
     path: "/Checkout",
