@@ -9,10 +9,12 @@ function ConsertPage() {
 	const { artistId } = useParams();
 	const [form, setForm] = useState([]);
 	const [artistInformation, setArtistInformation] = useState({});
+
 	useEffect(() => {
 		GetEventInformation(artistId);
 		GetArtistInformation(artistId);
 	}, []);
+
 	const [fetching, setFetching] = useState(false);
 
 	async function GetEventInformation(id) {
@@ -42,7 +44,6 @@ function ConsertPage() {
 			});
 			const jsonData = await response.json();
 			setArtistInformation(jsonData);
-			console.log(artistInformation);
 		} catch (err) {
 			console.error(err);
 		}

@@ -8,66 +8,66 @@ import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 
 export const AppRoutes = [
-  {
-    name: "Home",
-    path: "/",
-    display: true,
-    component: <Home />,
-  },
-  {
-    name: "Link1",
-    path: "/link-1",
-    display: true,
-    component: <Home />,
-  },
-  {
-    name: "Link2",
-    path: "/link-2",
-    display: true,
-    component: <Home />,
-  },
-  {
-    name: "ConsertPage",
-    path: "/ConsertPage/:artistId",
-    display: true,
-    component: <ConsertPage />,
-  },
-  {
-    name: "Login",
-    path: "/login",
-    display: true,
-    component: <Login />,
-  },
-  ,
-  {
-    name: "Signup",
-    path: "/signup",
-    display: false,
-    component: <Signup />,
-  },
+	{
+		name: "Home",
+		path: "/",
+		display: true,
+		component: <Home />,
+	},
+	{
+		name: "Link1",
+		path: "/link-1",
+		display: true,
+		component: <Home />,
+	},
+	{
+		name: "Link2",
+		path: "/link-2",
+		display: true,
+		component: <Home />,
+	},
+	{
+		name: "ConsertPage",
+		path: "/ConsertPage/:artistId",
+		display: true,
+		component: <ConsertPage />,
+	},
+	{
+		name: "Login",
+		path: "/login",
+		display: false,
+		component: <Login />,
+	},
+	,
+	{
+		name: "Signup",
+		path: "/signup",
+		display: false,
+		component: <Signup />,
+	},
 
-  {
-    name: "ProfilePage",
-    path: "/ProfilePage",
-    display: false,
-    component: <ProfilePage />,
-  },
-  {
-    name: "PurchaseHistory",
-    path: "/PurchaseHistory",
-    display: false,
-    component: <PurchaseHistory />,
-  },
-  {
-    name: "UserDetails",
-    path: "/UserDetails",
-    display: false,
-    component: <UserDetails />,
-  },
-  {
-    name: "TicketInfo",
-    path: "/TicketInfo",
-    display: false,
-    component: <YourTickets />,
-  },
+	{
+		name: "ProfilePage",
+		path: "/ProfilePage",
+		display: false,
+		component: <ProfilePage />,
+	},
+	{
+		name: "PurchaseHistory",
+		path: "/PurchaseHistory",
+		display: false,
+		component: <PurchaseHistory />,
+	},
+	{
+		name: "UserDetails",
+		path: "/UserDetails",
+		display: false,
+		component: <UserDetails />,
+	},
+	{
+		name: "TicketInfo",
+		path: "/TicketInfo",
+		display: false,
+		component: <YourTickets />,
+	},
 ];
