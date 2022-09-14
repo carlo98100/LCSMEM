@@ -17,8 +17,7 @@ const EventPage = () => {
 
     return <>
         <div>
-            {events.map(event => <h2>{event.name}</h2>
-            )}
+            {events.map(event => <h2>{event.Date}</h2>)}
         </div>
     </>
 }
