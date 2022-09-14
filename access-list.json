@@ -8,28 +8,28 @@
   },
 
   {
-    "route": "/data/video-stream",
+    "route": "/data/video_streams*",
     "roles":[
-      {"role": "*", "methods": ["GET"]}
+      {"role": "user", "methods": ["GET"]}
     ]
   },
 
   {
-    "route": "/data/video-example",
+    "route": "/data/video_example",
     "roles":[
       {"role": "*", "methods": ["GET"]}      
     ]
   },
 
   {
-    "route": "/data/audio-stream*",
+    "route": "/data/audio_streams*",
     "roles":[
       {"role": "*", "methods": ["GET"]}
     ]
   },
 
   {
-    "route": "/data/audio-example",
+    "route": "/data/audio_example",
     "roles":[
       {"role": "*", "methods": ["GET"]}
     ]
