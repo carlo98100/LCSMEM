@@ -7,6 +7,8 @@ import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 import Checkout from "./views/Checkout";
+import EventPage from "./views/eventPage";
+
 
 export const AppRoutes = [
   {
@@ -76,5 +78,11 @@ export const AppRoutes = [
     path: "/Checkout",
     display: false,
     component: <Checkout />,
+  },
+  {
+    name: "Event page",
+    path: "/EventPage",
+    display: true,
+    component: <EventPage />,
   },
 ];
