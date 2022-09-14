@@ -24,7 +24,7 @@ function YourTickets() {
       });
       const jsonData = await response.json();
       setTicketInformation(jsonData);
-      console.log(jsonData);
+      console.log(ticketInformation);
     } catch (err) {
       console.error(err);
     }
@@ -200,7 +200,7 @@ function YourTickets() {
                 <p class="ticket-number">#20030220</p>
               </div>
             </div>
-          </div> */}
+          </div>  */}
         </TicketBody>
       </RightContainer>
     </Container>
