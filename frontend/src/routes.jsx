@@ -1,14 +1,12 @@
 import ConsertPage from "./views/ConsertPage";
 import Home from "./views/Home";
 import Login from "./views/Login";
-import PickStream from "./views/PickStream";
 import Signup from "./views/Signup";
 import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 import Dropdown from "./components/Dropdown";
-import Stream from "./views/Stream";
 import Checkout from "./views/Checkout";
 
 export const AppRoutes = [
@@ -74,17 +72,6 @@ export const AppRoutes = [
     display: false,
     component: <YourTickets />,
   },
-	{
-		name: "Pick Stream",
-		path: "/PickStream",
-		display: true,
-		component: <PickStream />,
-	},{
-		name: "Stream",
-		path: "/Stream/:id",
-		display: false,
-		component: <Stream />,
-	},
   {
     name: "Checkout",
     path: "/Checkout",
