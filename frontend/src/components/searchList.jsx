@@ -1,63 +1,38 @@
 import { React, useEffect, useState } from "react";
 import styled from "styled-components";
 import ConsertEventBoard from "../Components/ConsertEventBoard";
+import allEvents from "./eventList"
+import allArtists from "./artistList"
 
-function searchList({ input }) {
-  const [artists, setArtists] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [allEvents, setAllEvents] = useState([]); // Initial value
-
-  useEffect(() => {
-    GetArtists();
-    GetAllEvents();
-  }, []);
+const searchList = ({ input }) => {
 
   useEffect(() => {
     filterEvents();
+    allArtists();
+    allEvents();
   }, [input]);
 
-  async function GetArtists() {
-    try {
-      const response = await fetch(`/data/artist`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      console.log("getallartists");
-      console.log(jsonData);
-      setArtists(jsonData);
-      console.log(artists);
-    } catch (err) {
-      console.error(err);
-    }
-  }
   const filterdArtistList = artists.filter((artist) => {
     return input === "" ? true : artist.Name.toLowerCase().startsWith(input); // || element.Genre.toLowerCase().startsWith(input) add later when database has genre prop
   });
 
-  async function GetAllEvents() {
-    try {
-      const response = await fetch(`/data/Event`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+  function filterEvents() {
+    let tmpList = [];
+    allEvents.map((event) => {
+      filterdArtistList.forEach((artist) => {
+        console.log(artist);
+        if (event.ArtistId === artist.Id) {
+          tmpList.push(event);
+        }
       });
-      const jsonData = await response.json();
-      console.log("getallevents");
-      console.log(jsonData);
-      setAllEvents(jsonData);
-      //   console.log(allEvents);
-    } catch (err) {
-      console.error(err);
+    });
+    if (tmpList.length === 0) {
+      setEvents(allEvents);
+    } else {
+      setEvents(tmpList);
     }
   }
-
-  function filterEvents() {
-
-    // some javaScript magic :)
+      // some javaScript magic :)
     // const tmpList = allEvents.filter(({ ArtistId: id1 }) =>
     //   filterdArtistList.some(({ Id: id2 }) => id1 === id2)
     // );
@@ -67,24 +42,6 @@ function searchList({ input }) {
     // } else {
     //   setEvents(tmpList);
     // }
-    let tmpList = [];
-    allEvents.filter((event) => {
-      filterdArtistList.forEach((artist) => {
-        console.log(artist);
-        if (event.ArtistId === artist.Id) {
-          tmpList.push(event);
-          //   console.log(tmpList);
-        }
-      });
-    });
-    // console.log("tmplist");
-    // console.log(tmpList);
-    if (tmpList.length === 0) {
-      setEvents(allEvents);
-    } else {
-      setEvents(tmpList);
-    }
-  }
 
   return (
     <EventContainer>
