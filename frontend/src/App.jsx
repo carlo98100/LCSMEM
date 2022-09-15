@@ -3,7 +3,7 @@ import Nav from "./components/Nav";
 import { Route, Routes } from "react-router-dom";
 import { AppRoutes } from "./routes";
 import UserContextProvider from "./contexts/UserContext";
-import { EventContextProvider } from "./context/eventList";
+import { EventContextProvider } from "./contexts/eventList";
 
 function App() {
 	return (
