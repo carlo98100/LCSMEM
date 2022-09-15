@@ -82,15 +82,4 @@ module.exports = function (server, db) {
 		}
 		res.json(result);
 	});
-
-	server.delete("/data/:table/:id", (req, res) => {
-		let query = "DELETE FROM " + req.params.table + " WHERE id = @id";
-		let result;
-		try {
-			result = db.prepare(query).run({ id: req.params.id });
-		} catch (e) {
-			console.error(e);
-		}
-		res.json(result);
-	});
 };
