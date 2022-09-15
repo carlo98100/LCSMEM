@@ -4,7 +4,7 @@ import ArtistContext from "../contexts/artistList";
 import styled from "styled-components";
 
 const EventPage = () => {
-  const { events, x } = useContext(EventContext);
+  const { events } = useContext(EventContext);
   const { artists } = useContext(ArtistContext);
   console.log(artists);
   return (
@@ -13,7 +13,7 @@ const EventPage = () => {
         <h1>Event List</h1>
         {events.map((event) => (
           <h2 key={event.Id}>
-            {event.Date} - {x} - {event.City}
+            {event.Id} - {event.StreetName} {event.StreetNumber} - {event.City} -  {event.Date}
           </h2>
         ))}
       </Container>
