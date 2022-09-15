@@ -12,26 +12,9 @@ const searchList = ({ input }) => {
     allEvents();
   }, [input]);
 
-  const filterdArtistList = artists.filter((artist) => {
-    return input === "" ? true : artist.Name.toLowerCase().startsWith(input); // || element.Genre.toLowerCase().startsWith(input) add later when database has genre prop
-  });
 
-  function filterEvents() {
-    let tmpList = [];
-    allEvents.map((event) => {
-      filterdArtistList.forEach((artist) => {
-        console.log(artist);
-        if (event.ArtistId === artist.Id) {
-          tmpList.push(event);
-        }
-      });
-    });
-    if (tmpList.length === 0) {
-      setEvents(allEvents);
-    } else {
-      setEvents(tmpList);
-    }
-  }
+
+  
       // some javaScript magic :)
     // const tmpList = allEvents.filter(({ ArtistId: id1 }) =>
     //   filterdArtistList.some(({ Id: id2 }) => id1 === id2)

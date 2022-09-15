@@ -11,6 +11,27 @@ function Search() {
     setInputText(lowerCase);
   };
 
+  const filterdArtistList = artists.filter((artist) => {
+    return input === "" ? true : artist.Name.toLowerCase().startsWith(input); // || element.Genre.toLowerCase().startsWith(input) add later when database has genre prop
+  });
+
+  // function filterEvents() {
+  //   let tmpList = [];
+  //   allEvents.map((event) => {
+  //     filterdArtistList.forEach((artist) => {
+  //       console.log(artist);
+  //       if (event.ArtistId === artist.Id) {
+  //         tmpList.push(event);
+  //       }
+  //     });
+  //   });
+  //   if (tmpList.length === 0) {
+  //     setEvents(allEvents);
+  //   } else {
+  //     setEvents(tmpList);
+  //   }
+  // }
+
   return (
     <Container>
       <SearchContainer className="Search">
