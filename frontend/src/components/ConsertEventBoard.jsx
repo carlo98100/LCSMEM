@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import Event from "./Event";
+import ConsertEvent from "./ConsertEvent";
 
-function EventBoard({ events }) {
+function ConsertEventBoard({ events }) {
 	return (
 		<Container>
 			<EventsTitle>Upcoming events</EventsTitle>
 			{events?.map?.((event, index) => {
-				return <Event event={event} key={index}></Event>;
+				return <ConsertEvent event={event} key={index}></ConsertEvent>;
 			})}
 		</Container>
 	);
 }
 
-export default EventBoard;
+export default ConsertEventBoard;
 
 const EventsTitle = styled.h1`
 	text-align: center;
