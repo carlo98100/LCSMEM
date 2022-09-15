@@ -10,12 +10,14 @@ function YourTickets() {
   // const [form, setForm] = useState([]);
   const [ticketInformation, setTicketInformation] = useState([]);
   const [artistInformation, setArtistInformation] = useState([]);
+  const [eventInformation, setEventInformation] = useState([]);
 
   useEffect(() => {
     if (!userId) return;
-    GetTicketInformation(userId);
     GetArtistInformation();
-  }, [userId]);
+    GetEventInformation();
+    GetTicketInformation(userId);
+  }, []);
 
   async function GetTicketInformation(id) {
     try {
@@ -35,7 +37,7 @@ function YourTickets() {
 
   async function GetArtistInformation(id) {
     try {
-      const response = await fetch(`/data/Artist`, {
+      const response = await fetch(`/data/Artist/2`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -43,6 +45,23 @@ function YourTickets() {
       });
       const jsonData = await response.json();
       setArtistInformation(jsonData);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function GetEventInformation(id) {
+    try {
+      const response = await fetch(`/data/events/2`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setEventInformation(jsonData);
+      setForm(jsonData);
     } catch (err) {
       console.error(err);
     }
@@ -76,18 +95,18 @@ function YourTickets() {
                 <div class="ticket-info">
                   <p class="date">
                     <span>TUESDAY</span>
-                    <span class="june-29">JUNE 29TH</span>
+                    <span class="june-29">{eventInformation.Date}</span>
                     <span>2021</span>
                   </p>
                   <div class="show-name">
-                    <h1>{artistInformation.ArtistName}</h1>
+                    <h1>{artistInformation.Name}</h1>
                     <h2>Live</h2>
                   </div>
                   <div class="time">
                     <p>
                       8:00 PM <span>TO</span> 11:00 PM
                     </p>
-                    <p>Malmö Arena @ Malmö</p>
+                    <p>{eventInformation.City}</p>
                   </div>
                 </div>
               </div>
@@ -99,7 +118,7 @@ function YourTickets() {
                 </p>
                 <div class="right-info-container">
                   <div class="show-name">
-                    <h1>{ticketInformation.ArtistName}</h1>
+                    <h1>{artistInformation.Name}</h1>
                   </div>
                   <div class="time">
                     <p>
