@@ -57,35 +57,35 @@ function Dropdown() {
         );
       })} */}
 
-      <SubMenuLi key="">
-        <SubMenuItems>
-          <Link
-            to="/profilepage"
-            className="profilepage"
-            onClick={() => {
-              setDropdown(false);
-            }}
-          >
-            Profilepage
-          </Link>
-        </SubMenuItems>
-      </SubMenuLi>
-      <SubMenuLi key="">
-        <SubMenuItems>
-          <Link
-            to="/login"
-            className="logout"
-            onClick={() => {
-              setDropdown(false);
-              logOut();
-            }}
-          >
-            Logout
-          </Link>
-        </SubMenuItems>
-      </SubMenuLi>
-    </SubMenu>
-  );
+			<SubMenuLi>
+				<SubMenuItems>
+					<Link
+						to="/profilepage"
+						className="profilepage"
+						onClick={() => {
+							setDropdown(false);
+						}}
+					>
+						Profilepage
+					</Link>
+				</SubMenuItems>
+			</SubMenuLi>
+			<SubMenuLi>
+				<SubMenuItems>
+					<Link
+						to="/login"
+						className="logout"
+						onClick={() => {
+							setDropdown(false);
+							logOut();
+						}}
+					>
+						Logout
+					</Link>
+				</SubMenuItems>
+			</SubMenuLi>
+		</SubMenu>
+	);
 }
 
 const SubMenu = styled.div`
