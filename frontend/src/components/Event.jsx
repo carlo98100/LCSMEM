@@ -25,7 +25,7 @@ function ConsertEvent({ event }) {
 	);
 }
 
-export default ConsertEvent;
+export default Event;
 
 const Container = styled.div`
 	background-color: white;

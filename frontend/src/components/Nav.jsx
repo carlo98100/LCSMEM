@@ -3,46 +3,43 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
-import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
 import Dropdown from "./Dropdown";
+import { UserContext } from "../contexts/UserContext";
 
 function Nav() {
-  const [dropdown, setDropdown] = useState(false);
-
-  return (
-    <>
-      <Navbar>
-        <NavbarLeft>
-          {AppRoutes.filter((item) => item.display === true).map(
-            (item, index) => {
-              if (item.name === "Login"){
-
-              }
-              return (
-                <NavLink key={index} to={item.path}>
-                  {item.name}
-                </NavLink>
-              );
-            }
-          )}
-          <Link
-            to={"/login"}
-            onMouseEnter={() => setDropdown(true)}
-            onMouseLeave={() => setDropdown(false)}
-          >
-            <a>Login</a>
-            {dropdown && <Dropdown />}
-            {/* <FaUserCircle size={40} color={"#ECA400"} /> */}
-          </Link>
-        </NavbarLeft>
-        <NavbarRight>
-          <AutoComplete placeholder="Sök" />
-          
-        </NavbarRight>
-      </Navbar>
-    </>
-  );
+	const [dropdown, setDropdown] = useState(false);
+	const { user } = useContext(UserContext);
+	return (
+		<>
+			<Navbar>
+				<NavbarLeft>
+					{AppRoutes.filter((item) => item.display === true).map((item, index) => {
+						return (
+							<NavLink key={index} to={item.path}>
+								{item.name}
+							</NavLink>
+						);
+					})}
+					{/* <Link to={"/login"} onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
+						<a>Login</a>
+					</Link> */}
+				</NavbarLeft>
+				<NavbarRight>
+					{user.loggedIn ? (
+						<Link to="" onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
+							<FaUserCircle size={40} color={"#ECA400"} />
+							{dropdown && <Dropdown />}
+						</Link>
+					) : (
+						<NavLink key="" to="/login">
+							Login
+						</NavLink>
+					)}
+				</NavbarRight>
+			</Navbar>
+		</>
+	);
 }
 
 const Navbar = styled.nav`
@@ -76,7 +73,7 @@ const NavbarLeft = styled.div`
 const NavbarRight = styled.div``;
 
 const LoginBtn = styled(Link)`
-  color: #eca400;
+	color: #eca400;
 `;
 
 export default Nav;

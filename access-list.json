@@ -13,14 +13,14 @@
 	},
 
 	{
-		"route": "/data/video_streams*",
+		"route": "/data/video-streams*",
 		"roles": [{ "role": "user", "methods": ["GET"] }]
 	},
 
   {
-    "route": "/data/video-stream",
+    "route": "/data/video-streams*",
     "roles":[
-      {"role": "*", "methods": ["GET"]}
+      {"role": "user", "methods": ["GET"]}
     ]
   },
 
@@ -32,7 +32,7 @@
   },
 
   {
-    "route": "/data/audio-stream*",
+    "route": "/data/audio-streams*",
     "roles":[
       {"role": "*", "methods": ["GET"]}
     ]

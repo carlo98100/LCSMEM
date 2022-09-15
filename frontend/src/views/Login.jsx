@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../components/Input";
 import { UserContext } from "../contexts/UserContext";
-// import { useLoggedIn } from "../context/LoggedInContext";
+// import { useLoggedIn } from "../contexts/LoggedInContext";
 
-function Login(props) {
+function Login() {
 	const [form, setForm] = useState({
 		email: "exempel@nodehill.com",
 		password: "abc123",
@@ -17,6 +17,8 @@ function Login(props) {
 		});
 	};
 	const { logIn } = useContext(UserContext);
+
+	
 	const navigate = useNavigate();
 
 	const onSubmit = async (event) => {

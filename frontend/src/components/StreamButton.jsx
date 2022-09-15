@@ -16,14 +16,14 @@ const StreamButton = () => {
     }, [])
 
     return <>
-        <VideoLinks>
+        <videoLinks>
             {videos.map(video => <a href={`/Stream/${video.id}`}>{video.name}</a>)}
-        </VideoLinks>
+        </videoLinks>
     </>
 }
 
 export default StreamButton
 
-const VideoLinks = styled.div`
+const videoLinks = styled.div`
 color: black;
 `
