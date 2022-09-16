@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
+
+  const { user } = useContext(UserContext)
+  console.log(user)
+
   return (
     <Container>
       <LeftContainer>
