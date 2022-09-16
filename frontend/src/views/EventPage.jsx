@@ -19,7 +19,7 @@ const EventPage = () => {
             </DateContainer>
             <Boarder />
             <ArtistContainer>
-                <ArtistName>{artist.find(element => element.Id === event.ArtistId).Name}</ArtistName>
+                <ArtistName href={`/ArtistPage/${event.ArtistId}`}>{artist.find(element => element.Id === event.ArtistId).Name}</ArtistName>
             </ArtistContainer>
             <Boarder />
             <PlaceContainer>
@@ -91,6 +91,8 @@ align-items: center;
 `;
 
 const ArtistName = styled.a`
+text-decoration: none;
+color: black;
 `;
 
 const PlaceContainer = styled.div`
