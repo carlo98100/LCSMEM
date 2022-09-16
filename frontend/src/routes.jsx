@@ -8,7 +8,7 @@ import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 import Stream from "./views/Stream";
-import Checkout from "./views/Checkout";
+
 
 export const AppRoutes = [
   {
@@ -84,10 +84,5 @@ export const AppRoutes = [
 		display: false,
 		component: <Stream />,
 	},
-  {
-    name: "Checkout",
-    path: "/Checkout",
-    display: false,
-    component: <Checkout />,
-  },
+
 ];
