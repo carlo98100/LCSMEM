@@ -1,11 +1,21 @@
 [
+	{
+		"route": "/data",
+		"roles": [{ "role": "*", "methods": ["GET"] }]
+	},
+	{
+		"route": "/data/events*",
+		"roles": [{ "role": "anonymous", "methods": ["GET"] }]
+	},
+	{
+		"route": "/data/Artist*",
+		"roles": [{ "role": "anonymous", "methods": ["GET"] }]
+	},
 
-  {
-    "route": "/data",
-    "roles":[
-      {"role":"*", "methods": ["GET"]}
-    ]
-  },
+	{
+		"route": "/data/video_streams*",
+		"roles": [{ "role": "user", "methods": ["GET"] }]
+	},
 
   {
     "route": "/data/video_streams*",
@@ -35,26 +45,16 @@
     ]
   },
 
-  {
-    "route": "/data/users*",
-    "roles":[
-      {"role": "user", "methods": ["GET","PUT","POST","DELETE"]}
-    ]
-  },
+	{
+		"route": "/data/users/password",
+		"roles": [{ "role": "user", "methods": ["DELETE", "PATCH"] }]
+	},
 
-  {
-    "route": "/data/users/password",
-    "roles":[
-      {"role": "user", "methods": ["DELETE","PATCH"]}
-    ]
-  },
-
-  {
-    "route": "/data/login",
-    "roles":[
-      {"role": "anonymous", "methods": ["POST","GET"]},
-      {"role": "user", "methods": ["GET", "DELETE"]}
-    ]
-  }
-
+	{
+		"route": "/data/login",
+		"roles": [
+			{ "role": "anonymous", "methods": ["POST", "GET"] },
+			{ "role": "user", "methods": ["GET", "DELETE"] }
+		]
+	}
 ]
