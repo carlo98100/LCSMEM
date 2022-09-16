@@ -1,36 +1,39 @@
 import { React, useState, useEffect } from "react";
-import List from "./searchList";
 import styled from "styled-components";
+import {ArtistContext} from "../contexts/artistList";
+import {EventContext} from "../contexts/eventList";
 
 function Search() {
 
   const [inputText, setInputText] = useState("");
+  const { events } = useContext(EventContext);
+  const { artists } = useContext(ArtistContext);
+
 
   let inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };
 
+  useEffect(() => {
+    filterEvents();
+  }, []);
+
   const filterdArtistList = artists.filter((artist) => {
     return input === "" ? true : artist.Name.toLowerCase().startsWith(input); // || element.Genre.toLowerCase().startsWith(input) add later when database has genre prop
   });
 
-  // function filterEvents() {
-  //   let tmpList = [];
-  //   allEvents.map((event) => {
-  //     filterdArtistList.forEach((artist) => {
-  //       console.log(artist);
-  //       if (event.ArtistId === artist.Id) {
-  //         tmpList.push(event);
-  //       }
-  //     });
-  //   });
-  //   if (tmpList.length === 0) {
-  //     setEvents(allEvents);
-  //   } else {
-  //     setEvents(tmpList);
-  //   }
-  // }
+  function filterEvents() {
+    let tmpList = [];
+    events.map((event) => {
+      filterdArtistList.forEach((artist) => {
+        console.log(artist);
+        if (event.ArtistId === artist.Id) {
+          tmpList.push(event);
+        }
+      });
+    });
+  }
 
   return (
     <Container>

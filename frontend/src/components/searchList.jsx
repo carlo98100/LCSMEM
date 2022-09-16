@@ -29,13 +29,13 @@ const searchList = ({ input }) => {
       <ConsertEventBoard events={events} />
     </EventContainer>
   );
-  // return (
-  //     <ul>
-  //         {filterdArtistList.map((artist) => (
-  //             <li key={artist.id}>{artist.Name}</li>  //old return
-  //         ))}
-  //     </ul>
-  // )
+  return (
+      <ul>
+          {filterdArtistList.map((artist) => (
+              <li key={artist.id}>{artist.Name}</li>  //old return
+          ))}
+      </ul>
+  )
 }
 
 const EventsTitle = styled.h1`
