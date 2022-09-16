@@ -1,8 +1,6 @@
 import { React, useEffect, useState } from "react";
 import styled from "styled-components";
 import ConsertEventBoard from "../Components/ConsertEventBoard";
-import allEvents from "./eventList"
-import allArtists from "./artistList"
 
 const searchList = ({ input }) => {
 
