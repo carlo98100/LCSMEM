@@ -17,17 +17,19 @@ export default StreamButton
 
 const VideoLink = styled.div`
 button {
-    background: black;
-    color: white;
+    font-weight: bold;
+    background: orange;
+    color: black;
     border: 2px solid;
     border-color: black;
-    padding: 1em 2em;
+    padding: 0.7em 0.7em;
     font-size: 1em;
     transform: scale(0.8);
-    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     &:hover {
-        border-color: red;
-        color: red;
+        background: black;
+        border-color: orange;
+        color: orange;
         box-shadow: 0 0.5em 0.5em -0.4em black;
         transform: scale(1) translateY(-0.2em);
         cursor: pointer;
