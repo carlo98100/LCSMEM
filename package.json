@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index",
     "start": "node index",
-    "all": "concurrently \"npm run dev\" \"cd frontend && npm run build\"",
+    "all": "concurrently \"npm run dev\" \"cd frontend && npm run dev\"",
     "i": "concurrently \"npm install\" \"cd frontend && npm install\""
   },
   "author": "",
@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-		"moment": "^2.29.4",
+    "moment": "^2.29.4",
     "nodemon": "^2.0.19",
     "stripe": "^10.8.0"
   }
