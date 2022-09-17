@@ -18,21 +18,9 @@ export const AppRoutes = [
 		component: <Home />,
 	},
 	{
-		name: "Link1",
-		path: "/link-1",
-		display: true,
-		component: <Home />,
-	},
-	{
-		name: "Link2",
-		path: "/link-2",
-		display: true,
-		component: <Home />,
-	},
-	{
 		name: "ConsertPage",
 		path: "/ConsertPage/:artistId",
-		display: true,
+		display: false,
 		component: <ConsertPage />,
 	},
 	{
@@ -51,7 +39,7 @@ export const AppRoutes = [
 	{
 		name: "ProfilePage",
 		path: "/ProfilePage",
-		display: false,
+		display: true,
 		component: <ProfilePage />,
 	},
 	{
@@ -67,8 +55,8 @@ export const AppRoutes = [
 		component: <UserDetails />,
 	},
 	{
-		name: "TicketInfo",
-		path: "/TicketInfo",
+		name: "YourTickets",
+		path: "/YourTickets",
 		display: false,
 		component: <YourTickets />,
 	},
