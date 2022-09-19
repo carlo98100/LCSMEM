@@ -3,6 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppRoutes } from "../routes";
 import { FaUserCircle } from "react-icons/fa";
+import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
 import Dropdown from "./Dropdown";
 import { UserContext } from "../contexts/UserContext";
@@ -26,6 +27,8 @@ function Nav() {
 					</Link> */}
 				</NavbarLeft>
 				<NavbarRight>
+					<AutoComplete placeholder="Sök" />
+
 					{user.loggedIn ? (
 						<Link to="" onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
 							<FaUserCircle size={40} color={"#ECA400"} />
