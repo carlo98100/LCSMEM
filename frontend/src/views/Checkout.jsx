@@ -11,7 +11,7 @@ function Checkout() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tickets),
+      body: JSON.stringify({ items: tickets }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -23,7 +23,7 @@ function Checkout() {
   console.log(tickets);
   return (
     <div>
-      {tickets.items?.map((item, index) => {
+      {tickets?.items?.map?.((item, index) => {
         return <h1>{item.description}</h1>;
       })}
       <div>

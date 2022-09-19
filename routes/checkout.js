@@ -7,10 +7,12 @@ const stripe = new Stripe(
 ); //
 
 module.exports = function (server, db, host) {
+  console.log("host", host);
+
   // route to create a checkout session
   server.post("/data/checkout", async (req, res) => {
     // accept a list of payment items, body should be formatted like:
-
+    console.log("origin", req.headers.origin);
     /*
 
     {
@@ -52,29 +54,35 @@ module.exports = function (server, db, host) {
         mode: "payment",
         // Set a success and cancel URL we will send customers to
         // They are complete urls
-        success_url: host + "/examples/checkout-success.html", // these should be client routes in the react app
+        success_url: `${req.headers.origin}/order/success?session_id={CHECKOUT_SESSION_ID}`, // these should be client routes in the react app
         cancel_url: host + "/examples/checkout-cancel.html",
       });
       // save current checkout session to user session, so we can check result after
-      req.session.checkoutSession = checkoutSession;
+      req.session.checkoutId = checkoutSession.id;
+      console.log(checkoutSession);
       // send user to stripe process,
       // note that you will have to handle the result of the payment after that process,
       // when the user returns to our client
       res.json({ url: checkoutSession.url });
     } catch (e) {
+      console.log("error", e);
       // If there is an error send it to the client
       res.status(500).json({ error: e.message });
     }
   });
 
   // route to retrieve checkout session to check result
-  server.get("/data/checkout", async (req, res) => {
+  server.get("/data/checkout/", async (req, res) => {
+    res.status(200).json(req.params.id);
     try {
       const checkoutSession = await stripe.checkout.sessions.retrieve(
-        req.session.checkoutSession.id
+        req.session.checkoutId
       );
+      console.log("session", req.session);
+      console.log(checkoutSession);
       res.json({ checkoutSession: checkoutSession });
     } catch (e) {
+      console.log("error2", e);
       res.status(500).json({ error: e.message });
     }
   });
