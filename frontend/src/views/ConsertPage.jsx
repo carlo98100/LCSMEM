@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import EventBoard from "../components/EventBoard";
+import ConsertEventBoard from "../Components/ConsertEventBoard";
 import LoadingPage from "./LoadingPage";
 
-function ArtistPage() {
+function ConsertPage() {
 	const { artistId } = useParams();
 	const [form, setForm] = useState([]);
 	const [artistInformation, setArtistInformation] = useState({});
@@ -19,22 +19,34 @@ function ArtistPage() {
 
 	async function GetEventInformation(id) {
 		setFetching(true);
-		await fetch(`/data/events/${id}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setForm(data);
-			})
-			.catch((err) => console.error(err));
+		try {
+			const response = await fetch(`/data/events/${id}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const jsonData = await response.json();
+			setForm(jsonData);
+		} catch (err) {
+			console.error(err);
+		}
 		setFetching(false);
 	}
 
 	async function GetArtistInformation(id) {
-		await fetch(`/data/Artist/${id}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setArtistInformation(data);
-			})
-			.catch((err) => console.error(err));
+		try {
+			const response = await fetch(`/data/Artist/${id}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const jsonData = await response.json();
+			setArtistInformation(jsonData);
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	return fetching ? (
@@ -42,20 +54,20 @@ function ArtistPage() {
 	) : (
 		<Container>
 			<LeftContainer>
-				<ArtistImage src={artistInformation.Image} />
-				<ArtistTitle>{artistInformation.Name}</ArtistTitle>
+				<ConsertImage src={artistInformation.Image} />
+				<ConsertTitle>{artistInformation.Name}</ConsertTitle>
 
-				<ArtistDescription>{artistInformation.Description}</ArtistDescription>
+				<ConsertDescription>{artistInformation.Description}</ConsertDescription>
 			</LeftContainer>
 
 			<RightContainer>
-				<EventBoard events={form} />
+				<ConsertEventBoard events={form} />
 			</RightContainer>
 		</Container>
 	);
 }
 
-export default ArtistPage;
+export default ConsertPage;
 
 const Container = styled.div`
 	display: flex;
@@ -75,12 +87,12 @@ const RightContainer = styled.div`
 	width: 40%;
 `;
 
-const ArtistImage = styled.img`
+const ConsertImage = styled.img`
 	width: 100%;
 	height: 40%;
 `;
 
-const ArtistTitle = styled.h1`
+const ConsertTitle = styled.h1`
 	display: inline-block;
 	text-align: center;
 	background-color: #eae6e7;
@@ -88,7 +100,7 @@ const ArtistTitle = styled.h1`
 	border-radius: 10px;
 `;
 
-const ArtistDescription = styled.p`
+const ConsertDescription = styled.p`
 	font-size: 1.25em;
 	/* margin: 2em; */
 	margin-left: 20px;
