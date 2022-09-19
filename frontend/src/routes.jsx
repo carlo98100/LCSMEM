@@ -30,12 +30,12 @@ export const AppRoutes = [
     display: true,
     component: <Home />,
   },
-  {
-    name: "ConsertPage",
-    path: "/ConsertPage/:artistId",
-    display: true,
-    component: <ConsertPage />,
-  },
+//   {
+//     name: "ConsertPage",
+//     path: "/ConsertPage/:artistId",
+//     display: true,
+//     component: <ConsertPage />,
+//   },
   {
     name: "Login",
     path: "/login",

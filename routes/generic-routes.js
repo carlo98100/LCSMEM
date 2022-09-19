@@ -26,6 +26,10 @@ module.exports = function (server, db) {
 		where e.ArtistId = ${req.params.artistId}
 		order by e.Date asc;`;
 
+		let result = db.prepare(query).all();
+		res.json(result);
+	});
+
 server.get("/data/events/:artistId", (req, res) => {
 	let query =
 		// "select distinct e.Id as eventId " +

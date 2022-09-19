@@ -1,62 +1,86 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import {ArtistContext} from "../contexts/artistList";
 import {EventContext} from "../contexts/eventList";
 
-function Search() {
+function Search(inputText) {
 
-  const [inputText, setInputText] = useState("");
   const { events } = useContext(EventContext);
-  const { artists } = useContext(ArtistContext);
+  const { artist } = useContext(ArtistContext);
 
+  let filterdArtistList = [];
+  let eventList = [];
 
-  let inputHandler = (e) => {
-    var lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
+  // console.log("artists");
+  // console.log(artist); // Is at the moment undefined
+  // console.log("events");
+  // console.log(events);
+  console.log("inputText");
+  console.log(inputText);
 
   useEffect(() => {
+    console.log("dfslkjhfdkljhdfkjhlf")
     filterEvents();
+    filterArtist();
   }, []);
 
-  const filterdArtistList = artists.filter((artist) => {
-    return input === "" ? true : artist.Name.toLowerCase().startsWith(input); // || element.Genre.toLowerCase().startsWith(input) add later when database has genre prop
-  });
+  function filterArtist() {
+    artist.filter((artist) => {
+      console.log("artist");
+      console.log(artist);
+      console.log("inputText 2");
+      console.log(inputText);
+      if(inputText === ""){
+        filterdArtistList.push(artist);
+      }
+      else{
+        if(artist.Name.toLowerCase() === inputText.toLowerCase()) {
+          filterdArtistList.push(artist);
+        }
+      }
+    });
+    console.log("inputText 3");
+    console.log(inputText);
+    return filterdArtistList
+  }
 
   function filterEvents() {
-    let tmpList = [];
     events.map((event) => {
       filterdArtistList.forEach((artist) => {
         console.log(artist);
         if (event.ArtistId === artist.Id) {
-          tmpList.push(event);
+          eventList.push(event);
         }
       });
     });
   }
 
   return (
-    <Container>
-      <SearchContainer className="Search">
-        <input type="text" placeholder="Search" onLoad={inputHandler} onChange={inputHandler}/>
-      </SearchContainer>
-      <ListContainer>
-        <List input={inputText}/>
-      </ListContainer>
-    </Container>
+    // move to EventPage. Return should be a list with the correct events
+    eventList
+    // <Container>
+      // <SearchContainer className="Search">
+      //   <input type="text" placeholder="Search" onLoad={inputHandler} onChange={inputHandler}/>
+      // </SearchContainer>
+    //   <ListContainer>
+    //     <List input={inputText}/>
+    //   </ListContainer>
+    // </Container>
   );
 }
 
 export default Search;
 
 const Container = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    border-style: solid;
-`
+  background-color: white;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const ListContainer = styled.div`
     display: flex;
