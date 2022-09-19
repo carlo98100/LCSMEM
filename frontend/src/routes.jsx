@@ -29,7 +29,6 @@ export const AppRoutes = [
 		display: false,
 		component: <Login />,
 	},
-	,
 	{
 		name: "Signup",
 		path: "/signup",
