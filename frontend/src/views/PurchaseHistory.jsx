@@ -67,7 +67,7 @@ const Container = styled.div`
 `;
 
 const RightContainer = styled.div`
-  background-color: #b96798;
+  background-color: #565656;
   flex: 1 1 70%;
   // ch = how many characters wide
   min-width: 25ch;
@@ -92,8 +92,8 @@ const Body = styled.body`
 `;
 
 const Thead = styled.thead`
-  background-color: #087f5b;
-  color: #fff;
+  background-color: #292929;
+  color: #ff9e07;
   width: 25%;
 `;
 
