@@ -60,6 +60,7 @@ background-color: #ececec;
 width: 100%;
 height: 7vh;
 font-size: 1em;
+border: 1px #292929;
 border-radius: 10px;
 margin: 1vh 0;
 padding: 0.5em 1em;
