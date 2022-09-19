@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../components/Input";
 
-function Signup() {
+function Login() {
   const [form, setForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -15,46 +15,20 @@ function Signup() {
     });
   };
 
-  let navigate = useNavigate();
-
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(form));
     console.log("sending", form);
-    try {
-      const response = await fetch("/data/users", {
-        method: "POST", // GET, POST, PUT, DELETE, etc.
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(form), // body data type must match "Content-Type" header
-      });
-
-      if (response.changes != 0) {
-        console.log("success");
-        //fetch login user
-        //if login user succed store in context
-        //useNavigate kolla in, navigate (/home), ta med replace:true så att det replacar routen och användaren inte kommer tillbaka till skapa konto ifall de klickar bakåt
-        navigate("/", { replace: true });
-      } else {
-        console.log("failed");
-      }
-    } catch (err) {
-      console.error(err);
-    }
   };
-
   return (
     <Container>
-      <SignupCard onSubmit={onSubmit}>
-        <h1 style={{ textAlign: "center" }}>Create Account</h1>
+      <LoginCard onSubmit={onSubmit}>
+        <h1 style={{ textAlign: "center" }}>Login</h1>
         <InnerContainer>
           <Input
-            value={form.email}
-            name="email"
+            value={form.username}
+            name="username"
             onChange={updateForm}
-            label="Email"
+            label="Username"
             type="text"
           />
           <Input
@@ -67,15 +41,17 @@ function Signup() {
         </InnerContainer>
 
         <div style={{ textAlign: "center", marginTop: "1.5em" }}>
-          <SubmitBtn type={"submit"} value="CreateAccount" />
+          <SubmitBtn type={"submit"} value="Login" />
           <hr style={{ width: "80%" }} />
+          <p>New to LiveFanatic?</p>
+          <NavLink to={"/signup"}>Create account</NavLink>
         </div>
-      </SignupCard>
+      </LoginCard>
     </Container>
   );
 }
 
-export default Signup;
+export default Login;
 
 const Container = styled.div`
   display: flex;
@@ -95,7 +71,7 @@ const InnerContainer = styled.div`
   margin: 0 40px;
 `;
 
-const SignupCard = styled.form`
+const LoginCard = styled.form`
   background-color: white;
   height: 50vh;
   min-width: 320px;
@@ -103,6 +79,11 @@ const SignupCard = styled.form`
   min-height: 400px;
   border-radius: 20px;
   margin-top: 10vh;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+  color: #006992;
 `;
 
 const SubmitBtn = styled.input`

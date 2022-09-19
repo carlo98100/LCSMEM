@@ -25,40 +25,40 @@ module.exports = function(host, server){
                 link: host  + "/data/users/password"
             },
             {
-                route:"/data/video_example",
+                route:"/data/video-example",
                 methods: ["GET"],
                 description:"Get a video example streams",
-                link: host  + "/data/video_example"
+                link: host  + "/data/video-example"
             },
             {
-                route:"/data/video_streams",
+                route:"/data/video-streams",
                 methods: ["GET"],
                 description:"Get list of video streams",
-                link: host  + "/data/video_streams"
+                link: host  + "/data/video-streams"
             },
             {
-                route:"/data/video_streams/1",
+                route:"/data/video-streams/1",
                 methods: ["GET"],
                 description:"Get video stream",
-                link: host  + "/data/video_streams/1"
+                link: host  + "/data/video-streams/1"
             },
             {
-                route:"/data/audio_example",
+                route:"/data/audio-example",
                 methods: ["GET"],
                 description:"Get an audio example streams",
-                link: host  + "/data/audio_example"
+                link: host  + "/data/audio-example"
             },
             {
-                route:"/data/audio_streams",
+                route:"/data/audio-streams",
                 methods: ["GET"],
                 description:"Get list of audio streams",
-                link: host  + "/data/audio_streams"
+                link: host  + "/data/audio-streams"
             },
             {
-                route:"/data/audio_streams/1",
+                route:"/data/audio-streams/1",
                 methods: ["GET"],
                 description:"Get audio stream",
-                link: host  + "/data/audio_streams/1"
+                link: host  + "/data/audio-streams/1"
             }
         ])
     })

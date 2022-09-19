@@ -4,7 +4,7 @@ import { GiTempleDoor } from "react-icons/gi";
 import styled from "styled-components";
 import { parseBoolean } from "../utils";
 
-function Event({ event }) {
+function ConsertEvent({ event }) {
 	// var options = { month: "long", day: "numeric" };
 
 	return (
@@ -25,7 +25,7 @@ function Event({ event }) {
 	);
 }
 
-export default Event;
+export default ConsertEvent;
 
 const Container = styled.div`
 	background-color: white;

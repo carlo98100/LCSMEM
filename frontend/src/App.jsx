@@ -1,6 +1,6 @@
 import "./css/App.css";
 import Nav from "./components/Nav";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import { AppRoutes } from "./routes";
 import UserContextProvider from "./contexts/UserContext";
 import { EventContextProvider } from "./contexts/eventList";
