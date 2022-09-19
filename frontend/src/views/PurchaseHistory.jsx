@@ -1,106 +1,141 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import "../css/PurchaseHistory.css";
 import LeftProfileNav from "../components/LeftProfileNav";
+import TicketContext from "../contexts/TicketsList";
+import { UserContext } from "../contexts/UserContext";
+import TicketHistoryList from "../components/TicketHistoryList";
 
 function PurchaseHistory() {
-  const { userId } = useParams();
-  // const [form, setForm] = useState([]);
-  const [ticketInformation, setTicketInformation] = useState([]);
-  const [artistInformation, setArtistInformation] = useState([]);
-  const [eventInformation, setEventInformation] = useState([]);
+  const { tickets } = useContext(TicketContext);
+  const { user, userList } = useContext(UserContext);
 
-  useEffect(() => {
-    if (!userId) return;
-    GetArtistInformation();
-    GetEventInformation();
-    GetTicketInformation(userId);
-  }, []);
-
-  async function GetTicketInformation(id) {
-    try {
-      const response = await fetch(`/data/Ticket/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      setTicketInformation(jsonData);
-      console.log(jsonData);
-    } catch (err) {
-      console.error(err);
-    }
+  function getUsersTicketHistoryList() {
+    let temp = [];
+    tickets.forEach((ticket) => {
+      if (ticket.UserId === getUserId()) {
+        temp.push(ticket);
+      }
+    });
+    return temp;
   }
 
-  async function GetArtistInformation(id) {
-    try {
-      const response = await fetch(`/data/Artist/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      setArtistInformation(jsonData);
-      console.log(jsonData);
-    } catch (err) {
-      console.error(err);
-    }
+  function getUserId() {
+    return userList.find((userL) => userL.email === user.email).id;
   }
 
-  async function GetEventInformation(id) {
-    try {
-      const response = await fetch(`/data/events/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      setEventInformation(jsonData);
-      setForm(jsonData);
-    } catch (err) {
-      console.error(err);
-    }
-
-    return (
-      <Container>
-        <LeftProfileNav />
-        <RightContainer>
-          <TicketsTitle>Your purchased tickets</TicketsTitle>
-          <HistoryBody>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-              rel="stylesheet"
-            />
-            <HistoryTable>
-              <thead>
-                <tr>
-                  <th> Artist </th>
-                  <th> City </th>
-                  <th> Date </th>
-                  <th> Price </th>
-                </tr>
-              </thead>
-              {ticketInformation.map((ticket) => (
-                <tbody>
-                  <tr>
-                    <th> {artistInformation.Name} </th>
-                    <td> {eventInformation.City} </td>
-                    <td> {eventInformation.Date} </td>
-                    <td> </td>
-                  </tr>
-                </tbody>
-              ))}
-            </HistoryTable>
-          </HistoryBody>
-        </RightContainer>
-      </Container>
-    );
+  function getEvent(ticket) {
+    return events.find((event) => event.Id === ticket.EventId);
   }
+
+  function getArtist(ticket) {
+    return artist.find((artist) => artist.Id === getEvent(ticket).ArtistId);
+  }
+
+  // const { userId } = useParams();
+  // // const [form, setForm] = useState([]);
+  // const [ticketInformation, setTicketInformation] = useState([]);
+  // const [artistInformation, setArtistInformation] = useState([]);
+  // const [eventInformation, setEventInformation] = useState([]);
+
+  // useEffect(() => {
+  //   if (!userId) return;
+  //   GetArtistInformation();
+  //   GetEventInformation();
+  //   GetTicketInformation(userId);
+  // }, []);
+
+  // async function GetTicketInformation(id) {
+  //   try {
+  //     const response = await fetch(`/data/Ticket/${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const jsonData = await response.json();
+  //     setTicketInformation(jsonData);
+  //     console.log(jsonData);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
+  // async function GetArtistInformation(id) {
+  //   try {
+  //     const response = await fetch(`/data/Artist/${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const jsonData = await response.json();
+  //     setArtistInformation(jsonData);
+  //     console.log(jsonData);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
+  // async function GetEventInformation(id) {
+  //   try {
+  //     const response = await fetch(`/data/events/${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const jsonData = await response.json();
+  //     setEventInformation(jsonData);
+  //     setForm(jsonData);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
+  // return (
+  //   <Container>
+  //     <LeftProfileNav />
+  //     <RightContainer>
+  //       <TicketsTitle>Your tickets</TicketsTitle>
+  //       <Body>{getUsersTickets().map((ticket) => Ticket(ticket))}</Body>
+  //       <TicketsTitle>Your purchased tickets</TicketsTitle>
+  //       <HistoryBody>
+  //         <HistoryTable>
+  //           <thead>
+  //             <tr>
+  //               <th> Artist </th>
+  //               <th> City </th>
+  //               <th> Date </th>
+  //               <th> Price </th>
+  //             </tr>
+  //           </thead>
+  //           <tbody>
+  //             <tr>
+  //               <th> {artistInformation.Name} </th>
+  //               <td> {eventInformation.City} </td>
+  //               <td> {eventInformation.Date} </td>
+  //               <td> Dyrt </td>
+  //             </tr>
+  //           </tbody>
+  //         </HistoryTable>
+  //       </HistoryBody>
+  //     </RightContainer>
+  //   </Container>
+  // );
+  return (
+    <Container>
+      <LeftProfileNav />
+      <RightContainer>
+        <TicketsTitle>Your tickets</TicketsTitle>
+        <Body>
+          {getUsersTicketHistoryList().map((ticket) =>
+            TicketHistoryList(ticket)
+          )}
+        </Body>
+      </RightContainer>
+    </Container>
+  );
 }
 
 export default PurchaseHistory;
@@ -120,22 +155,6 @@ const RightContainer = styled.div`
   padding: 0;
 `;
 
-const HistoryBody = styled.body`
-  font-family: "Inter", sans-serif;
-  color: #343a40;
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-`;
-
-const HistoryTable = styled.table`
-  width: 800px;
-  margin-top: 80px;
-  /* border: 1px solid #343a40; */
-  border-collapse: collapse;
-  font-size: 18px;
-`;
-
 const TicketsTitle = styled.h1`
   background-color: #292929;
   color: #ff9e07;
@@ -143,4 +162,10 @@ const TicketsTitle = styled.h1`
   padding: 15px;
   margin: 0;
   border-bottom: 2px solid black;
+`;
+
+const Body = styled.body`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
