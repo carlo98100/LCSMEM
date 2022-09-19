@@ -1,67 +1,113 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import "../css/PurchaseHistory.css";
 import LeftProfileNav from "../components/LeftProfileNav";
 
 function PurchaseHistory() {
-  return (
-    <Container>
-      <LeftProfileNav/>
-      <RightContainer>
-        <TicketsTitle>Your purchased tickets</TicketsTitle>
-        <body>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-            rel="stylesheet"
-          />
+  const { userId } = useParams();
+  // const [form, setForm] = useState([]);
+  const [ticketInformation, setTicketInformation] = useState([]);
+  const [artistInformation, setArtistInformation] = useState([]);
+  const [eventInformation, setEventInformation] = useState([]);
 
-          <table>
-            <thead>
-              <tr>
-                <th> Chair </th>
-                <th> The Laid Back</th>
-                <th> The Worker Bee</th>
-                <th> The Chair 4/2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th> Width </th>
-                <td> 80 cm </td>
-                <td> 60 cm </td>
-                <td> 220 cm </td>
-              </tr>
-              <tr>
-                <th> Depth </th>
-                <td> 70 cm </td>
-                <td> 65 cm </td>
-                <td> 80 cm </td>
-              </tr>
-              <tr>
-                <th> Weight </th>
-                <td> 16 kg </td>
-                <td> 22 kg </td>
-                <td> 31 kg </td>
-              </tr>
-              <tr>
-                <th> Height </th>
-                <td> 120 cm </td>
-                <td> 92 cm </td>
-                <td> 80 cm </td>
-              </tr>
-            </tbody>
-          </table>
-        </body>
-      </RightContainer>
-    </Container>
-  );
+  useEffect(() => {
+    if (!userId) return;
+    GetArtistInformation();
+    GetEventInformation();
+    GetTicketInformation(userId);
+  }, []);
+
+  async function GetTicketInformation(id) {
+    try {
+      const response = await fetch(`/data/Ticket/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setTicketInformation(jsonData);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function GetArtistInformation(id) {
+    try {
+      const response = await fetch(`/data/Artist/2`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setArtistInformation(jsonData);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function GetEventInformation(id) {
+    try {
+      const response = await fetch(`/data/events/2`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = await response.json();
+      setEventInformation(jsonData);
+      setForm(jsonData);
+    } catch (err) {
+      console.error(err);
+    }
+
+    return (
+      <Container>
+        <LeftProfileNav />
+        <RightContainer>
+          <TicketsTitle>Your purchased tickets</TicketsTitle>
+          <HistoryBody>
+            <link
+              href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+              rel="stylesheet"
+            />
+            <HistoryTable>
+              <thead>
+                <tr>
+                  <th> Artist </th>
+                  <th> City </th>
+                  <th> Date </th>
+                  <th> Price </th>
+                </tr>
+              </thead>
+              {ticketInformation.map((ticket) => (
+                <tbody>
+                  <tr>
+                    <th> {artistInformation.Name} </th>
+                    <td> {eventInformation.City} </td>
+                    <td> {eventInformation.Date} </td>
+                    <td> </td>
+                  </tr>
+                </tbody>
+              ))}
+            </HistoryTable>
+          </HistoryBody>
+        </RightContainer>
+      </Container>
+    );
+  }
 }
 
 export default PurchaseHistory;
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 const RightContainer = styled.div`
@@ -74,34 +120,20 @@ const RightContainer = styled.div`
   padding: 0;
 `;
 
-
-const TicketUl = styled.ul`
-  position: relative;
-  width: 450px;
-  margin: 100px auto 0;
-  padding: 10px;
-  box-sizing: border-box;
-`;
-
-const TicketLi = styled.li`
+const HistoryBody = styled.body`
+  font-family: "Inter", sans-serif;
+  color: #343a40;
+  line-height: 1;
   display: flex;
-  background: rgba(255, 255, 255.1);
-  padding: 10px 20px;
-  color: #000000;
+  justify-content: center;
 `;
 
-const TextSpan = styled.span`
-  &:nth-child(1) {
-    width: 100px;
-  }
-  &:nth-child(2) {
-    width: 200px;
-    text-align: center;
-  }
-  &:nth-child(3) {
-    width: 100px;
-    text-align: right;
-  }
+const HistoryTable = styled.table`
+  width: 800px;
+  margin-top: 80px;
+  /* border: 1px solid #343a40; */
+  border-collapse: collapse;
+  font-size: 18px;
 `;
 
 const TicketsTitle = styled.h1`
@@ -111,61 +143,4 @@ const TicketsTitle = styled.h1`
   padding: 15px;
   margin: 0;
   border-bottom: 2px solid black;
-`;
-
-const TicketBody = styled.body`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-`;
-
-const Ticket = styled.div`
-  width: 650px;
-  height: 320px;
-  margin: 100px auto;
-  position: relative;
-  transition: all 300ms cubic-bezier(0.03, 0.98, 0.53, 0.99) 0s;
-  background: linear-gradient(
-    to right,
-    var(--color1),
-    var(--color2),
-    var(--color3),
-    var(--color4)
-  );
-  border-radius: 20px;
-  padding: 5px;
-  &:before,
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 130px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    z-index: 2;
-  }
-
-  &:before {
-    background: var(--color1);
-    left: -30px;
-  }
-`;
-
-const TicketRight = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-`;
-
-const TicketLeft = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-`;
-
-const TicketContentWrapper = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
 `;
