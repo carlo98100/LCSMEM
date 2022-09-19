@@ -39,11 +39,11 @@ const EventPage = () => {
 export default EventPage;
 
 const Container = styled.div`
-  margin: 1vh 15vw;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+margin: 1vh 15vw;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
 `;
 
 const Title = styled.h1`
@@ -56,7 +56,7 @@ margin: 2vh 15vw;
 
 
 const EventContainer = styled.div`
-background-color: white;
+background-color: #ececec;
 width: 100%;
 height: 7vh;
 font-size: 1em;
@@ -78,9 +78,9 @@ border-right: 1px solid #5f5f5f;
 
 const DateContainer = styled.div`
 width: 10%;
-	text-align: center;
-  align-self: center;
-  padding-right: 1em;
+text-align: center;
+align-self: center;
+padding-right: 1em;
 `;
 
 const ArtistContainer = styled.div`
@@ -111,28 +111,29 @@ align-self: center;
 
 const ButtonContainer = styled.div`
 width: 16.5%;
-	display: flex;
-  justify-content: center;
-	align-items: center;
-  padding-left: 0.5em;
+display: flex;
+justify-content: center;
+align-items: center;
+padding-left: 0.5em;
 `;
 
 const GoToEvent = styled.button`
-color: orange;
+color: #fc9d2c;
 margin: 1em;
 border:none;
 padding: 1em 3em 1em 1em;
 text-align:left;
-background: linear-gradient(-120deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,#000000 2.05em) top no-repeat, 
-linear-gradient(300deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,#000000 2.05em) bottom no-repeat;
+background: linear-gradient(-120deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#292929 2.05em) top no-repeat, 
+linear-gradient(300deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#292929 2.05em) bottom no-repeat;
 background-size: 100% 50%;
 transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
 &:hover {
   transform: translateX(1em); 
   padding: 1em 5em 1em 1em; 
   color: black;
-  background: linear-gradient(-120deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,orange 2.05em) top no-repeat, 
-linear-gradient(300deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,orange 2.05em) bottom no-repeat;
-background-size: 100% 50%;
+  background: linear-gradient(-120deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#ff9e07 2.05em) top no-repeat, 
+  linear-gradient(300deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#ff9e07 2.05em) bottom no-repeat;
+  background-size: 100% 50%;
+  cursor: pointer;
 }
 `;
