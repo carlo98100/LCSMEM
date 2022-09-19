@@ -8,9 +8,16 @@ const addItemToCart = (item) => {
 	let cart = null;
 	if (sessionStorage.getItem(CART)) {
 		cart = getCart();
-		cart.push(item);
+		if (cart.find((cartItem) => cartItem.description === item.description)) {
+			for (let i = 0; i < cart.length; i++) {
+				if (cart[i].description === item.description) {
+					cart[i].quantity = parseInt(cart[i].quantity) + parseInt(item.quantity);
+				}
+			}
+		} else {
+			cart.push(item);
+		}
 	} else {
-		console.log("här");
 		cart = [];
 		cart.push(item);
 	}

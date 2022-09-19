@@ -9,7 +9,7 @@ import YourTickets from "./views/YourTickets";
 import ArtistPage from "./views/ArtistPage";
 import Stream from "./views/Stream";
 import EventPage from "./views/eventPage";
-
+import SpecificEventPage from "./views/SpecificEventPage";
 
 export const AppRoutes = [
 	{
@@ -79,7 +79,8 @@ export const AppRoutes = [
 		path: "/PickStream",
 		display: true,
 		component: <PickStream />,
-	}, {
+	},
+	{
 		name: "Stream",
 		path: "/Stream/:id",
 		display: false,
@@ -90,5 +91,11 @@ export const AppRoutes = [
 		path: "/EventPage",
 		display: true,
 		component: <EventPage />,
+	},
+	{
+		name: "SpecificEventPage",
+		path: "/SpecificEventPage/:eventId",
+		display: true,
+		component: <SpecificEventPage />,
 	},
 ];
