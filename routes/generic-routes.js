@@ -42,6 +42,12 @@ module.exports = function (server, db) {
 		res.json(result[0]);
 	});
 
+	server.get("/data/events/GetSpecificEventInfo/:eventId", (req, res) => {
+		let query = `select * From GetSpecificEventInfo where EventId = ${req.params.eventId}`;
+		let result = db.prepare(query).all(req.params);
+		res.json(result[0]);
+	});
+
 	server.post("/data/:table", (req, res) => {
 		// limit which tables to query with ACL
 		let query = `INSERT INTO ${req.params.table} (${Object.keys(req.body).join(", ")}) VALUES(@${Object.keys(req.body).join(", @")})`;

@@ -5,17 +5,23 @@ const getCart = () => {
 };
 
 const addItemToCart = (item) => {
-  console.log(getCart());
-  let cart = null;
-  if (sessionStorage.getItem(CART)) {
-    cart = getCart();
-    cart.push(item);
-  } else {
-    console.log("här");
-    cart = [];
-    cart.push(item);
-  }
-  sessionStorage.setItem(CART, JSON.stringify(cart));
+	let cart = null;
+	if (sessionStorage.getItem(CART)) {
+		cart = getCart();
+		if (cart.find((cartItem) => cartItem.description === item.description)) {
+			for (let i = 0; i < cart.length; i++) {
+				if (cart[i].description === item.description) {
+					cart[i].quantity = parseInt(cart[i].quantity) + parseInt(item.quantity);
+				}
+			}
+		} else {
+			cart.push(item);
+		}
+	} else {
+		cart = [];
+		cart.push(item);
+	}
+	sessionStorage.setItem(CART, JSON.stringify(cart));
 };
 
 const removeItemFromCart = (item, field) => {

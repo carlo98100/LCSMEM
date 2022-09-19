@@ -22,10 +22,12 @@ html {
 }
 
 .ticket {
-	margin: auto;
+	margin: 4em auto;
 	display: flex;
 	background: white;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+	height: 480px;
+	width: 790px;
 }
 
 .left {
@@ -151,6 +153,7 @@ html {
 .right {
 	width: 180px;
 	border-left: 1px dashed #404040;
+	position: relative;
 }
 
 .right .admit-one {

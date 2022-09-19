@@ -19,7 +19,7 @@ function Event({ event }) {
 			{parseBoolean(event.IsLiveStream) ? <RiComputerLine size={40} /> : <GiTempleDoor size={40} />}
 			<TicketsContainer>
 				<h3>{`${event.AvailableTickets} / ${event.eventTotalAmountOfTickets}`}</h3>
-				<BuyTicketBtn>Buy ticket</BuyTicketBtn>
+				<BuyTicketBtn>Se more</BuyTicketBtn>
 			</TicketsContainer>
 		</Container>
 	);

@@ -9,6 +9,7 @@ import YourTickets from "./views/YourTickets";
 import ArtistPage from "./views/ArtistPage";
 import Stream from "./views/Stream";
 import EventPage from "./views/eventPage";
+import SpecificEventPage from "./views/SpecificEventPage";
 import Checkout from "./views/Checkout";
 
 export const AppRoutes = [
@@ -49,50 +50,58 @@ export const AppRoutes = [
     display: false,
     component: <Signup />,
   },
+  
 
-  {
-    name: "ProfilePage",
-    path: "/ProfilePage",
-    display: false,
-    component: <ProfilePage />,
-  },
-  {
-    name: "PurchaseHistory",
-    path: "/PurchaseHistory",
-    display: false,
-    component: <PurchaseHistory />,
-  },
-  {
-    name: "UserDetails",
-    path: "/UserDetails",
-    display: false,
-    component: <UserDetails />,
-  },
-  {
-    name: "TicketInfo",
-    path: "/TicketInfo",
-    display: false,
-    component: <YourTickets />,
-  },
-  {
-    name: "Pick Stream",
-    path: "/PickStream",
-    display: true,
-    component: <PickStream />,
-  },
-  {
-    name: "Stream",
-    path: "/Stream/:id",
-    display: false,
-    component: <Stream />,
-  },
-  {
-    name: "Event page",
-    path: "/EventPage",
-    display: true,
-    component: <EventPage />,
-  },
-  {
+
+	{
+		name: "ProfilePage",
+		path: "/ProfilePage",
+		display: false,
+		component: <ProfilePage />,
+	},
+	{
+		name: "PurchaseHistory",
+		path: "/PurchaseHistory",
+		display: false,
+		component: <PurchaseHistory />,
+	},
+	{
+		name: "UserDetails",
+		path: "/UserDetails",
+		display: false,
+		component: <UserDetails />,
+	},
+	{
+		name: "TicketInfo",
+		path: "/TicketInfo",
+		display: false,
+		component: <YourTickets />,
+	},
+	{
+		name: "Pick Stream",
+		path: "/PickStream",
+		display: true,
+		component: <PickStream />,
+	},
+	{
+		name: "Stream",
+		path: "/Stream/:id",
+		display: false,
+		component: <Stream />,
+	},
+	{
+		name: "Event page",
+		path: "/EventPage",
+		display: true,
+		component: <EventPage />,
+	},
+	{
+		name: "SpecificEventPage",
+		path: "/SpecificEventPage/:eventId",
+		display: true,
+		component: <SpecificEventPage />,
+	},
+    {
     name: "Checkout",
     path: "/Checkout",
     display: true,
