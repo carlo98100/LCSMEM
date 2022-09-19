@@ -32,106 +32,27 @@ function PurchaseHistory() {
     return artist.find((artist) => artist.Id === getEvent(ticket).ArtistId);
   }
 
-  // const { userId } = useParams();
-  // // const [form, setForm] = useState([]);
-  // const [ticketInformation, setTicketInformation] = useState([]);
-  // const [artistInformation, setArtistInformation] = useState([]);
-  // const [eventInformation, setEventInformation] = useState([]);
-
-  // useEffect(() => {
-  //   if (!userId) return;
-  //   GetArtistInformation();
-  //   GetEventInformation();
-  //   GetTicketInformation(userId);
-  // }, []);
-
-  // async function GetTicketInformation(id) {
-  //   try {
-  //     const response = await fetch(`/data/Ticket/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonData = await response.json();
-  //     setTicketInformation(jsonData);
-  //     console.log(jsonData);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async function GetArtistInformation(id) {
-  //   try {
-  //     const response = await fetch(`/data/Artist/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonData = await response.json();
-  //     setArtistInformation(jsonData);
-  //     console.log(jsonData);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // async function GetEventInformation(id) {
-  //   try {
-  //     const response = await fetch(`/data/events/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonData = await response.json();
-  //     setEventInformation(jsonData);
-  //     setForm(jsonData);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // return (
-  //   <Container>
-  //     <LeftProfileNav />
-  //     <RightContainer>
-  //       <TicketsTitle>Your tickets</TicketsTitle>
-  //       <Body>{getUsersTickets().map((ticket) => Ticket(ticket))}</Body>
-  //       <TicketsTitle>Your purchased tickets</TicketsTitle>
-  //       <HistoryBody>
-  //         <HistoryTable>
-  //           <thead>
-  //             <tr>
-  //               <th> Artist </th>
-  //               <th> City </th>
-  //               <th> Date </th>
-  //               <th> Price </th>
-  //             </tr>
-  //           </thead>
-  //           <tbody>
-  //             <tr>
-  //               <th> {artistInformation.Name} </th>
-  //               <td> {eventInformation.City} </td>
-  //               <td> {eventInformation.Date} </td>
-  //               <td> Dyrt </td>
-  //             </tr>
-  //           </tbody>
-  //         </HistoryTable>
-  //       </HistoryBody>
-  //     </RightContainer>
-  //   </Container>
-  // );
   return (
     <Container>
       <LeftProfileNav />
       <RightContainer>
-        <TicketsTitle>Your tickets</TicketsTitle>
+        <TicketsTitle>Your ticket history</TicketsTitle>
         <Body>
-          {getUsersTicketHistoryList().map((ticket) =>
-            TicketHistoryList(ticket)
-          )}
+          <HistoryBody>
+            <HistoryTable>
+              <Thead>
+                <tr>
+                  <th> Artist </th>
+                  <th> City </th>
+                  <th> Date </th>
+                  <th> Price </th>
+                </tr>
+              </Thead>
+              {getUsersTicketHistoryList().map((ticket) =>
+                TicketHistoryList(ticket)
+              )}
+            </HistoryTable>
+          </HistoryBody>
         </Body>
       </RightContainer>
     </Container>
@@ -168,4 +89,26 @@ const Body = styled.body`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+const Thead = styled.thead`
+  background-color: #087f5b;
+  color: #fff;
+  width: 25%;
+`;
+
+const HistoryBody = styled.body`
+  font-family: "Inter", sans-serif;
+  color: #343a40;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+`;
+
+const HistoryTable = styled.table`
+  width: 800px;
+  margin-top: 80px;
+  /* border: 1px solid #343a40; */
+  border-collapse: collapse;
+  font-size: 18px;
 `;

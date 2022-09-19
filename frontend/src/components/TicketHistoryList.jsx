@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ArtistContext from "../contexts/artistList";
 import EventContext from "../contexts/eventList";
-// import "../css/PurchaseHistory.css";
+//import "../css/PurchaseHistory.css";
 import styled from "styled-components";
 
 function TicketHistoryList(ticket) {
@@ -18,68 +18,50 @@ function TicketHistoryList(ticket) {
 
   return (
     <>
-      <HistoryBody>
-        <HistoryTable>
-          <Thead>
+      {/* <HistoryBody>
+        <HistoryTable> */}
+      {/* <Thead>
             <tr>
               <th> Artist </th>
               <th> City </th>
               <th> Date </th>
               <th> Price </th>
             </tr>
-          </Thead>
-          <tbody>
-            <tr>
-              <th> {getArtist(ticket).Name} </th>
-              <td> {getEvent(ticket).City} </td>
-              <td> {getEvent(ticket).Date} </td>
-              <td> Dyrt </td>
-            </tr>
-          </tbody>
-        </HistoryTable>
-      </HistoryBody>
+          </Thead> */}
+      <Tbody>
+        <Tr>
+          <Th> {getArtist(ticket).Name} </Th>
+          <Td> {getEvent(ticket).City} </Td>
+          <Td> {getEvent(ticket).Date} </Td>
+          <Td> Dyrt </Td>
+        </Tr>
+      </Tbody>
+      {/* </HistoryTable>
+      </HistoryBody> */}
     </>
   );
 }
 
 export default TicketHistoryList;
 
-const HistoryBody = styled.body`
-  font-family: "Inter", sans-serif;
-  color: #343a40;
-  line-height: 1;
-  display: flex;
-  justify-content: center;
+const Tbody = styled.tbody`
+  background-color: #f8f9fa;
 `;
 
-const HistoryTable = styled.table`
-  width: 800px;
-  margin-top: 80px;
+const Th = styled.th`
   /* border: 1px solid #343a40; */
-  border-collapse: collapse;
-  font-size: 18px;
+  padding: 16px 24px;
+  text-align: left;
 `;
 
-const Thead = styled.thead`
-  background-color: #087f5b;
-  color: #fff;
-  width: 25%;
+const Td = styled.td`
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
 `;
 
-// const Th = styled.th`
-//   /* border: 1px solid #343a40; */
-//   padding: 16px 24px;
-//   text-align: left;
-// `;
-
-// const Td = styled.td`
-//   /* border: 1px solid #343a40; */
-//   padding: 16px 24px;
-//   text-align: left;
-// `;
-
-// const Tr = styled.tr`
-//   /* border: 1px solid #343a40; */
-//   padding: 16px 24px;
-//   text-align: left;
-// `;
+const Tr = styled.tr`
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
+`;
