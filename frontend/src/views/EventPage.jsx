@@ -1,15 +1,15 @@
 import React, { useContext } from "react"
-import EventContext from "../context/eventList"
+import EventContext from "../contexts/eventList"
 import styled from "styled-components"
 
 const EventPage = () => {
-	const { events } = useContext(EventContext)
+	const { events, x } = useContext(EventContext)
 
 	return <>
 		<Container className="event-list">
 			<h1>Event List</h1>
 			{events.map((event) => 
-			<h2 key={event.Id}>{event.Date}</h2>)}
+			<h2 key={event.Id}>{event.Date} - {x} - {event.City}</h2>)}
 		</Container>
 	</>
 }

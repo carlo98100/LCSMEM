@@ -5,6 +5,8 @@ const EventContext = createContext();
 export const EventContextProvider = ({children}) => {
     const [ events, setEvents ] = useState([])
 
+    let x = 10;
+
     useEffect(() => {
         fetchEvents();
     }, [])
@@ -19,7 +21,8 @@ export const EventContextProvider = ({children}) => {
     return (
     <EventContext.Provider 
     value={{
-        events
+        events,
+        x
     }}
     >
         {children}
