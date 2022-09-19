@@ -5,7 +5,6 @@ import { EventContext } from "../contexts/eventList";
 function filterArtist(inputText) {
   const { artists } = useContext(ArtistContext);
   let temp = []
-  const newA = []
   if (inputText === "") {
     temp = artists;
   } else {
