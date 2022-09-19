@@ -37,7 +37,7 @@ function PurchaseHistory() {
 
   async function GetArtistInformation(id) {
     try {
-      const response = await fetch(`/data/Artist/2`, {
+      const response = await fetch(`/data/Artist/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function PurchaseHistory() {
 
   async function GetEventInformation(id) {
     try {
-      const response = await fetch(`/data/events/2`, {
+      const response = await fetch(`/data/events/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
