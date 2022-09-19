@@ -118,13 +118,21 @@ width: 16.5%;
 `;
 
 const GoToEvent = styled.button`
-margin:1em;
+color: orange;
+margin: 1em;
 border:none;
 padding: 1em 3em 1em 1em;
 text-align:left;
-background:
-  linear-gradient(-120deg, transparent 1em, #006992 1.05em , #006992 1.5em, transparent 1.45em, transparent 2em, #006992 2.05em) top no-repeat,
-  linear-gradient(300deg, transparent 1em, #006992 1.05em , #006992 1.5em, transparent 1.45em, transparent 2em, #006992 2.05em) bottom no-repeat ;
+background: linear-gradient(-120deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,#000000 2.05em) top no-repeat, 
+linear-gradient(300deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,#000000 2.05em) bottom no-repeat;
 background-size: 100% 50%;
-color:white
+transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
+&:hover {
+  transform: translateX(1em); 
+  padding: 1em 5em 1em 1em; 
+  color: black;
+  background: linear-gradient(-120deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,orange 2.05em) top no-repeat, 
+linear-gradient(300deg,transparent 1em,#000000 1.05em ,#000000 1.5em,transparent 1.45em,transparent 2em,orange 2.05em) bottom no-repeat;
+background-size: 100% 50%;
+}
 `;
