@@ -1,14 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 function UserContextProvider(props) {
+	const [userList, setUserList] = useState([]);
 	const [user, setUser] = useState({
+		id: "",
 		email: "",
 		loggedIn: false,
 	});
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		fetchUsers();
+	  }, []);
 
 	const logIn = async (form) => {
 		try {
@@ -22,7 +28,7 @@ function UserContextProvider(props) {
 
 			const jsonData = await response.json();
 
-			setUser({ email: form.email, loggedIn: jsonData.loggedIn });
+			setUser({ id: jsonData.id, email: form.email, loggedIn: jsonData.loggedIn });
 
 			if (response.status == 403) {
 				isSignedIn();
@@ -43,7 +49,7 @@ function UserContextProvider(props) {
 
 			const jsonData = await response.json();
 
-			setUser({ email: jsonData.email, loggedIn: jsonData.loggedIn });
+			setUser({ id: jsonData.id, email: jsonData.email, loggedIn: jsonData.loggedIn });
 		} catch (err) {
 			console.error(err);
 		}
@@ -67,7 +73,14 @@ function UserContextProvider(props) {
 		}
 	};
 
-	return <UserContext.Provider value={{ user, setUser, logOut, logIn }}>{props.children}</UserContext.Provider>;
+	const fetchUsers = async () => {
+		const response = await fetch("/data/users");
+		const data = await response.json();
+		console.log(data);
+		setUserList(data);
+	  };
+
+	return <UserContext.Provider value={{ user, setUser, logOut, logIn, userList }}>{props.children}</UserContext.Provider>;
 }
 
 export default UserContextProvider;

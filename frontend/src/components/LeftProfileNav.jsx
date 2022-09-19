@@ -24,7 +24,7 @@ export default LeftProfileNav
 const LeftContainer = styled.div`
   font-weight: normal;
   background-color: #ececec;
-  flex: 1 1 15%;
+  width: 20%;
   min-width: 15ch;
   height: calc(100vh - 70px);
   justify-content: center;
