@@ -5,10 +5,6 @@ import Search from "../components/Search";
 const EventPage = () => {
   const [inputText, setInputText] = useState("");
 
-  // useEffect(() => {
-  //   Search();
-  // }, [inputText]);
-
   return (
     <>
       <SearchContainer>
