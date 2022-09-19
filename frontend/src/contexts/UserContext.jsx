@@ -11,63 +11,46 @@ function UserContextProvider(props) {
 	const navigate = useNavigate();
 
 	const logIn = async (form) => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(form), // body data type must match "Content-Type" header
-			});
-
-			const jsonData = await response.json();
-
-			setUser({ email: form.email, loggedIn: jsonData.loggedIn });
-
-			if (response.status == 403) {
-				isSignedIn();
-			}
-		} catch (err) {
-			console.error(err);
-		}
+		await fetch("/data/login", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(form), // body data type must match "Content-Type" header
+		})
+			.then((response) => {
+				if (response.status == 403) {
+					isSignedIn();
+				} else {
+					response.json();
+				}
+			})
+			.then((data) => setUser({ email: form.email, loggedIn: data.loggedIn }))
+			.catch((err) => console.error(err));
 	};
 
 	const isSignedIn = async () => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+		await fetch("/data/login")
+			.then((response) => response.json())
+			.then((data) => setUser({ email: data.email, loggedIn: data.loggedIn }))
+			.catch((err) => console.error(err));
 
-			const jsonData = await response.json();
-
-			setUser({ email: jsonData.email, loggedIn: jsonData.loggedIn });
-		} catch (err) {
-			console.error(err);
-		}
+		setUser({ email: data.email, loggedIn: data.loggedIn });
 	};
 
 	const logOut = async () => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-
-			const jsonData = await response.json();
-
-			setUser({ email: "", loggedIn: jsonData.loggedIn });
-			navigate("/login", { replace: true });
-		} catch (err) {
-			console.error(err);
-		}
+		await fetch("/data/login", {
+			method: "DELETE",
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setUser({ email: "", loggedIn: data.loggedIn });
+				navigate("/login", { replace: true });
+			})
+			.catch((err) => console.error(err));
 	};
 
-	return <UserContext.Provider value={{ user, setUser, logOut, logIn }}>{props.children}</UserContext.Provider>;
+	return <UserContext.Provider value={{ user, logOut, logIn }}>{props.children}</UserContext.Provider>;
 }
 
 export default UserContextProvider;

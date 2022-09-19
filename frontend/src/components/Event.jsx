@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { parseBoolean } from "../utils";
 
 function ConsertEvent({ event }) {
-	// var options = { month: "long", day: "numeric" };
+	var options = { month: "long", day: "numeric" };
 
 	return (
 		<Container>
@@ -25,7 +25,7 @@ function ConsertEvent({ event }) {
 	);
 }
 
-export default ConsertEvent;
+export default Event;
 
 const Container = styled.div`
 	background-color: white;

@@ -1,14 +1,15 @@
 import Home from "./views/Home";
-import ConsertPage from "./views/ConsertPage";
 import Login from "./views/Login";
+import PickStream from "./views/PickStream";
 import Signup from "./views/Signup";
 import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
-import PickStream from "./views/PickStream"
-import Stream from "./views/Stream"
-import EventPage from "./views/EventPage"
+import ArtistPage from "./views/ArtistPage";
+import Stream from "./views/Stream";
+import EventPage from "./views/eventPage";
+
 
 export const AppRoutes = [
   {
@@ -80,10 +81,22 @@ export const AppRoutes = [
 		component: <Home />,
 	},
 	{
-		name: "ConsertPage",
-		path: "/ConsertPage/:artistId",
-		display: false,
-		component: <ConsertPage />,
+		name: "Link1",
+		path: "/link-1",
+		display: true,
+		component: <Home />,
+	},
+	{
+		name: "Link2",
+		path: "/link-2",
+		display: true,
+		component: <Home />,
+	},
+	{
+		name: "ArtistPage",
+		path: "/ArtistPage/:artistId",
+		display: true,
+		component: <ArtistPage />,
 	},
 	{
 		name: "Login",
@@ -98,10 +111,11 @@ export const AppRoutes = [
 		display: false,
 		component: <Signup />,
 	},
+
 	{
 		name: "ProfilePage",
 		path: "/ProfilePage",
-		display: true,
+		display: false,
 		component: <ProfilePage />,
 	},
 	{
@@ -117,8 +131,8 @@ export const AppRoutes = [
 		component: <UserDetails />,
 	},
 	{
-		name: "YourTickets",
-		path: "/YourTickets",
+		name: "TicketInfo",
+		path: "/TicketInfo",
 		display: false,
 		component: <YourTickets />,
 	},

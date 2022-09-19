@@ -5,21 +5,22 @@ import styled from "styled-components";
 const Stream = () => {
 
 	const video = useParams();
+	console.log(video)
 
 	return (
-		<VideoContainer>
+		<Container>
 			<video controls src={`/data/video-stream/${video.id}`}></video>
-		</VideoContainer>
+		</Container>
 	)
 }
 
 export default Stream
 
-const VideoContainer = styled.div`
-width: 90%;
-padding: 5% 5%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-content: center;
+const Container = styled.div`
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	background-color: #27476e;
+	justify-content: center;
+	align-content: center;
 `;

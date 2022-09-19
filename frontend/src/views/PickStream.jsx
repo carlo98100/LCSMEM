@@ -7,9 +7,7 @@ const PickStream = () => {
 	return (
 		<Container>
 			<h1>Select a video</h1>
-			<StreamButton VideoId={1}/>
-			<StreamButton VideoId={2}/>
-			<StreamButton VideoId={3}/>
+			<StreamButton/>
 		</Container>
 	)
 }
