@@ -1,31 +1,29 @@
-import React, { useContext, useEffect , useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Search from "../components/Search";
 
 const EventPage = () => {
-
-  const [inputText, setInputText] = useState('Pink');
+  const [inputText, setInputText] = useState("");
 
   // useEffect(() => {
   //   Search();
-  // }, [input]);
+  // }, [inputText]);
 
   return (
     <>
-      <Search/>
-      <SearchContainer className="Search">
-          <input type="text" placeholder="Search" id="search" value={inputText} onChange={e => {
-            console.log(`stuff: ${e.target.value}`)
-            setInputText(e.target.value)}}/>
+      <SearchContainer>
+        <input type="text" placeholder="Search" id="search" onChange={e => {
+          setInputText(e.target.value)
+        }} />
       </SearchContainer>
-        <Container className="event-list">
-          <h1>Event List</h1>
-          {Search(inputText).map((event) => (
-            <h2 key={event.Id}>
-              {event.Date} - {x} - {event.City}
-            </h2>
-          ))}
-        </Container>
+      <Container>
+        <h1>Event List</h1>
+        {Search(inputText).map((event) => (
+          <h2 key={event.Id}>
+            {event.Date} - x - {event.City}
+          </h2>
+        ))}
+      </Container>
     </>
   );
 }
@@ -42,9 +40,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const ListContainer = styled.div`
-    display: flex;
-`;
 const SearchContainer = styled.div`
     dislpay: flex;
     margin-top: 4%;
