@@ -54,7 +54,7 @@ const onSubmit = async (event) => {
             />
 
 
-            <input type="submit" value="update password"></button>
+            <input type="submit" value="update password"/>
             </form>
         </div>
       </RightContainer>
