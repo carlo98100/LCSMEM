@@ -3,23 +3,23 @@ import { useEffect, useState, createContext } from "react";
 const ArtistContext = createContext();
 
 export const ArtistContextProvider = ({ children }) => {
-  const [artists, setArtist] = useState([]);
+  const [artists, setArtists] = useState([]);
 
   useEffect(() => {
-    fetchArtist();
+    fetchArtists();
   }, []);
 
-  const fetchArtist = async () => {
+  const fetchArtists = async () => {
     const response = await fetch("/data/Artist");
     const data = await response.json();
-    console.log(data);
-    setArtist(data);
+    setArtists(data);
   };
 
+    console.log(artists);
   return (
     <ArtistContext.Provider
       value={{
-        artists,
+        artists
       }}
     >
       {children}
@@ -27,4 +27,4 @@ export const ArtistContextProvider = ({ children }) => {
   );
 };
 
-export default ArtistContext;
+export default ArtistContext

@@ -1,17 +1,50 @@
-import React, { useContext } from "react";
-import EventContext from "../contexts/EventList";
+import React, { useContext, useState } from "react";
 import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
+import Search from "../components/Search";
 
 const EventPage = () => {
-  const { events } = useContext(EventContext);
+  const [inputText, setInputText] = useState("");
+  const [filterSettings, setFilterSettings] = useState({
+    LiveStream: 2,
+  });
   const { artists } = useContext(ArtistContext);
-  
+
+  const sortByDate = (list) =>
+    list
+      .slice()
+      .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
+
+  const updateSettings = (setting) => {
+    console.log("öö", setting);
+    setFilterSettings((prevState) => {;
+      return { ...prevState, [setting.target.name]: parseInt(setting.target.value) };
+    });
+  };
+
   return (
     <>
+      <SearchContainer>
+        <input
+          type="text"
+          placeholder="Search"
+          id="search"
+          onChange={(e) => {
+            setInputText(e.target.value);
+          }}
+        />
+        <LiveOrStreamContainer>
+          <lable>Live/Stream: </lable>
+          <select name="LiveStream" id="EventType" onChange={updateSettings}>
+            <option value={2}>Both</option>
+            <option value={0}>Live</option>
+            <option value={1}>Stream</option>
+          </select>
+        </LiveOrStreamContainer>
+      </SearchContainer>
       <Container className="event-list">
         <Title>Event List</Title>
-        {events.map((event) => (
+        {sortByDate(Search(inputText, filterSettings)).map((event) => (
           <EventContainer key={event.Id}>
             <DateContainer>
               <h2 style={{ margin: 0 }}>
@@ -47,6 +80,10 @@ const EventPage = () => {
 };
 export default EventPage;
 
+const LiveOrStreamContainer = styled.div`
+  display: flex;
+`;
+
 const Container = styled.div`
   margin: 1vh 15vw;
   display: flex;
@@ -68,7 +105,6 @@ const EventContainer = styled.div`
   width: 100%;
   height: 7vh;
   font-size: 1em;
-  border: 1px #292929;
   border-radius: 10px;
   margin: 1vh 0;
   padding: 0.5em 1em;
@@ -181,4 +217,12 @@ const GoToEvent = styled.button`
     background-size: 100% 50%;
     cursor: pointer;
   }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin-top: 4%;
+  margin-bottom: 1%;
 `;

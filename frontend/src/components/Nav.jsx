@@ -76,7 +76,7 @@ const NavLink = styled(Link)`
 `;
 
 const NavbarLeft = styled.div`
-	display: flex;
+  display: flex;
 `;
 const NavbarRight = styled.div``;
 

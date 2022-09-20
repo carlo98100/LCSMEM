@@ -24,14 +24,6 @@ function PurchaseHistory() {
     return userList.find((userL) => userL.email === user.email).id;
   }
 
-  function getEvent(ticket) {
-    return events.find((event) => event.Id === ticket.EventId);
-  }
-
-  function getArtist(ticket) {
-    return artist.find((artist) => artist.Id === getEvent(ticket).ArtistId);
-  }
-
   return (
     <Container>
       <LeftProfileNav />
