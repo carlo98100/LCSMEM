@@ -1,43 +1,32 @@
 import React, { useContext } from "react";
-import ArtistContext from "../contexts/artistList";
-import EventContext from "../contexts/eventList";
+import ArtistContext from "../contexts/ArtistList";
+import EventContext from "../contexts/EventList";
 //import "../css/PurchaseHistory.css";
 import styled from "styled-components";
 
 function TicketHistoryList(ticket) {
   const { events } = useContext(EventContext);
-  const { artist } = useContext(ArtistContext);
+  const { artists } = useContext(ArtistContext);
 
   function getEvent(ticket) {
     return events.find((event) => event.Id === ticket.EventId);
   }
 
   function getArtist(ticket) {
-    return artist.find((artist) => artist.Id === getEvent(ticket).ArtistId);
+    return artists.find((artist) => artist.Id === getEvent(ticket).ArtistId);
   }
 
   return (
     <>
-      {/* <HistoryBody>
-        <HistoryTable> */}
-      {/* <Thead>
-            <tr>
-              <th> Artist </th>
-              <th> City </th>
-              <th> Date </th>
-              <th> Price </th>
-            </tr>
-          </Thead> */}
       <Tbody>
         <Tr>
           <Th> {getArtist(ticket).Name} </Th>
           <Td> {getEvent(ticket).City} </Td>
           <Td> {getEvent(ticket).Date} </Td>
+          <Td> Date purchased </Td>
           <Td> Dyrt </Td>
         </Tr>
       </Tbody>
-      {/* </HistoryTable>
-      </HistoryBody> */}
     </>
   );
 }

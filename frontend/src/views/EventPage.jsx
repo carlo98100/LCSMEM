@@ -1,17 +1,50 @@
-import React, { useContext } from "react";
-import EventContext from "../contexts/eventList";
-import ArtistContext from "../contexts/artistList";
+import React, { useContext, useState } from "react";
+import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
+import Search from "../components/Search";
 
 const EventPage = () => {
-  const { events } = useContext(EventContext);
-  const { artist } = useContext(ArtistContext);
-  console.log(events);
+  const [inputText, setInputText] = useState("");
+  const [filterSettings, setFilterSettings] = useState({
+    LiveStream: 2,
+  });
+  const { artists } = useContext(ArtistContext);
+
+  const sortByDate = (list) =>
+    list
+      .slice()
+      .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
+
+  const updateSettings = (setting) => {
+    console.log("öö", setting);
+    setFilterSettings((prevState) => {;
+      return { ...prevState, [setting.target.name]: parseInt(setting.target.value) };
+    });
+  };
+
   return (
     <>
+      <SearchContainer>
+        <input
+          type="text"
+          placeholder="Search"
+          id="search"
+          onChange={(e) => {
+            setInputText(e.target.value);
+          }}
+        />
+        <LiveOrStreamContainer>
+          <lable>Live/Stream: </lable>
+          <select name="LiveStream" id="EventType" onChange={updateSettings}>
+            <option value={2}>Both</option>
+            <option value={0}>Live</option>
+            <option value={1}>Stream</option>
+          </select>
+        </LiveOrStreamContainer>
+      </SearchContainer>
       <Container className="event-list">
         <Title>Event List</Title>
-        {events.map((event) => (
+        {sortByDate(Search(inputText, filterSettings)).map((event) => (
           <EventContainer key={event.Id}>
             <DateContainer>
               <h2 style={{ margin: 0 }}>
@@ -28,7 +61,7 @@ const EventPage = () => {
             <Boarder />
             <ArtistContainer>
               <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
-                {artist.find((element) => element.Id === event.ArtistId).Name}
+                {artists.find((element) => element.Id === event.ArtistId).Name}
               </ArtistName>
             </ArtistContainer>
             <Boarder />
@@ -47,6 +80,10 @@ const EventPage = () => {
 };
 export default EventPage;
 
+const LiveOrStreamContainer = styled.div`
+  display: flex;
+`;
+
 const Container = styled.div`
   margin: 1vh 15vw;
   display: flex;
@@ -64,7 +101,7 @@ const Title = styled.h1`
 `;
 
 const EventContainer = styled.div`
-  background-color: white;
+  background-color: #ececec;
   width: 100%;
   height: 7vh;
   font-size: 1em;
@@ -126,6 +163,7 @@ const ButtonContainer = styled.div`
 `;
 
 const GoToEvent = styled.button`
+  color: #fc9d2c;
   margin: 1em;
   border: none;
   padding: 1em 3em 1em 1em;
@@ -133,23 +171,58 @@ const GoToEvent = styled.button`
   background: linear-gradient(
         -120deg,
         transparent 1em,
-        #006992 1.05em,
-        #006992 1.5em,
+        #292929 1.05em,
+        #292929 1.5em,
         transparent 1.45em,
         transparent 2em,
-        #006992 2.05em
+        #292929 2.05em
       )
       top no-repeat,
     linear-gradient(
         300deg,
         transparent 1em,
-        #006992 1.05em,
-        #006992 1.5em,
+        #292929 1.05em,
+        #292929 1.5em,
         transparent 1.45em,
         transparent 2em,
-        #006992 2.05em
+        #292929 2.05em
       )
       bottom no-repeat;
   background-size: 100% 50%;
-  color: white;
+  transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
+  &:hover {
+    transform: translateX(1em);
+    padding: 1em 5em 1em 1em;
+    color: black;
+    background: linear-gradient(
+          -120deg,
+          transparent 1em,
+          #292929 1.05em,
+          #292929 1.5em,
+          transparent 1.45em,
+          transparent 2em,
+          #ff9e07 2.05em
+        )
+        top no-repeat,
+      linear-gradient(
+          300deg,
+          transparent 1em,
+          #292929 1.05em,
+          #292929 1.5em,
+          transparent 1.45em,
+          transparent 2em,
+          #ff9e07 2.05em
+        )
+        bottom no-repeat;
+    background-size: 100% 50%;
+    cursor: pointer;
+  }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin-top: 4%;
+  margin-bottom: 1%;
 `;
