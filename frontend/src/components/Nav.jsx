@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppRoutes } from "../routes";
+import { AppRoutes } from "../Routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
