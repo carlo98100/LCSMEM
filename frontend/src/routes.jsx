@@ -6,9 +6,9 @@ import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
-import PickStream from "./views/PickStream"
-import Stream from "./views/Stream"
-import EventPage from "./views/EventPage"
+import PickStream from "./views/PickStream";
+import Stream from "./views/Stream";
+import EventPage from "./views/EventPage";
 
 export const AppRoutes = [
   {
@@ -18,42 +18,28 @@ export const AppRoutes = [
     component: <Home />,
   },
   {
-    name: "Link1",
-    path: "/link-1",
-    display: true,
-    component: <Home />,
+    name: "ConsertPage",
+    path: "/ConsertPage/:artistId",
+    display: false,
+    component: <ConsertPage />,
   },
-  {
-    name: "Link2",
-    path: "/link-2",
-    display: true,
-    component: <Home />,
-  },
-//   {
-//     name: "ConsertPage",
-//     path: "/ConsertPage/:artistId",
-//     display: true,
-//     component: <ConsertPage />,
-//   },
   {
     name: "Login",
     path: "/login",
-    display: true,
+    display: false,
     component: <Login />,
   },
-  ,
   {
     name: "Signup",
     path: "/signup",
     display: false,
     component: <Signup />,
   },
-
   {
     name: "ProfilePage",
     path: "/ProfilePage",
-    display: false,
-    component: <ProfilePage />,
+    display: true,
+    component: <YourTickets />,
   },
   {
     name: "PurchaseHistory",
@@ -68,74 +54,27 @@ export const AppRoutes = [
     component: <UserDetails />,
   },
   {
-    name: "TicketInfo",
-    path: "/TicketInfo",
+    name: "YourTickets",
+    path: "/YourTickets",
     display: false,
     component: <YourTickets />,
   },
   {
-		name: "Conserts",
-		path: "/Conserts",
-		display: true,
-		component: <Home />,
-	},
-	{
-		name: "ConsertPage",
-		path: "/ConsertPage/:artistId",
-		display: false,
-		component: <ConsertPage />,
-	},
-	{
-		name: "Login",
-		path: "/login",
-		display: false,
-		component: <Login />,
-	},
-	{
-		name: "Signup",
-		path: "/signup",
-		display: false,
-		component: <Signup />,
-	},
-	{
-		name: "ProfilePage",
-		path: "/ProfilePage",
-		display: true,
-		component: <ProfilePage />,
-	},
-	{
-		name: "PurchaseHistory",
-		path: "/PurchaseHistory",
-		display: false,
-		component: <PurchaseHistory />,
-	},
-	{
-		name: "UserDetails",
-		path: "/UserDetails",
-		display: false,
-		component: <UserDetails />,
-	},
-	{
-		name: "YourTickets",
-		path: "/YourTickets",
-		display: false,
-		component: <YourTickets />,
-	},
-	{
-		name: "Pick Stream",
-		path: "/PickStream",
-		display: true,
-		component: <PickStream />,
-	}, {
-		name: "Stream",
-		path: "/Stream/:id",
-		display: false,
-		component: <Stream />,
-	},
-	{
-		name: "Event page",
-		path: "/EventPage",
-		display: true,
-		component: <EventPage />,
-	},
+    name: "Pick Stream",
+    path: "/PickStream",
+    display: true,
+    component: <PickStream />,
+  },
+  {
+    name: "Stream",
+    path: "/Stream/:id",
+    display: false,
+    component: <Stream />,
+  },
+  {
+    name: "Event page",
+    path: "/EventPage",
+    display: true,
+    component: <EventPage />,
+  },
 ];

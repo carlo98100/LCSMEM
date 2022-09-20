@@ -129,10 +129,10 @@ const DateContainer = styled.div`
 `;
 
 const ArtistContainer = styled.div`
-width: 40%;
-display flex;
-justify-content: center;
-align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ArtistName = styled.a`
