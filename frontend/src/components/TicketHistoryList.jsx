@@ -18,26 +18,15 @@ function TicketHistoryList(ticket) {
 
   return (
     <>
-      {/* <HistoryBody>
-        <HistoryTable> */}
-      {/* <Thead>
-            <tr>
-              <th> Artist </th>
-              <th> City </th>
-              <th> Date </th>
-              <th> Price </th>
-            </tr>
-          </Thead> */}
       <Tbody>
         <Tr>
           <Th> {getArtist(ticket).Name} </Th>
           <Td> {getEvent(ticket).City} </Td>
           <Td> {getEvent(ticket).Date} </Td>
+          <Td> Date purchased </Td>
           <Td> Dyrt </Td>
         </Tr>
       </Tbody>
-      {/* </HistoryTable>
-      </HistoryBody> */}
     </>
   );
 }
