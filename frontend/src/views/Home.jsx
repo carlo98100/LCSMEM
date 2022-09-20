@@ -20,11 +20,11 @@ function Home() {
 
   return (
     <Container>
-      <Carousel>
+      <Carousel centerSlidePercentage="100%">
         {getImages().map((image) => (
-          <div key={image}>
+          <Image key={image}>
             <img src={image} />
-          </div>
+          </Image>
         ))}
       </Carousel>
     </Container>
@@ -35,4 +35,15 @@ export default Home;
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin: 2% 15%;
+`;
+
+const Image = styled.div`
+  img {
+    background-size: cover;
+    background-position: center;
+  }
 `;
