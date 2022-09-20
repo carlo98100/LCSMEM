@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ArtistContext } from "../contexts/ArtistList";
-import { EventContext } from "../contexts/EventList";
+import ArtistContext from "../contexts/ArtistList";
+import EventContext from "../contexts/EventList";
 
 function filterArtist(inputText) {
   const { artists } = useContext(ArtistContext);

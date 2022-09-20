@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 
- export const ArtistContext = createContext();
+const ArtistContext = createContext();
 
 export const ArtistContextProvider = ({ children }) => {
   const [artists, setArtists] = useState([]);
@@ -26,3 +26,5 @@ export const ArtistContextProvider = ({ children }) => {
     </ArtistContext.Provider>
   );
 };
+
+export default ArtistContext

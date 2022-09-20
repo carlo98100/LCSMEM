@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import EventContext from "../contexts/EventList";
+import React, { useContext, useState } from "react";
 import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 import Search from "../components/Search";
-import { ArtistContext } from "../contexts/ArtistList";
-import VideoContext from "../contexts/VideoList";
+
 
 const EventPage = () => {
   const [inputText, setInputText] = useState("");
@@ -158,3 +156,9 @@ transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
   cursor: pointer;
 }
 `;
+
+const SearchContainer = styled.div`
+display: flex;
+margin-top: 4%;
+margin-bottom: 1%;
+`
