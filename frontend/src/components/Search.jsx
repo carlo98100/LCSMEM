@@ -2,32 +2,37 @@ import { useContext } from "react";
 import ArtistContext from "../contexts/ArtistList";
 import EventContext from "../contexts/EventList";
 
-function filterArtist(inputText) {
+function filterArtist(inputText, filterSettings) {
   const { artists } = useContext(ArtistContext);
-  let temp = []
+  let temp = [];
   if (inputText === "") {
     temp = artists;
   } else {
     artists.forEach((artist) => {
-      if (artist.Name.toLowerCase().includes(inputText.toLowerCase()) || artist.Genre.toLowerCase().includes(inputText.toLowerCase())) {
+      if (
+        artist.Name.toLowerCase().includes(inputText.toLowerCase()) ||
+        artist.Genre.toLowerCase().includes(inputText.toLowerCase())
+      ) {
         temp.push(artist);
       }
     });
   }
-  return temp
+  return temp;
 }
 
-function filterEvents(inputText) {
+function filterEvents(inputText, filterSettings) {
   const { events } = useContext(EventContext);
-  let eventList = []
+  let eventList = [];
   events.map((event) => {
     filterArtist(inputText).forEach((artist) => {
       if (event.ArtistId === artist.Id) {
-        eventList.push(event);
+          if(filterSettings.LiveStream === 2 || event.LiveStream === filterSettings.LiveStream){
+            eventList.push(event);
+          }
       }
     });
   });
-  return eventList
+  return eventList;
 }
 
-export default filterEvents
+export default filterEvents;
