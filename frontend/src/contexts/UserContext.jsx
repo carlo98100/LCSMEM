@@ -67,39 +67,29 @@ export function UserContextProvider(props) {
 		}
 	};
 
-	const deletePassword = async (form) => {
-		try {
-			const response = await fetch ("/data/users/password", {
-				method: "DELETE",
-				headers: {
-					"Content-type": "application/json",
-				},
-				body: JSON.stringify(form),
-			});
-			console.log("DELETE PASSWORD: ", form);
-			const jsonData = await response.json(); 
-		} catch (err) {
+	const deletePassword = async (email) => {
+		const response = await fetch("/data/users/password", {
+			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({ email }),
+		}).catch((err) => {
 			console.error(err);
-		}
+		});
 	};
 
 	const changePassword = async (email, password) => {
-		try {
-			const response = await fetch ("/data/users/password", {
-				method: "PATCH",
-				headers: {
-					"Content-type": "application/json",
-				},
-				body: JSON.stringify(email),
-			});
-			console.log("CHANGE PASSWORD: ", email);
-			console.log("CHANGE PASSWORD", password)
-			const jsonData = await response.json();
-		} catch (err) {
+		const response = await fetch("/data/users/password", {
+			method: "PATCH",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({ email: email, password: password }),
+		}).catch((err) => {
 			console.error(err);
-		}
+		});
 	};
-
 
 	return <UserContext.Provider value={{ user, setUser, logOut, logIn, deletePassword, changePassword }}>{props.children}</UserContext.Provider>;
 }
