@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 
 //Dropdown categories
 const categories = [

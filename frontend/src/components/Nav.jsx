@@ -6,7 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
 import Dropdown from "./Dropdown";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 
 function Nav() {
 	const [dropdown, setDropdown] = useState(false);
