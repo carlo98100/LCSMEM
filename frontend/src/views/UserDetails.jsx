@@ -25,7 +25,7 @@ const onSubmit = async (event) => {
 
   await deletePassword (user.email);
 
-  await changePassword (user.email, form.newPassword);
+  await changePassword (user.email, form.newpassword);
 
 };
   return (
@@ -46,7 +46,7 @@ const onSubmit = async (event) => {
 
             <label> New Password</label>
             <input
-            value={form.newPassword}
+            value={form.newpassword}
             name="newpassword"
             onChange={updateForm}
             label="newpassword"
