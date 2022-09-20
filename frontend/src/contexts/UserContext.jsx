@@ -9,6 +9,8 @@ export function UserContextProvider(props) {
 		email: "",
 		loggedIn: false,
 	});
+	const [userList, setUserList] = useState([])
+
 	const navigate = useNavigate();
 
 	useEffect(() => {

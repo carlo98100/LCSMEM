@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import LeftProfileNav from "../components/LeftProfileNav";
 import TicketContext from "../contexts/TicketsList";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 import TicketHistoryList from "../components/TicketHistoryList";
 
 function PurchaseHistory() {
@@ -22,14 +22,6 @@ function PurchaseHistory() {
 
   function getUserId() {
     return userList.find((userL) => userL.email === user.email).id;
-  }
-
-  function getEvent(ticket) {
-    return events.find((event) => event.Id === ticket.EventId);
-  }
-
-  function getArtist(ticket) {
-    return artist.find((artist) => artist.Id === getEvent(ticket).ArtistId);
   }
 
   return (
