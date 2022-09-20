@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const UserContext = createContext();
+const UserContext = createContext();
 
-function UserContextProvider(props) {
+export function UserContextProvider(props) {
 	const [user, setUser] = useState({
 		email: "",
 		loggedIn: false,
@@ -70,4 +70,4 @@ function UserContextProvider(props) {
 	return <UserContext.Provider value={{ user, setUser, logOut, logIn }}>{props.children}</UserContext.Provider>;
 }
 
-export default UserContextProvider;
+export default UserContext;
