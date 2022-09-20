@@ -2,7 +2,7 @@ import React from 'react'
 import {  useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-function StreamButton({ VideoId }) {
+function StreamButton({VideoId}) {
 
     const navigate = useNavigate();
 
@@ -35,4 +35,4 @@ button {
         cursor: pointer;
     }
 }
-`
+`;

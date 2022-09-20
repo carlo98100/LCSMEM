@@ -1,124 +1,52 @@
-import { useState } from "react";
+import React from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-// import "../css/Ticket.css";
+import LeftProfileNav from "../components/LeftProfileNav";
+import TicketContext from "../contexts/TicketsList";
+import UserContext from "../contexts/UserContext";
+import TicketHistoryList from "../components/TicketHistoryList";
 
 function PurchaseHistory() {
+  const { tickets } = useContext(TicketContext);
+  const { user, userList } = useContext(UserContext);
+
+  function getUsersTicketHistoryList() {
+    let temp = [];
+    tickets.forEach((ticket) => {
+      if (ticket.UserId === getUserId()) {
+        temp.push(ticket);
+      }
+    });
+    return temp;
+  }
+
+  function getUserId() {
+    return userList.find((userL) => userL.email === user.email).id;
+  }
+
   return (
     <Container>
-      <LeftContainer>
-        <Text>Your profile</Text>
-        <Link to="/YourTickets">Your Tickets</Link>
-        <Link to="/PurchaseHistory">Purchase History</Link>
-        <Link to="/UserDetails">Change user info</Link>
-      </LeftContainer>
+      <LeftProfileNav />
       <RightContainer>
-        <TicketsTitle>Your purchased tickets</TicketsTitle>'
-        {/* <TicketBody>
-          <div class="ticketbody"></div>
-          <div class="ticket">
-            <div class="left">
-              <div class="image">
-                <p class="admit-one">
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                </p>
-                <div class="ticket-number">
-                  <p>#20030220</p>
-                </div>
-              </div>
-              <div class="ticket-info">
-                <p class="date">
-                  <span>TUESDAY</span>
-                  <span class="june-29">JUNE 29TH</span>
-                  <span>2021</span>
-                </p>
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                  <h2>Live</h2>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                  <p>Malmö Arena @ Malmö</p>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-              </p>
-              <div class="right-info-container">
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                  <p>
-                    DOORS <span>@</span> 7:00 PM
-                  </p>
-                </div>
-                <div class="barcode"></div>
-                <p class="ticket-number">#20030220</p>
-              </div>
-            </div>
-          </div>
-          <div class="ticket">
-            <div class="left">
-              <div class="image">
-                <p class="admit-one">
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                  <span>ADMIT ONE</span>
-                </p>
-                <div class="ticket-number">
-                  <p>#20030220</p>
-                </div>
-              </div>
-              <div class="ticket-info">
-                <p class="date">
-                  <span>TUESDAY</span>
-                  <span class="june-29">JUNE 29TH</span>
-                  <span>2021</span>
-                </p>
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                  <h2>Online</h2>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="right">
-              <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-              </p>
-              <div class="right-info-container">
-                <div class="show-name">
-                  <h1>Bamse R-Rated</h1>
-                </div>
-                <div class="time">
-                  <p>
-                    8:00 PM <span>TO</span> 11:00 PM
-                  </p>
-                </div>
-                <div class="barcode"></div>
-                <p class="ticket-number">#20030220</p>
-              </div>
-            </div>
-          </div>
-        </TicketBody> */}
+        <TicketsTitle>Your ticket history</TicketsTitle>
+        <Body>
+          <HistoryBody>
+            <HistoryTable>
+              <Thead>
+                <tr>
+                  <th> Artist </th>
+                  <th> City </th>
+                  <th> Event Date </th>
+                  <th> Date Purchased </th>
+                  <th> Price </th>
+                </tr>
+              </Thead>
+              {getUsersTicketHistoryList().map((ticket) =>
+                TicketHistoryList(ticket)
+              )}
+            </HistoryTable>
+          </HistoryBody>
+        </Body>
       </RightContainer>
     </Container>
   );
@@ -128,17 +56,11 @@ export default PurchaseHistory;
 
 const Container = styled.div`
   display: flex;
-`;
-
-const LeftContainer = styled.div`
-  background-color: #ececec;
-  flex: 1 1 30%;
-  min-width: 15ch;
-  height: calc(100vh - 70px);
+  justify-content: center;
 `;
 
 const RightContainer = styled.div`
-  background-color: #b96798;
+  background-color: #565656;
   flex: 1 1 70%;
   // ch = how many characters wide
   min-width: 25ch;
@@ -147,102 +69,39 @@ const RightContainer = styled.div`
   padding: 0;
 `;
 
-const Text = styled.h1`
-  text-align: center;
-  background-color: gray;
-  padding: 15px;
-  border-radius: 10px;
-`;
-
-const TicketUl = styled.ul`
-  position: relative;
-  width: 450px;
-  margin: 100px auto 0;
-  padding: 10px;
-  box-sizing: border-box;
-`;
-
-const TicketLi = styled.li`
-  display: flex;
-  background: rgba(255, 255, 255.1);
-  padding: 10px 20px;
-  color: #000000;
-`;
-
-const TextSpan = styled.span`
-  &:nth-child(1) {
-    width: 100px;
-  }
-  &:nth-child(2) {
-    width: 200px;
-    text-align: center;
-  }
-  &:nth-child(3) {
-    width: 100px;
-    text-align: right;
-  }
-`;
-
 const TicketsTitle = styled.h1`
+  background-color: #292929;
+  color: #ff9e07;
   text-align: center;
-  background-color: gray;
   padding: 15px;
   margin: 0;
+  border-bottom: 2px solid black;
 `;
 
-const TicketBody = styled.body`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+const Body = styled.body`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
-const Ticket = styled.div`
-  width: 650px;
-  height: 320px;
-  margin: 100px auto;
-  position: relative;
-  transition: all 300ms cubic-bezier(0.03, 0.98, 0.53, 0.99) 0s;
-  background: linear-gradient(
-    to right,
-    var(--color1),
-    var(--color2),
-    var(--color3),
-    var(--color4)
-  );
-  border-radius: 20px;
-  padding: 5px;
-  &:before,
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 130px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    z-index: 2;
-  }
-
-  &:before {
-    background: var(--color1);
-    left: -30px;
-  }
+const Thead = styled.thead`
+  background-color: #292929;
+  color: #ff9e07;
+  width: 25%;
 `;
 
-const TicketRight = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+const HistoryBody = styled.body`
+  font-family: "Inter", sans-serif;
+  color: #343a40;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
 `;
 
-const TicketLeft = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-`;
-
-const TicketContentWrapper = styled.div`
-  background: var(--background);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+const HistoryTable = styled.table`
+  width: 800px;
+  margin-top: 80px;
+  /* border: 1px solid #343a40; */
+  border-collapse: collapse;
+  font-size: 18px;
 `;
