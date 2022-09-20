@@ -12,19 +12,17 @@ export const ArtistContextProvider = ({ children }) => {
   const fetchArtists = async () => {
     const response = await fetch("/data/Artist");
     const data = await response.json();
-    console.log(data);
     setArtists(data);
   };
 
+    console.log(artists);
   return (
     <ArtistContext.Provider
       value={{
-        artists,
+        artists
       }}
     >
       {children}
     </ArtistContext.Provider>
   );
 };
-
-export default ArtistContextProvider;
