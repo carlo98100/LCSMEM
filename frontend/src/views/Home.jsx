@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useContext } from "react";
 import "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import ArtistContext from "../contexts/artistList";
+import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 
 function Home() {

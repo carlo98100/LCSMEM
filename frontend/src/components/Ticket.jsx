@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ArtistContext from "../contexts/artistList";
+import ArtistContext from "../contexts/ArtistList";
 import EventContext from "../contexts/eventList";
 import StreamButton from "../components/StreamButton";
 import styled from "styled-components";

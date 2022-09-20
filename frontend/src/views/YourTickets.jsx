@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import LeftProfileNav from "../components/LeftProfileNav";
 import TicketContext from "../contexts/TicketsList";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 import Ticket from "../components/Ticket";
 
 
