@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppRoutes } from "../routes";
+import { AppRoutes } from "../Routes";
 import { FaUserCircle } from "react-icons/fa";
 import AutoComplete from "./AutoComplete";
 import Login from "../views/Login";
 import Dropdown from "./Dropdown";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 
 function Nav() {
 	const [dropdown, setDropdown] = useState(false);
@@ -76,7 +76,7 @@ const NavLink = styled(Link)`
 `;
 
 const NavbarLeft = styled.div`
-	display: flex;
+  display: flex;
 `;
 const NavbarRight = styled.div``;
 
