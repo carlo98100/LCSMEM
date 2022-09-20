@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import EventContext from "../contexts/eventList";
-import ArtistContext from "../contexts/artistList";
+import EventContext from "../contexts/EventList";
+import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 
 const EventPage = () => {
   const { events } = useContext(EventContext);
   const { artist } = useContext(ArtistContext);
-  console.log(events);
+  
   return (
     <>
       <Container className="event-list">
