@@ -45,6 +45,9 @@ function Nav() {
 
 const Navbar = styled.nav`
 	background-color: #0f0f0f;
+	background-image: url("https://images.unsplash.com/photo-1573152958734-1922c188fba3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80");
+	background-size: cover;
+	background-position: center;
 	border-bottom: dashed;
 	height: 70px;
 	text-decoration: none;
