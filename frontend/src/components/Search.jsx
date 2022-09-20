@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ArtistContext from "../contexts/ArtistList";
 import EventContext from "../contexts/EventList";
 
-function filterArtist(inputText) {
+function filterArtist(inputText, filterSettings) {
   const { artists } = useContext(ArtistContext);
   let temp = [];
   if (inputText === "") {
@@ -20,13 +20,15 @@ function filterArtist(inputText) {
   return temp;
 }
 
-function filterEvents(inputText) {
+function filterEvents(inputText, filterSettings) {
   const { events } = useContext(EventContext);
   let eventList = [];
   events.map((event) => {
     filterArtist(inputText).forEach((artist) => {
       if (event.ArtistId === artist.Id) {
-        eventList.push(event);
+          if(filterSettings.LiveStream === 2 || event.LiveStream === filterSettings.LiveStream){
+            eventList.push(event);
+          }
       }
     });
   });
