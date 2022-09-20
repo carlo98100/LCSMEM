@@ -76,21 +76,24 @@ export function UserContextProvider(props) {
 				},
 				body: JSON.stringify(form),
 			});
+			console.log("DELETE PASSWORD: ", form);
 			const jsonData = await response.json(); 
 		} catch (err) {
 			console.error(err);
 		}
 	};
 
-	const changePassword = async (form) => {
+	const changePassword = async (email, password) => {
 		try {
 			const response = await fetch ("/data/users/password", {
 				method: "PATCH",
 				headers: {
 					"Content-type": "application/json",
 				},
-				body: JSON.stringify(form),
+				body: JSON.stringify(email),
 			});
+			console.log("CHANGE PASSWORD: ", email);
+			console.log("CHANGE PASSWORD", password)
 			const jsonData = await response.json();
 		} catch (err) {
 			console.error(err);
