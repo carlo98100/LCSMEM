@@ -2,9 +2,9 @@ import React from "react";
 import { RiComputerLine } from "react-icons/ri";
 import { GiTempleDoor } from "react-icons/gi";
 import styled from "styled-components";
-import { parseBoolean } from "../utils";
+import { parseBoolean } from "../Utils";
 
-function Event({ event }) {
+function ConsertEvent({ event }) {
 	// var options = { month: "long", day: "numeric" };
 
 	return (
@@ -25,7 +25,7 @@ function Event({ event }) {
 	);
 }
 
-export default Event;
+export default ConsertEvent;
 
 const Container = styled.div`
 	background-color: white;
