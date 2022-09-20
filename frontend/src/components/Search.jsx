@@ -4,22 +4,25 @@ import EventContext from "../contexts/EventList";
 
 function filterArtist(inputText) {
   const { artists } = useContext(ArtistContext);
-  let temp = []
+  let temp = [];
   if (inputText === "") {
     temp = artists;
   } else {
     artists.forEach((artist) => {
-      if (artist.Name.toLowerCase().includes(inputText.toLowerCase()) || artist.Genre.toLowerCase().includes(inputText.toLowerCase)) {
+      if (
+        artist.Name.toLowerCase().includes(inputText.toLowerCase()) ||
+        artist.Genre.toLowerCase().includes(inputText.toLowerCase())
+      ) {
         temp.push(artist);
       }
     });
   }
-  return temp
+  return temp;
 }
 
 function filterEvents(inputText) {
   const { events } = useContext(EventContext);
-  let eventList = []
+  let eventList = [];
   events.map((event) => {
     filterArtist(inputText).forEach((artist) => {
       if (event.ArtistId === artist.Id) {
@@ -27,7 +30,7 @@ function filterEvents(inputText) {
       }
     });
   });
-  return eventList
+  return eventList;
 }
 
-export default filterEvents
+export default filterEvents;

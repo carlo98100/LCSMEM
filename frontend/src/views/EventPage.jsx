@@ -3,10 +3,14 @@ import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 import Search from "../components/Search";
 
-
 const EventPage = () => {
   const [inputText, setInputText] = useState("");
   const { artists } = useContext(ArtistContext);
+
+  const sortByDate = (list) =>
+    list
+      .slice()
+      .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
 
   return (
     <>
@@ -22,7 +26,7 @@ const EventPage = () => {
       </SearchContainer>
       <Container className="event-list">
         <Title>Event List</Title>
-        {Search(inputText).map((event) => (
+        {sortByDate(Search(inputText)).map((event) => (
           <EventContainer key={event.Id}>
             <DateContainer>
               <h2 style={{ margin: 0 }}>
@@ -59,11 +63,11 @@ const EventPage = () => {
 export default EventPage;
 
 const Container = styled.div`
-margin: 1vh 15vw;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
+  margin: 1vh 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -75,17 +79,17 @@ const Title = styled.h1`
 `;
 
 const EventContainer = styled.div`
-background-color: #ececec;
-width: 100%;
-height: 7vh;
-font-size: 1em;
-border-radius: 10px;
-margin: 1vh 0;
-padding: 0.5em 1em;
-max-width: 960px;
-display: flex;
-justify-content: space-between;
-text-align: center;
+  background-color: #ececec;
+  width: 100%;
+  height: 7vh;
+  font-size: 1em;
+  border-radius: 10px;
+  margin: 1vh 0;
+  padding: 0.5em 1em;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 `;
 
 const Boarder = styled.div`
@@ -96,10 +100,10 @@ const Boarder = styled.div`
 `;
 
 const DateContainer = styled.div`
-width: 10%;
-text-align: center;
-align-self: center;
-padding-right: 1em;
+  width: 10%;
+  text-align: center;
+  align-self: center;
+  padding-right: 1em;
 `;
 
 const ArtistContainer = styled.div`
@@ -129,36 +133,72 @@ const City = styled.p`
 `;
 
 const ButtonContainer = styled.div`
-width: 16.5%;
-display: flex;
-justify-content: center;
-align-items: center;
-padding-left: 0.5em;
+  width: 16.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.5em;
 `;
 
 const GoToEvent = styled.button`
-color: #fc9d2c;
-margin: 1em;
-border:none;
-padding: 1em 3em 1em 1em;
-text-align:left;
-background: linear-gradient(-120deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#292929 2.05em) top no-repeat, 
-linear-gradient(300deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#292929 2.05em) bottom no-repeat;
-background-size: 100% 50%;
-transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
-&:hover {
-  transform: translateX(1em); 
-  padding: 1em 5em 1em 1em; 
-  color: black;
-  background: linear-gradient(-120deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#ff9e07 2.05em) top no-repeat, 
-  linear-gradient(300deg,transparent 1em,#292929 1.05em ,#292929 1.5em,transparent 1.45em,transparent 2em,#ff9e07 2.05em) bottom no-repeat;
+  color: #fc9d2c;
+  margin: 1em;
+  border: none;
+  padding: 1em 3em 1em 1em;
+  text-align: left;
+  background: linear-gradient(
+        -120deg,
+        transparent 1em,
+        #292929 1.05em,
+        #292929 1.5em,
+        transparent 1.45em,
+        transparent 2em,
+        #292929 2.05em
+      )
+      top no-repeat,
+    linear-gradient(
+        300deg,
+        transparent 1em,
+        #292929 1.05em,
+        #292929 1.5em,
+        transparent 1.45em,
+        transparent 2em,
+        #292929 2.05em
+      )
+      bottom no-repeat;
   background-size: 100% 50%;
-  cursor: pointer;
-}
+  transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
+  &:hover {
+    transform: translateX(1em);
+    padding: 1em 5em 1em 1em;
+    color: black;
+    background: linear-gradient(
+          -120deg,
+          transparent 1em,
+          #292929 1.05em,
+          #292929 1.5em,
+          transparent 1.45em,
+          transparent 2em,
+          #ff9e07 2.05em
+        )
+        top no-repeat,
+      linear-gradient(
+          300deg,
+          transparent 1em,
+          #292929 1.05em,
+          #292929 1.5em,
+          transparent 1.45em,
+          transparent 2em,
+          #ff9e07 2.05em
+        )
+        bottom no-repeat;
+    background-size: 100% 50%;
+    cursor: pointer;
+  }
 `;
 
 const SearchContainer = styled.div`
-display: flex;
-margin-top: 4%;
-margin-bottom: 1%;
-`
+  display: flex;
+  margin-top: 4%;
+  margin-bottom: 1%;
+`;
