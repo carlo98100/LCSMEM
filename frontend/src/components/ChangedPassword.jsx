@@ -16,7 +16,7 @@ if (error) console.log(error);
 
 useEffect (() => {
     console.log(newPassword);
-});use 
+}); 
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -57,10 +57,7 @@ useEffect (() => {
     );
 
     const div = styled.div`
-	background-color: ;
-	display: flex;
-	justify-content: space-between;
+	background-color: vitt?;
 	align-items: center;
-	padding: 0 5em;
-	
+	padding: 5em;
 `;

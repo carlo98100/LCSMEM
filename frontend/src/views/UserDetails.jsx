@@ -4,12 +4,59 @@ import styled from "styled-components";
 import Input from "../components/Input";
 import LeftProfileNav from "../components/LeftProfileNav";
 
+
+
 function UserDetails() {
+  const [ form, setForm] = useState ({
+    password: "",
+    newpassword: ""
+  });
+
+const updateForm = (event) => {
+  setForm((prevState) => {
+    return { ...prevState, [event.target.name]: event.target.value};
+  });
+
+};
+const { deletePassword , user, changePassword} = useContext(UserContext);
+
+const onSubmit = async (event) => {
+  event.preventDefault();
+
+  await deletePassword (user.email);
+
+  await changePassword (user.email, form.newPassword);
+
+};
   return (
     <Container>
       <LeftProfileNav />
       <RightContainer>
         <TicketsTitle>Your information</TicketsTitle>
+        <div>
+            <form onSubmit={onSubmit}> 
+                <label>Current Password</label>
+                <input
+                value={form.password}
+                name="password"
+                onChange={updateForm}
+                label="password"
+                type="password"
+                />
+
+            <label> New Password</label>
+            <input
+            value={form.newPassword}
+            name="newpassword"
+            onChange={updateForm}
+            label="newpassword"
+            type="password"
+            />
+
+
+            <input type="submit" value="update password"></button>
+            </form>
+        </div>
       </RightContainer>
     </Container>
   );

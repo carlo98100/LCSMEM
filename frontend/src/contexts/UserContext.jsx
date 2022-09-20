@@ -67,7 +67,38 @@ export function UserContextProvider(props) {
 		}
 	};
 
-	return <UserContext.Provider value={{ user, setUser, logOut, logIn }}>{props.children}</UserContext.Provider>;
+	const deletePassword = async (form) => {
+		try {
+			const response = await fetch ("/data/users/password", {
+				method: "DELETE",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify(form),
+			});
+			const jsonData = await response.json(); 
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const changePassword = async (form) => {
+		try {
+			const response = await fetch ("/data/users/password", {
+				method: "PATCH",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify(form),
+			});
+			const jsonData = await response.json();
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+
+	return <UserContext.Provider value={{ user, setUser, logOut, logIn, deletePassword, changePassword }}>{props.children}</UserContext.Provider>;
 }
 
 export default UserContext;
