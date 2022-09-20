@@ -44,7 +44,8 @@ function PurchaseHistory() {
                 <tr>
                   <th> Artist </th>
                   <th> City </th>
-                  <th> Date </th>
+                  <th> Event Date </th>
+                  <th> Date Purchased </th>
                   <th> Price </th>
                 </tr>
               </Thead>
