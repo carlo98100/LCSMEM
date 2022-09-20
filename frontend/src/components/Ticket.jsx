@@ -14,6 +14,7 @@ function Ticket({ event }) {
 
 	const addToCart = () => {
 		addItemToCart({
+			id: event.EventId,
 			description: event.ArtistName,
 			price: event.EventPrice,
 			quantity: quantity,
