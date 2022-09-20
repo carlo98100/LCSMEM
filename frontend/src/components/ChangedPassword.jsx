@@ -1,12 +1,22 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./AccountContext";
-
+import useFetch from "./useFetch";
 
 export default () => {
 
 const [password, setPassword] = useState("");
 const [newPassword, setNewPassword] = useState("");
 
+const {data, change, error } = useFetch();
+
+if (change) return <h1>Sparad</h1>
+
+if (error) console.log(error);
+
+
+useEffect (() => {
+    console.log(newPassword);
+});use 
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -45,3 +55,12 @@ const [newPassword, setNewPassword] = useState("");
             </form>
         </div>
     );
+
+    const div = styled.div`
+	background-color: ;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 5em;
+	
+`;
