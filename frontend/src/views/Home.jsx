@@ -7,12 +7,12 @@ import styled from "styled-components";
 
 function Home() {
   
-  const { artist } = useContext(ArtistContext);
+  const { artists } = useContext(ArtistContext);
 
   const imageList = [];
 
   function getImages() {
-    artist.map((artist) => {
+    artists.map((artist) => {
       imageList.push(artist.Image);
     });
     console.log(imageList);

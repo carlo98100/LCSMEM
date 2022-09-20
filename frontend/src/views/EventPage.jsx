@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const EventPage = () => {
   const { events } = useContext(EventContext);
-  const { artist } = useContext(ArtistContext);
+  const { artists } = useContext(ArtistContext);
   
   return (
     <>
@@ -28,7 +28,7 @@ const EventPage = () => {
             <Boarder />
             <ArtistContainer>
               <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
-                {artist.find((element) => element.Id === event.ArtistId).Name}
+                {artists.find((element) => element.Id === event.ArtistId).Name}
               </ArtistName>
             </ArtistContainer>
             <Boarder />

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import ArtistContext from "../contexts/ArtistList";
-import EventContext from "../contexts/eventList";
+import EventContext from "../contexts/EventList";
 import StreamButton from "../components/StreamButton";
 import styled from "styled-components";
 
 function Ticket(ticket) {
     const { events } = useContext(EventContext)
-    const { artist } = useContext(ArtistContext)
+    const { artists } = useContext(ArtistContext)
 
 
     function getEvent(ticket) {
@@ -14,7 +14,7 @@ function Ticket(ticket) {
     }
 
     function getArtist(ticket) {
-        return artist.find(artist => artist.Id === getEvent(ticket).ArtistId)
+        return artists.find(artist => artist.Id === getEvent(ticket).ArtistId)
     }
 
     function Stream(ticket){

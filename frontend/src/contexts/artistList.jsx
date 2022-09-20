@@ -3,7 +3,7 @@ import { useEffect, useState, createContext } from "react";
 const ArtistContext = createContext();
 
 export const ArtistContextProvider = ({ children }) => {
-  const [artist, setArtist] = useState([]);
+  const [artists, setArtist] = useState([]);
 
   useEffect(() => {
     fetchArtist();
@@ -19,7 +19,7 @@ export const ArtistContextProvider = ({ children }) => {
   return (
     <ArtistContext.Provider
       value={{
-        artist,
+        artists,
       }}
     >
       {children}

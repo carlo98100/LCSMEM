@@ -19,7 +19,7 @@ export const EventContextProvider = ({ children }) => {
   return (
     <EventContext.Provider
       value={{
-        events,
+        events
       }}
     >
       {children}
