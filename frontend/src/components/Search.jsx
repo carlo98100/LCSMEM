@@ -9,7 +9,7 @@ function filterArtist(inputText) {
     temp = artists;
   } else {
     artists.forEach((artist) => {
-      if (artist.Name.toLowerCase().includes(inputText.toLowerCase()) || artist.Genre.toLowerCase().includes(inputText.toLowerCase)) {
+      if (artist.Name.toLowerCase().includes(inputText.toLowerCase()) || artist.Genre.toLowerCase().includes(inputText.toLowerCase())) {
         temp.push(artist);
       }
     });
