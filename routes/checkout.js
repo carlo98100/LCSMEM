@@ -96,7 +96,7 @@ module.exports = function (server, db, host) {
 			}
 
 			console.log(checkoutSession);
-			res.redirect(`http://localhost:5173/order/success/${checkoutSession?.id}`);
+			res.redirect(`${host}/order/success/${checkoutSession?.id}`);
 		} catch (e) {
 			console.error(e);
 			res.status(500).json({ error: e.message });
