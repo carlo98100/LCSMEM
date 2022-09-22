@@ -38,7 +38,7 @@ export const AppRoutes = [
   {
     name: "ProfilePage",
     path: "/ProfilePage",
-    display: true,
+    display: false,
     component: <YourTickets />,
   },
   {
@@ -54,9 +54,9 @@ export const AppRoutes = [
     component: <UserDetails />,
   },
   {
-    name: "YourTickets",
+    name: "ProfilePage",
     path: "/YourTickets",
-    display: false,
+    display: true,
     component: <YourTickets />,
   },
   {

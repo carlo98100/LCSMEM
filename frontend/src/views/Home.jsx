@@ -6,7 +6,6 @@ import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 
 function Home() {
-  
   const { artists } = useContext(ArtistContext);
 
   const imageList = [];

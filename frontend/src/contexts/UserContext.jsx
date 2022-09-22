@@ -3,85 +3,126 @@ import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
+function getUsersTickets() {
+  let temp = [];
+  tickets.forEach((ticket) => {
+    if (ticket.UserId === getUserId()) {
+      temp.push(ticket);
+    }
+  });
+  return temp;
+}
+
 export function UserContextProvider(props) {
-	const [user, setUser] = useState({
-		id: "",
-		email: "",
-		loggedIn: false,
-	});
-	const [userList, setUserList] = useState([])
+  const [user, setUser] = useState({
+    id: "",
+    email: "",
+    loggedIn: false,
+  });
+  const [userList, setUserList] = useState([]);
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		fetchUsers();
-	  }, []);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
-	const logIn = async (form) => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(form), // body data type must match "Content-Type" header
-			});
+  const logIn = async (form) => {
+    try {
+      const response = await fetch("/data/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form), // body data type must match "Content-Type" header
+      });
 
-			const jsonData = await response.json();
+      const jsonData = await response.json();
 
-			setUser({ id: jsonData.id, email: form.email, loggedIn: jsonData.loggedIn });
+      setUser({
+        id: jsonData.id,
+        email: form.email,
+        loggedIn: jsonData.loggedIn,
+      });
 
-			if (response.status == 403) {
-				isSignedIn();
-			}
-		} catch (err) {
-			console.error(err);
-		}
-	};
+      if (response.status == 403) {
+        isSignedIn();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-	const isSignedIn = async () => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+  const isLoggedIn = async () => {
+    if (!user.loggedIn) {
+      navigate("/login", { replace: true });
+    }
+  };
 
-			const jsonData = await response.json();
+  //   const isLoggedInWithTicket = async (streamId) => {
+  //     // if (user.loggedIn && getUsersTickets() === user.id) {
+  //     // }
 
-			setUser({ id: jsonData.id, email: jsonData.email, loggedIn: jsonData.loggedIn });
-		} catch (err) {
-			console.error(err);
-		}
-	};
+  //     let userTicket = getUsersTickets().find(
+  //       (ticket) => (ticket.streamId = streamId)
+  //     );
 
-	const logOut = async () => {
-		try {
-			const response = await fetch("/data/login", {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+  //     return user.loggedIn && userTicket !== null ? true : false;
+  //   };
 
-			const jsonData = await response.json();
+  const isSignedIn = async () => {
+    try {
+      const response = await fetch("/data/login", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-			setUser({ email: "", loggedIn: jsonData.loggedIn });
-			navigate("/login", { replace: true });
-		} catch (err) {
-			console.error(err);
-		}
-	};
+      const jsonData = await response.json();
 
-	const fetchUsers = async () => {
-		const response = await fetch("/data/users");
-		const data = await response.json();
-		console.log(data);
-		setUserList(data);
-	  };
+      setUser({
+        id: jsonData.id,
+        email: jsonData.email,
+        loggedIn: jsonData.loggedIn,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-	return <UserContext.Provider value={{ user, setUser, logOut, logIn, userList }}>{props.children}</UserContext.Provider>;
+  const logOut = async () => {
+    try {
+      const response = await fetch("/data/login", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const jsonData = await response.json();
+
+      setUser({ email: "", loggedIn: jsonData.loggedIn });
+      navigate("/login", { replace: true });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const fetchUsers = async () => {
+    const response = await fetch("/data/users");
+    const data = await response.json();
+    console.log(data);
+    setUserList(data);
+  };
+
+  return (
+    <UserContext.Provider
+      value={{ user, setUser, logOut, logIn, userList, isLoggedIn }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  );
 }
 
 export default UserContext;
