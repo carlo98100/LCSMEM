@@ -18,7 +18,7 @@ function Checkout() {
         console.log(data);
         window.location.replace(data.url);
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
   };
   console.log(tickets);
   return (

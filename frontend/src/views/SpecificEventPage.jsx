@@ -1,45 +1,43 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Ticket from "../components/Ticket";
+import BuyTicket from "../components/BuyTicket";
+import ArtistContext from "../contexts/ArtistList";
+import EventContext from "../contexts/EventList";
+import LoadingPage from "./LoadingPage";
 
 function SpecificEventPage() {
 	const { eventId } = useParams();
-	const [event, setEvent] = useState({});
+	const { events } = useContext(EventContext)
+	const { artists } = useContext(ArtistContext)
 
-	const getSpecificEventInfo = async () => {
-		fetch(`/data/events/GetSpecificEventInfo/${eventId}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setEvent(data);
-			})
-			.catch((err) => console.error(err));
-	};
 
-	useEffect(() => {
-		getSpecificEventInfo();
-	}, []);
-
-	return (
-		<Container>
-			<LeftContainer>
-				<EventInformation>
-					<Heading>
-						<h1>{event.ArtistName}</h1>
-						<H2>{new Date(event.EventDate).toLocaleDateString("en-GB", { month: "long" })}</H2>
-						<H2>{new Date(event.EventDate).toLocaleDateString("en-GB", { day: "numeric" })}</H2>
-					</Heading>
-					<img style={{ width: "80%", margin: "1em 10%" }} src={event.ArtistImage} />
-				</EventInformation>
-			</LeftContainer>
-
-			<RightContainer>
-				<Ticket event={event}></Ticket>
-			</RightContainer>
-		</Container>
-	);
+	if (!events[0]) {
+		return <LoadingPage />
+	} else if(!artists[0]){
+		<LoadingPage />
+	} else {
+		let event = events.find(event => event.Id === parseInt(eventId))
+		let artist = artists.find(artist => artist.Id === parseInt(event.ArtistId))
+		return (
+			<Container>
+				<LeftContainer>
+					<EventInformation>
+						<Heading>
+							<h1>{artist.Name}</h1>
+							<H2>{new Date(event.Date).toLocaleDateString("en-GB", { month: "long" })}</H2>
+							<H2>{new Date(event.Date).toLocaleDateString("en-GB", { day: "numeric" })}</H2>
+						</Heading>
+						<img style={{ width: "80%", margin: "1em 10%" }} src={artist.Image} />
+					</EventInformation>
+				</LeftContainer>
+				<RightContainer>
+					<BuyTicket event={event}></BuyTicket>
+				</RightContainer>
+			</Container>
+		);
+	}
 }
 
 export default SpecificEventPage;
