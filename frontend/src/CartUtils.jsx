@@ -9,9 +9,9 @@ const addItemToCart = (item) => {
 	let cart = null;
 	if (sessionStorage.getItem(CART)) {
 		cart = getCart();
-		if (cart.find((cartItem) => cartItem.description === item.description)) {
+		if (cart.find((cartItem) => cartItem.id === item.id)) {
 			for (let i = 0; i < cart.length; i++) {
-				if (cart[i].description === item.description) {
+				if (cart[i].id === item.id) {
 					cart[i].quantity = parseInt(cart[i].quantity) + parseInt(item.quantity);
 				}
 			}
