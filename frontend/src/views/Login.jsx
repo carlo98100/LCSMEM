@@ -12,9 +12,7 @@ function Login() {
 	});
 
 	const updateForm = (event) => {
-		setForm((prevState) => {
-			return { ...prevState, [event.target.name]: event.target.value };
-		});
+		setForm((prevState) => ({ ...prevState, [event.target.name]: event.target.value }));
 	};
 	const { logIn } = useContext(UserContext);
 
