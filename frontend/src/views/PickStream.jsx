@@ -7,7 +7,9 @@ const PickStream = () => {
 	return (
 		<Container>
 			<h1>Select a video</h1>
-			<StreamButton/>
+			<StreamButton VideoId={1}/>
+			<StreamButton VideoId={2}/>
+			<StreamButton VideoId={3}/>
 		</Container>
 	)
 }
@@ -18,7 +20,6 @@ const Container = styled.div`
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	background-color: #27476e;
 	justify-content: center;
 	align-content: center;
 `;
