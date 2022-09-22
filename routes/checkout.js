@@ -47,33 +47,33 @@ module.exports = function (server, db, host) {
 					unit_amount: item.price * 100,
 				},
 
-        quantity: item.quantity || 1,
-      };
-    });
-    console.log(lineItems)
-    // Create a checkout session with Stripe
-    try {
-      const checkoutSession = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: lineItems,
-        mode: "payment",
-        // Set a success and cancel URL we will send customers to
-        // They are complete urls
-        success_url: `${host}/data/checkout/{CHECKOUT_SESSION_ID}`, // these should be client routes in the react app
-        cancel_url: `${host}/order/cancel`,
-      });
-      // save current checkout session to user session, so we can check result after
-      req.session.checkoutId = checkoutSession.id;
-      // send user to stripe process,
-      // note that you will have to handle the result of the payment after that process,
-      // when the user returns to our client
-      res.json({ url: checkoutSession.url });
-    } catch (e) {
-      console.error("error", e);
-      // If there is an error send it to the client
-      res.status(500).json({ error: e.message });
-    }
-  });
+				quantity: item.quantity || 1,
+			};
+		});
+		console.log(lineItems);
+		// Create a checkout session with Stripe
+		try {
+			const checkoutSession = await stripe.checkout.sessions.create({
+				payment_method_types: ["card"],
+				line_items: lineItems,
+				mode: "payment",
+				// Set a success and cancel URL we will send customers to
+				// They are complete urls
+				success_url: `${host}/data/checkout/{CHECKOUT_SESSION_ID}`, // these should be client routes in the react app
+				cancel_url: `${host}/order/cancel`,
+			});
+			// save current checkout session to user session, so we can check result after
+			req.session.checkoutId = checkoutSession.id;
+			// send user to stripe process,
+			// note that you will have to handle the result of the payment after that process,
+			// when the user returns to our client
+			res.json({ url: checkoutSession.url });
+		} catch (e) {
+			console.error("error", e);
+			// If there is an error send it to the client
+			res.status(500).json({ error: e.message });
+		}
+	});
 
 	// route to retrieve checkout session to check result
 	server.get("/data/checkout/:checkoutId", async (req, res) => {
@@ -86,48 +86,17 @@ module.exports = function (server, db, host) {
 			console.log("Items", lineItems.price);
 			console.log("Items", lineItems);
 			for (let i = 0; i < lineItems.data.length; i++) {
-				console.log(lineItems.data[i]);
-				const product = await stripe.products.retrieve(lineItems.data[i].price.product);
-				console.log("product", product);
-				let query = `INSERT INTO Ticket (EventId, UserId) VALUES(@EventId, @UserId)`;
-				let result = db.prepare(query).run({
-					EventId: product.metadata.product_id,
-					UserId: 1,
-				});
+				for (let j = 0; j < lineItems.data[i].quantity; j++) {
+					console.log(lineItems.data[i]);
+					const product = await stripe.products.retrieve(lineItems.data[i].price.product);
+					console.log("product", product);
+					let query = `INSERT INTO Ticket (EventId, UserId) VALUES(?, ?)`;
+					let result = db.prepare(query).run(product.metadata.product_id, 1);
+				}
 			}
-			//     console.log("loop log");
-			//     const product = await stripe.products.retrieve(items[i].price.product);
-			//     checkedOutItems.push({
-			//       productId: product.metadata.product_id,
-			//       productRef: product.id,
-			//       unitPrice: items[i].price.unit_amount,
-			//       grandTotal: items[i].amount_total,
-			//       quantity: items[i].quantity,
-			//       currency: items[i].currency,
-			//     });
-			// let query = `INSERT INTO Tickets (EventId, UserId) VALUES(@EventId, @UserId)`;
-			// console.log("hej");
-			// let result = db.prepare(query).run({
-			//   EventId: product.metadata.product_id,
-			//   UserId: 1,
-			// });
-			// console.log(result);
-			//   }
-			// await items.data.forEach(async (item) => {
-			// 	const product = await stripe.products.retrieve(item.price.product);
-			// 	checkedOutItems.push({
-			// 		productId: product.metadata.product_id,
-			// 		productRef: product.id,
-			// 		unitPrice: item.price.unit_amount,
-			// 		grandTotal: item.amount_total,
-			// 		quantity: item.quantity,
-			// 		currency: item.currency,
-			// 	});
-			// });
-			console.log(checkedOutItems);
-			res.redirect("http://google.com");
 
-			//res.json({ checkoutSession: checkoutSession });
+			console.log(checkoutSession);
+			res.redirect(`http://localhost:5173/order/success/${checkoutSession?.id}`);
 		} catch (e) {
 			console.error(e);
 			res.status(500).json({ error: e.message });
