@@ -2,13 +2,15 @@ import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Burger from "./Burger";
 
-const LeftProfileNav = () => {
+const LeftProfileNav = ({open}) => {
   const { user } = useContext(UserContext);
 
   return (
     <>
-      <LeftContainer>
+      <LeftContainer open={open}>
+        <Burger />
         <Text>{user.email}</Text>
         <ProfileNav>
           <Link to="/YourTickets">Your Tickets</Link>
@@ -37,11 +39,13 @@ const LeftContainer = styled.div`
     flex-flow: column nowrap;
     background-color: #0d2538;
     position: fixed;
+    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
     top: 0;
     right: 0;
     height: 100vh;
     width: 300px;
     padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
