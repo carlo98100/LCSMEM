@@ -7,6 +7,8 @@ import { EventContextProvider } from "./contexts/EventList";
 import { ArtistContextProvider } from "./contexts/ArtistList";
 import { VideoContextProvider } from "./contexts/VideoList";
 import { TicketContextProvider } from "./contexts/TicketsList";
+import RequireAuth from "./components/AuthCheck";
+import RequiredTicket from "./components/RequiredTicket";
 
 function App() {
   return (
@@ -18,9 +20,20 @@ function App() {
               <div className="container">
                 <Nav />
                 <Routes>
-                  {AppRoutes.map((item, index) => (
+                  {AppRoutes.filter((route) => !route.requiredAuth).map((item, index) => (
                     <Route key={index} path={item.path} element={item.component} />
                   ))}
+                  <Route element={<RequireAuth />}>
+                    {AppRoutes.filter((route) => route.requiredAuth).map((item, index) => (
+                      item.requiredTicket ?
+                        <Route key={index} element={<RequiredTicket />}>
+                          <Route path={item.path} element={item.component} />
+                        </Route>
+                        :
+                        <Route key={index} path={item.path} element={item.component} />
+
+                    ))}
+                  </Route>
                 </Routes>
               </div>
             </TicketContextProvider>

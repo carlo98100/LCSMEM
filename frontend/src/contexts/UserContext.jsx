@@ -14,7 +14,7 @@ function getUsersTickets() {
 }
 
 export function UserContextProvider(props) {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")) || {
     id: "",
     email: "",
     loggedIn: false,
@@ -39,11 +39,16 @@ export function UserContextProvider(props) {
 
       const jsonData = await response.json();
 
-      setUser({
+      await setUser({
         id: jsonData.id,
         email: form.email,
         loggedIn: jsonData.loggedIn,
       });
+
+      sessionStorage.setItem("user", JSON.stringify({
+        id: jsonData.id,
+        email: form.email,
+        loggedIn: jsonData.loggedIn,}))
 
       if (response.status == 403) {
         isSignedIn();
@@ -112,13 +117,16 @@ export function UserContextProvider(props) {
   const fetchUsers = async () => {
     const response = await fetch("/data/users");
     const data = await response.json();
-    console.log(data);
     setUserList(data);
   };
 
+  const getUserId = () => {
+    return userList?.find?.(userL => userL.email === user.email)?.id
+  }
+
   return (
     <UserContext.Provider
-      value={{ user, setUser, logOut, logIn, userList, isLoggedIn }}
+      value={{ user, setUser, logOut, logIn, userList, isLoggedIn, getUserId }}
     >
       {props.children}
     </UserContext.Provider>

@@ -12,7 +12,6 @@ export const EventContextProvider = ({ children }) => {
   const fetchEvents = async () => {
     const response = await fetch("/data/Event");
     const data = await response.json();
-    console.log(data);
     setEvents(data);
   };
 

@@ -5,7 +5,6 @@ import Signup from "./views/Signup";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
-import PickStream from "./views/PickStream";
 import Stream from "./views/Stream";
 import EventPage from "./views/EventPage";
 import SpecificEventPage from "./views/SpecificEventPage";
@@ -18,90 +17,84 @@ export const AppRoutes = [
     name: "Home",
     path: "/",
     display: true,
-    component: <Home />,
+    component: <Home />
   },
   {
     name: "ConsertPage",
     path: "/ConsertPage/:artistId",
     display: false,
-    component: <ConsertPage />,
+    component: <ConsertPage />
   },
   {
     name: "Login",
     path: "/login",
     display: false,
-    component: <Login />,
+    component: <Login />
   },
   {
     name: "Signup",
     path: "/signup",
     display: false,
-    component: <Signup />,
+    component: <Signup />
   },
   {
-    name: "ProfilePage",
-    path: "/ProfilePage",
+    name: "YourTickets",
+    path: "/YourTickets",
     display: false,
     component: <YourTickets />,
+    requiredAuth: true
   },
   {
     name: "PurchaseHistory",
     path: "/PurchaseHistory",
     display: false,
     component: <PurchaseHistory />,
+    requiredAuth: true
   },
   {
     name: "UserDetails",
     path: "/UserDetails",
     display: false,
     component: <UserDetails />,
-  },
-  {
-    name: "ProfilePage",
-    path: "/YourTickets",
-    display: true,
-    component: <YourTickets />,
-  },
-  {
-    name: "Pick Stream",
-    path: "/PickStream",
-    display: true,
-    component: <PickStream />,
+    requiredAuth: true
   },
   {
     name: "Stream",
     path: "/Stream/:id",
     display: false,
     component: <Stream />,
+    requiredAuth: true,
+    requiredTicket: true
   },
   {
     name: "Event page",
     path: "/EventPage",
     display: true,
-    component: <EventPage />,
+    component: <EventPage />
   },
   {
 	name: "SpecificEventPage",
 	path: "/SpecificEventPage/:eventId",
 	display: true,
-	component: <SpecificEventPage />,
+	component: <SpecificEventPage />
 },
 {
 	name: "Checkout",
 	path: "/Checkout",
 	display: true,
 	component: <Checkout />,
+  requiredAuth: true
 },
 {
 	name: "CancelOrderPage",
 	path: "/order/cancel",
 	display: false,
-	component: <CancelOrderPage />,
+	component: <CancelOrderPage />
 },
 {
 	name: "ConfirmOrderPage",
 	path: "/order/success/:sessionId",
 	display: false,
-	component: <ConfirmOrderPage />,
+	component: <ConfirmOrderPage />
 }
 ];

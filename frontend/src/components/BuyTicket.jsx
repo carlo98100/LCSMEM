@@ -10,7 +10,6 @@ function BuyTicket({ event }) {
 	const { artists } = useContext(ArtistContext);
 	const onSubmit = async (submitEvent) => {
 		submitEvent.preventDefault();
-		console.log(event);
 	};
 
 	function getArtist(event) {

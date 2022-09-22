@@ -16,7 +16,6 @@ const EventPage = () => {
       .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
 
   const updateSettings = (setting) => {
-    console.log("öö", setting);
     setFilterSettings((prevState) => {;
       return { ...prevState, [setting.target.name]: parseInt(setting.target.value) };
     });
@@ -34,7 +33,7 @@ const EventPage = () => {
           }}
         />
         <LiveOrStreamContainer>
-          <lable>Live/Stream: </lable>
+          <p>Live/Stream: </p>
           <select name="LiveStream" id="EventType" onChange={updateSettings}>
             <option value={2}>Both</option>
             <option value={0}>Live</option>
