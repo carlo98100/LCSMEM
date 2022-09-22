@@ -1,16 +1,23 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import LeftProfileNav from "../components/LeftProfileNav";
 import styled from "styled-components";
+import UserContext from "../contexts/UserContext";
+import Login from "./Login";
 
 const ProfilePage = () => {
-
-  return (
+  const { user } = useContext(UserContext);
+  // useEffect(() => {
+  //   isLoggedIn();
+  // }, []);
+  return user.loggedIn ? (
     <Container>
-      <LeftProfileNav/>
+      <LeftProfileNav />
       <RightContainer>
         <TicketsTitle>Your upcoming concerts</TicketsTitle>
       </RightContainer>
     </Container>
+  ) : (
+    <Login />
   );
 };
 
