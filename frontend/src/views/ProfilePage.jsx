@@ -3,10 +3,9 @@ import LeftProfileNav from "../components/LeftProfileNav";
 import styled from "styled-components";
 
 const ProfilePage = () => {
-
   return (
     <Container>
-      <LeftProfileNav/>
+      <LeftProfileNav />
       <RightContainer>
         <TicketsTitle>Your upcoming concerts</TicketsTitle>
       </RightContainer>
@@ -26,6 +25,7 @@ const RightContainer = styled.div`
   // ch = how many characters wide
   min-width: 25ch;
   height: calc(100vh - 70px);
+  
 `;
 
 const TicketsTitle = styled.h1`

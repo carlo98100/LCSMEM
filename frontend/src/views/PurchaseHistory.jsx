@@ -104,4 +104,11 @@ const HistoryTable = styled.table`
   /* border: 1px solid #343a40; */
   border-collapse: collapse;
   font-size: 18px;
+  @media screen {
+    width: 600px;
+    margin-top: 60px;
+    /* border: 1px solid #343a40; */
+    border-collapse: collapse;
+    font-size: 18px;
+  }
 `;

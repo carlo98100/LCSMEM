@@ -32,6 +32,17 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-right: 1px solid black;
+  @media (max-width: 768px) {
+    display: none;
+    flex-flow: column nowrap;
+    background-color: #0d2538;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    padding-top: 3.5rem;
+  }
 `;
 
 const Text = styled.h1`
