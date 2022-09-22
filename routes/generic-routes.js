@@ -42,11 +42,18 @@ module.exports = function (server, db) {
     res.json(result);
   });
 
-  server.get("/data/:table/:id", (req, res) => {
-    let query = "SELECT * FROM " + req.params.table + " WHERE id = @id";
-    let result = db.prepare(query).all(req.params);
-    res.json(result[0]);
-  });
+
+	server.post("/data/:table", (req, res) => {
+		// limit which tables to query with ACL
+		let query = `INSERT INTO ${req.params.table} (${Object.keys(req.body).join(", ")}) VALUES(@${Object.keys(req.body).join(", @")})`;
+		let result;
+		try {
+			result = db.prepare(query).run(req.body);
+		} catch (e) {
+			console.error(e);
+		}
+		res.json(result);
+	});
 
   server.post("/data/:table", (req, res) => {
     // limit which tables to query with ACL

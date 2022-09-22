@@ -2,13 +2,16 @@ import Home from "./views/Home";
 import ConsertPage from "./views/ConsertPage";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
-import ProfilePage from "./views/ProfilePage";
 import PurchaseHistory from "./views/PurchaseHistory";
 import UserDetails from "./views/UserDetails";
 import YourTickets from "./views/YourTickets";
 import PickStream from "./views/PickStream";
 import Stream from "./views/Stream";
 import EventPage from "./views/EventPage";
+import SpecificEventPage from "./views/SpecificEventPage";
+import Checkout from "./views/Checkout";
+import CancelOrderPage from "./views/CancelOrderPage";
+import ConfirmOrderPage from "./views/ConfirmOrderPage";
 
 export const AppRoutes = [
   {
@@ -38,7 +41,7 @@ export const AppRoutes = [
   {
     name: "ProfilePage",
     path: "/ProfilePage",
-    display: true,
+    display: false,
     component: <YourTickets />,
   },
   {
@@ -54,9 +57,9 @@ export const AppRoutes = [
     component: <UserDetails />,
   },
   {
-    name: "YourTickets",
+    name: "ProfilePage",
     path: "/YourTickets",
-    display: false,
+    display: true,
     component: <YourTickets />,
   },
   {
@@ -77,4 +80,28 @@ export const AppRoutes = [
     display: true,
     component: <EventPage />,
   },
+  {
+	name: "SpecificEventPage",
+	path: "/SpecificEventPage/:eventId",
+	display: true,
+	component: <SpecificEventPage />,
+},
+{
+	name: "Checkout",
+	path: "/Checkout",
+	display: true,
+	component: <Checkout />,
+},
+{
+	name: "CancelOrderPage",
+	path: "/order/cancel",
+	display: false,
+	component: <CancelOrderPage />,
+},
+{
+	name: "ConfirmOrderPage",
+	path: "/order/success/:sessionId",
+	display: false,
+	component: <ConfirmOrderPage />,
+}
 ];
