@@ -4,22 +4,25 @@ import React from "react";
 import { getCart } from "../CartUtils";
 
 function Checkout() {
-  const tickets = getCart();
+  const tickets = [{
+    id: 1,
+    description: "event.Name",
+    price: 5000,
+    quantity: 6
+  }];
   const handleClick = async () => {
-    await fetch(`/data/checkout`, {
+    const response = await fetch(`/data/checkout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ items: tickets }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        window.location.replace(data.url);
-      })
-      .catch(err => console.error(err));
+    const data = await response.json()
+    console.log(data)
+  
   };
+
   console.log(tickets);
   return (
     <div>

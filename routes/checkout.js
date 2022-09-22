@@ -51,7 +51,7 @@ module.exports = function (server, db, host) {
         quantity: item.quantity || 1,
       };
     });
-
+    console.log(lineItems)
     // Create a checkout session with Stripe
     try {
       const checkoutSession = await stripe.checkout.sessions.create({
@@ -61,7 +61,7 @@ module.exports = function (server, db, host) {
         // Set a success and cancel URL we will send customers to
         // They are complete urls
         success_url: `${host}/data/checkout/{CHECKOUT_SESSION_ID}`, // these should be client routes in the react app
-        cancel_url: `${req.headers.origin}/order/cancel`,
+        cancel_url: `${host}/order/cancel`,
       });
       // save current checkout session to user session, so we can check result after
       req.session.checkoutId = checkoutSession.id;
