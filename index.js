@@ -22,13 +22,16 @@ server.use(
 );
 
 // set to true to bypass 2FA verification (do this in dev only)
-const bypass2FA = true
+const bypass2FA = true;
 
-// set bypass 2FA verification 
-server.use(function(req,res,next){req.bypassVerification = bypass2FA; next()})
+// set bypass 2FA verification
+server.use(function (req, res, next) {
+	req.bypassVerification = bypass2FA;
+	next();
+});
 
 // ACL
-const acl = require('./services/acl.js')
+const acl = require("./services/acl.js");
 //server.use(acl) // kommentera bort för att tillfälligt stänga av all autentisering
 
 // start
@@ -51,8 +54,8 @@ require("./routes/users.js")(server, db);
 require("./routes/login.js")(server, db);
 
 // stream routes
-require('./routes/video-stream.js')(server, db)
-require('./routes/audio-stream.js')(server, db)
+require("./routes/video-stream.js")(server, db);
+require("./routes/audio-stream.js")(server, db);
 
 // stripe payment api
 require('./routes/checkout.js')(server, db, host)
