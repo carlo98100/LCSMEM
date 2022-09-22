@@ -14,7 +14,6 @@ function Checkout() {
   // ];
   const [confirmed, setConfirmed] = useState(false);
   const tickets = getCart();
-  console.log(tickets);
   const handleClick = async () => {
     const response = await fetch(`/data/checkout`, {
       method: "POST",
@@ -27,7 +26,6 @@ function Checkout() {
     window.location.href = data.url;
   };
 
-  console.log(tickets);
   return (
     <div>
       {tickets?.items?.map?.((item, index) => {
