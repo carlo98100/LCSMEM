@@ -12,7 +12,7 @@ const Burger = () => {
         <div />
         <div />
       </StyledBurger>
-      <LeftProfileNav open={open} />
+      {/* <LeftProfileNav open={open} /> */}
     </>
   );
 };
