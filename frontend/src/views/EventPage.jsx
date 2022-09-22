@@ -16,67 +16,71 @@ const EventPage = () => {
       .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
 
   const updateSettings = (setting) => {
-    console.log("öö", setting);
     setFilterSettings((prevState) => {;
       return { ...prevState, [setting.target.name]: parseInt(setting.target.value) };
     });
   };
+  if(!artists[0]){
+    return <></>
+  }
+  else{
+    return (
+      <>
+        <SearchContainer>
+          <input
+            type="text"
+            placeholder="Search"
+            id="search"
+            onChange={(e) => {
+              setInputText(e.target.value);
+            }}
+          />
+          <LiveOrStreamContainer>
+            <LiveStreamLable>Live/Stream: </LiveStreamLable>
+            <select name="LiveStream" id="EventType" onChange={updateSettings}>
+              <option value={2}>Both</option>
+              <option value={0}>Live</option>
+              <option value={1}>Stream</option>
+            </select>
+          </LiveOrStreamContainer>
+        </SearchContainer>
+        <Container className="event-list">
+          <Title>Event List</Title>
+          {sortByDate(Search(inputText, filterSettings)).map((event) => (
+            <EventContainer key={event.Id}>
+              <DateContainer>
+                <h2 style={{ margin: 0 }}>
+                  {new Date(event.Date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                  })}
+                </h2>
+                <h2 style={{ margin: 0 }}>
+                  {new Date(event.Date).toLocaleDateString("en-GB", {
+                    month: "short",
+                  })}
+                </h2>
+              </DateContainer>
+              <Boarder />
+              <ArtistContainer>
+                <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
+                  {artists.find((element) => element.Id === event.ArtistId).Name}
+                </ArtistName>
+              </ArtistContainer>
+              <Boarder />
+              <PlaceContainer>
+                <City>{event.City}</City>
+              </PlaceContainer>
+              <Boarder />
+              <ButtonContainer>
+                <GoToEvent>Event</GoToEvent>
+              </ButtonContainer>
+            </EventContainer>
+          ))}
+        </Container>
+      </>
+    );
+  }
 
-  return (
-    <>
-      <SearchContainer>
-        <input
-          type="text"
-          placeholder="Search"
-          id="search"
-          onChange={(e) => {
-            setInputText(e.target.value);
-          }}
-        />
-        <LiveOrStreamContainer>
-          <LiveStreamLable>Live/Stream: </LiveStreamLable>
-          <select name="LiveStream" id="EventType" onChange={updateSettings}>
-            <option value={2}>Both</option>
-            <option value={0}>Live</option>
-            <option value={1}>Stream</option>
-          </select>
-        </LiveOrStreamContainer>
-      </SearchContainer>
-      <Container className="event-list">
-        <Title>Event List</Title>
-        {sortByDate(Search(inputText, filterSettings)).map((event) => (
-          <EventContainer key={event.Id}>
-            <DateContainer>
-              <h2 style={{ margin: 0 }}>
-                {new Date(event.Date).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                })}
-              </h2>
-              <h2 style={{ margin: 0 }}>
-                {new Date(event.Date).toLocaleDateString("en-GB", {
-                  month: "short",
-                })}
-              </h2>
-            </DateContainer>
-            <Boarder />
-            <ArtistContainer>
-              <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
-                {artists.find((element) => element.Id === event.ArtistId).Name}
-              </ArtistName>
-            </ArtistContainer>
-            <Boarder />
-            <PlaceContainer>
-              <City>{event.City}</City>
-            </PlaceContainer>
-            <Boarder />
-            <ButtonContainer>
-              <GoToEvent>Event</GoToEvent>
-            </ButtonContainer>
-          </EventContainer>
-        ))}
-      </Container>
-    </>
-  );
 };
 export default EventPage;
 
