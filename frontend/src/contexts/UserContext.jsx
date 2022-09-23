@@ -64,17 +64,32 @@ export function UserContextProvider(props) {
     }
   };
 
-  //   const isLoggedInWithTicket = async (streamId) => {
-  //     // if (user.loggedIn && getUsersTickets() === user.id) {
-  //     // }
+	const deletePassword = async (email) => {
+		const response = await fetch("/data/users/password", {
+			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({ email }),
+		}).catch((err) => {
+			console.error(err);
+		});
+	};
 
-  //     let userTicket = getUsersTickets().find(
-  //       (ticket) => (ticket.streamId = streamId)
-  //     );
+	const changePassword = async (email, password) => {
+		const response = await fetch("/data/users/password", {
+			method: "PATCH",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({ email: email, password: password }),
+		}).catch((err) => {
+			console.error(err);
+		});
+	};
 
-  //     return user.loggedIn && userTicket !== null ? true : false;
-  //   };
-
+  
+  
   const isSignedIn = async () => {
     try {
       const response = await fetch("/data/login", {
@@ -83,9 +98,9 @@ export function UserContextProvider(props) {
           "Content-Type": "application/json",
         },
       });
-
+      
       const jsonData = await response.json();
-
+      
       setUser({
         id: jsonData.id,
         email: jsonData.email,
@@ -95,7 +110,7 @@ export function UserContextProvider(props) {
       console.error(err);
     }
   };
-
+  
   const logOut = async () => {
     try {
       const response = await fetch("/data/login", {
@@ -104,29 +119,29 @@ export function UserContextProvider(props) {
           "Content-Type": "application/json",
         },
       });
-
+      
       const jsonData = await response.json();
-
+      
       setUser({ email: "", loggedIn: jsonData.loggedIn });
       navigate("/login", { replace: true });
     } catch (err) {
       console.error(err);
     }
   };
-
+  
   const fetchUsers = async () => {
     const response = await fetch("/data/users");
     const data = await response.json();
     setUserList(data);
   };
-
+  
   const getUserId = () => {
     return userList?.find?.(userL => userL.email === user.email)?.id
   }
-
+  
   return (
     <UserContext.Provider
-      value={{ user, setUser, logOut, logIn, userList, isLoggedIn, getUserId }}
+    value={{ user, setUser, logOut, logIn, userList, isLoggedIn, getUserId, deletePassword, changePassword }}
     >
       {props.children}
     </UserContext.Provider>
