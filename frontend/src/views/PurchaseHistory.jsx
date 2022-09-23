@@ -78,7 +78,7 @@ const TicketsTitle = styled.h1`
   border-bottom: 2px solid black;
 `;
 
-const Body = styled.body`
+const Body = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,7 +90,7 @@ const Thead = styled.thead`
   width: 25%;
 `;
 
-const HistoryBody = styled.body`
+const HistoryBody = styled.div`
   font-family: "Inter", sans-serif;
   color: #343a40;
   line-height: 1;

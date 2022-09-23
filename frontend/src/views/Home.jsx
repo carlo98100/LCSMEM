@@ -14,7 +14,6 @@ function Home() {
     artists.map((artist) => {
       imageList.push(artist.Image);
     });
-    console.log(imageList);
     return imageList;
   }
 

@@ -3,34 +3,6 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 
-//Dropdown categories
-const categories = [
-  // {
-  //   id: 1,
-  //   title: "login",
-  //   path: "/login",
-  //   cName: "login",
-  // },
-  // {
-  //   id: 2,
-  //   title: "signup",
-  //   path: "/signup",
-  //   cName: "signup",
-  // },
-  // {
-  //   id: 3,
-  //   title: "profilepage",
-  //   path: "/profilepage",
-  //   cName: "profilepage",
-  // },
-  // {
-  //   id: 4,
-  //   title: "Logout",
-  //   path: "/",
-  //   cName: "begone",
-  // },
-];
-
 function Dropdown() {
   const [dropdown, setDropdown] = useState(false);
   const { logOut } = useContext(UserContext);
@@ -40,37 +12,20 @@ function Dropdown() {
       className={dropdown ? SubMenuClicked : SubMenu}
       onClick={() => setDropdown(!dropdown)}
     >
-      {/* {categories.map((item) => {
-        return (
-          <SubMenuLi key={item.id}>
-            <SubMenuItems>
-              <Link
-                to={item.path}
-                className={item.title}
-                onMouseEnter={() => setDropdown(true)}
-                onMouseLeave={() => setDropdown(false)}
-              >
-                {item.title}
-              </Link>
-            </SubMenuItems>
-          </SubMenuLi>
-        );
-      })} */}
-
-      <SubMenuLi key="">
+      <SubMenuLi>
         <SubMenuItems>
           <Link
-            to="/profilepage"
-            className="profilepage"
+            to="/YourTickets"
+            className="YourTickets"
             onClick={() => {
               setDropdown(false);
             }}
           >
-            Profilepage
+            Profile Page
           </Link>
         </SubMenuItems>
       </SubMenuLi>
-      <SubMenuLi key="">
+      <SubMenuLi>
         <SubMenuItems>
           <Link
             to="/login"

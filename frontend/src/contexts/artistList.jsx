@@ -15,7 +15,6 @@ export const ArtistContextProvider = ({ children }) => {
     setArtists(data);
   };
 
-    console.log(artists);
   return (
     <ArtistContext.Provider
       value={{

@@ -5,7 +5,6 @@ const getCart = () => {
 };
 
 const addItemToCart = (item) => {
-	console.log(item);
 	let cart = null;
 	if (sessionStorage.getItem(CART)) {
 		cart = getCart();
