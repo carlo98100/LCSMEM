@@ -35,3 +35,9 @@ Homepage{
 
 When the user is on the homepage they will be presented with a carusel that they can scroll through to see different artists.
 }
+
+Documentation:
+
+https://docs.github.com/en
+https://reactjs.org/docs/getting-started.html
+https://stripe.com/docs
