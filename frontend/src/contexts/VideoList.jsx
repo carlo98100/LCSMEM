@@ -12,7 +12,6 @@ export const VideoContextProvider = ({ children }) => {
   const fetchVideos = async () => {
     const response = await fetch("/data/videos");
     const data = await response.json();
-    console.log(data);
     setVideos(data);
   };
 

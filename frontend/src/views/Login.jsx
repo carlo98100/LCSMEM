@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../components/Input";
-import { UserContext } from "../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 // import { useLoggedIn } from "../context/LoggedInContext";
 
 function Login() {
@@ -12,9 +12,7 @@ function Login() {
 	});
 
 	const updateForm = (event) => {
-		setForm((prevState) => {
-			return { ...prevState, [event.target.name]: event.target.value };
-		});
+		setForm((prevState) => ({ ...prevState, [event.target.name]: event.target.value }));
 	};
 	const { logIn } = useContext(UserContext);
 
