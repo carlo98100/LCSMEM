@@ -4,14 +4,6 @@ import React, { useState } from "react";
 import { getCart } from "../CartUtils";
 
 function Checkout() {
-  // const tickets = [
-  // 	{
-  // 		id: 1,
-  // 		description: "event.Name",
-  // 		price: 5000,
-  // 		quantity: 6,
-  // 	},
-  // ];
   const [confirmed, setConfirmed] = useState(false);
   const tickets = getCart();
   const handleClick = async () => {

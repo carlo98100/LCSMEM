@@ -1,5 +1,5 @@
 import Home from "./views/Home";
-import ConsertPage from "./views/ConsertPage";
+import ArtistPage from "./views/ArtistPage";
 import Login from "./views/Login";
 import Signup from "./views/Signup";
 import PurchaseHistory from "./views/PurchaseHistory";
@@ -20,10 +20,10 @@ export const AppRoutes = [
     component: <Home />
   },
   {
-    name: "ConsertPage",
-    path: "/ConsertPage/:artistId",
+    name: "ArtistPage",
+    path: "/ArtistPage/:artistId",
     display: false,
-    component: <ConsertPage />
+    component: <ArtistPage />
   },
   {
     name: "Login",

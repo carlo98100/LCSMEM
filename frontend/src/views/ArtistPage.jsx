@@ -5,7 +5,7 @@ import styled from "styled-components";
 import ConsertEventBoard from "../Components/ConsertEventBoard";
 import LoadingPage from "./LoadingPage";
 
-function ConsertPage() {
+function ArtistPage() {
 	const { artistId } = useParams();
 	const [form, setForm] = useState([]);
 	const [artistInformation, setArtistInformation] = useState({});
@@ -67,7 +67,7 @@ function ConsertPage() {
 	);
 }
 
-export default ConsertPage;
+export default ArtistPage;
 
 const Container = styled.div`
 	display: flex;
