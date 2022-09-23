@@ -20,68 +20,77 @@ const EventPage = () => {
       return { ...prevState, [setting.target.name]: parseInt(setting.target.value) };
     });
   };
+  if(!artists[0]){
+    return <></>
+  }
+  else{
+    return (
+      <>
+        <SearchContainer>
+          <input
+            type="text"
+            placeholder="Search"
+            id="search"
+            onChange={(e) => {
+              setInputText(e.target.value);
+            }}
+          />
+          <LiveOrStreamContainer>
+            <LiveStreamLable>Live/Stream: </LiveStreamLable>
+            <select name="LiveStream" id="EventType" onChange={updateSettings}>
+              <option value={2}>Both</option>
+              <option value={0}>Live</option>
+              <option value={1}>Stream</option>
+            </select>
+          </LiveOrStreamContainer>
+        </SearchContainer>
+        <Container className="event-list">
+          <Title>Event List</Title>
+          {sortByDate(Search(inputText, filterSettings)).map((event) => (
+            <EventContainer key={event.Id}>
+              <DateContainer>
+                <h2 style={{ margin: 0 }}>
+                  {new Date(event.Date).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                  })}
+                </h2>
+                <h2 style={{ margin: 0 }}>
+                  {new Date(event.Date).toLocaleDateString("en-GB", {
+                    month: "short",
+                  })}
+                </h2>
+              </DateContainer>
+              <Boarder />
+              <ArtistContainer>
+                <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
+                  {artists.find((element) => element.Id === event.ArtistId).Name}
+                </ArtistName>
+              </ArtistContainer>
+              <Boarder />
+              <PlaceContainer>
+                <City>{event.City}</City>
+              </PlaceContainer>
+              <Boarder />
+              <ButtonContainer>
+                <GoToEvent>Event</GoToEvent>
+              </ButtonContainer>
+            </EventContainer>
+          ))}
+        </Container>
+      </>
+    );
+  }
 
-  return (
-    <>
-      <SearchContainer>
-        <input
-          type="text"
-          placeholder="Search"
-          id="search"
-          onChange={(e) => {
-            setInputText(e.target.value);
-          }}
-        />
-        <LiveOrStreamContainer>
-          <p>Live/Stream: </p>
-          <select name="LiveStream" id="EventType" onChange={updateSettings}>
-            <option value={2}>Both</option>
-            <option value={0}>Live</option>
-            <option value={1}>Stream</option>
-          </select>
-        </LiveOrStreamContainer>
-      </SearchContainer>
-      <Container className="event-list">
-        <Title>Event List</Title>
-        {sortByDate(Search(inputText, filterSettings)).map((event) => (
-          <EventContainer key={event.Id}>
-            <DateContainer>
-              <h2 style={{ margin: 0 }}>
-                {new Date(event.Date).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                })}
-              </h2>
-              <h2 style={{ margin: 0 }}>
-                {new Date(event.Date).toLocaleDateString("en-GB", {
-                  month: "short",
-                })}
-              </h2>
-            </DateContainer>
-            <Boarder />
-            <ArtistContainer>
-              <ArtistName href={`/ArtistPage/${event.ArtistId}`}>
-                {artists.find((element) => element.Id === event.ArtistId).Name}
-              </ArtistName>
-            </ArtistContainer>
-            <Boarder />
-            <PlaceContainer>
-              <City>{event.City}</City>
-            </PlaceContainer>
-            <Boarder />
-            <ButtonContainer>
-              <GoToEvent>Event</GoToEvent>
-            </ButtonContainer>
-          </EventContainer>
-        ))}
-      </Container>
-    </>
-  );
 };
 export default EventPage;
 
 const LiveOrStreamContainer = styled.div`
   display: flex;
 `;
+
+const LiveStreamLable = styled.label`
+color: white;
+`
 
 const Container = styled.div`
   margin: 1vh 15vw;
@@ -189,32 +198,41 @@ const GoToEvent = styled.button`
       bottom no-repeat;
   background-size: 100% 50%;
   transition: transform 0.2s, padding 0.3s, background 0.3s, color 0.3s;
-  &:hover {
-    transform: translateX(1em);
-    padding: 1em 5em 1em 1em;
-    color: black;
-    background: linear-gradient(
-          -120deg,
-          transparent 1em,
-          #292929 1.05em,
-          #292929 1.5em,
-          transparent 1.45em,
-          transparent 2em,
-          #ff9e07 2.05em
-        )
-        top no-repeat,
-      linear-gradient(
-          300deg,
-          transparent 1em,
-          #292929 1.05em,
-          #292929 1.5em,
-          transparent 1.45em,
-          transparent 2em,
-          #ff9e07 2.05em
-        )
-        bottom no-repeat;
-    background-size: 100% 50%;
-    cursor: pointer;
+  @media (min-width: 769px){
+    &:hover {
+      transform: translateX(1em);
+      padding: 1em 5em 1em 1em;
+      color: black;
+      background: linear-gradient(
+            -120deg,
+            transparent 1em,
+            #292929 1.05em,
+            #292929 1.5em,
+            transparent 1.45em,
+            transparent 2em,
+            #ff9e07 2.05em
+          )
+          top no-repeat,
+        linear-gradient(
+            300deg,
+            transparent 1em,
+            #292929 1.05em,
+            #292929 1.5em,
+            transparent 1.45em,
+            transparent 2em,
+            #ff9e07 2.05em
+          )
+          bottom no-repeat;
+      background-size: 100% 50%;
+      cursor: pointer;
+    }
+  }
+  @media( max-width: 769px){
+    padding: 1em 0.5em 1em 1em;
+    :active{
+      color: white;
+      background-color: #ff9e07;
+    }
   }
 `;
 
@@ -224,4 +242,9 @@ const SearchContainer = styled.div`
   width: 15%;
   margin-top: 4%;
   margin-bottom: 1%;
+  @media (max-width: 426px ) {
+    #search{
+      width: 200%;
+    }
+  }
 `;
