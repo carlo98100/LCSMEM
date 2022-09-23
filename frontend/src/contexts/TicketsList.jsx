@@ -12,7 +12,6 @@ export const TicketContextProvider = ({ children }) => {
   const fetchTickets = async () => {
     const response = await fetch("/data/Ticket");
     const data = await response.json();
-    console.log(data);
     setTickets(data);
   };
 

@@ -17,7 +17,6 @@ function Login() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("sending", form);
   };
   return (
     <Container>
