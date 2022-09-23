@@ -6,7 +6,6 @@ import ArtistContext from "../contexts/ArtistList";
 import styled from "styled-components";
 
 function Home() {
-  
   const { artists } = useContext(ArtistContext);
 
   const imageList = [];
@@ -15,7 +14,6 @@ function Home() {
     artists.map((artist) => {
       imageList.push(artist.Image);
     });
-    console.log(imageList);
     return imageList;
   }
 

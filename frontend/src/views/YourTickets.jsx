@@ -6,45 +6,26 @@ import TicketContext from "../contexts/TicketsList";
 import UserContext from "../contexts/UserContext";
 import Ticket from "../components/Ticket";
 
-
 function YourTickets() {
-  const { tickets } = useContext(TicketContext)
-  const { user, userList } = useContext(UserContext)
+  const { tickets } = useContext(TicketContext);
+  const { getUserId } = useContext(UserContext);
 
-  function getUsersTickets(){
-    let temp = []
-    tickets.forEach(ticket => {
-      if(ticket.UserId === getUserId()) {
-        temp.push(ticket)
+  function getUsersTickets() {
+    let temp = [];
+    tickets.forEach((ticket) => {
+      if (ticket.UserId === getUserId()) {
+        temp.push(ticket);
       }
     });
     return temp;
   }
 
-  function getUserId(){
-    return userList.find(userL => userL.email === user.email).id
-  }
-
-  function getEvent(ticket){
-    return events.find(event => event.Id === ticket.EventId)
-  }
-
-  function getArtist(ticket){
-    return artist.find(artist => artist.Id === getEvent(ticket).ArtistId)
-  }
-
-
-
   return (
     <Container>
-      <LeftProfileNav/>
+      <LeftProfileNav />
       <RightContainer>
         <TicketsTitle>Your tickets</TicketsTitle>
-        <Body>
-          {getUsersTickets().map(ticket => (
-            Ticket(ticket)
-          ))}
-        </Body>
+        <Body>{getUsersTickets().map((ticket, index) => <div key={index}>{Ticket(ticket)}</div>)}</Body>
       </RightContainer>
     </Container>
   );
@@ -72,8 +53,8 @@ const TicketsTitle = styled.h1`
   border-bottom: 2px solid black;
 `;
 
-const Body = styled.body`
-display: flex;
-flex-direction: column; 
-justify-content: center;
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
