@@ -38,9 +38,9 @@ export const AppRoutes = [
     component: <Signup />
   },
   {
-    name: "YourTickets",
+    name: "Profile",
     path: "/YourTickets",
-    display: false,
+    display: true,
     component: <YourTickets />,
     requiredAuth: true
   },
@@ -75,7 +75,7 @@ export const AppRoutes = [
   {
 	name: "SpecificEventPage",
 	path: "/SpecificEventPage/:eventId",
-	display: true,
+	display: false,
 	component: <SpecificEventPage />
 },
 {
