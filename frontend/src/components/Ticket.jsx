@@ -18,12 +18,14 @@ function Ticket(ticket) {
     }
 
     function Stream(ticket){
-        if(getEvent(ticket).LiveStream > 0) {
+        if(getEvent(ticket).LiveStream < 1) {
             return <p>Live</p>
         } else {
-            return <StreamButton VideoId={1}/>
+            return <StreamButton VideoId={getEvent(ticket).LiveStream}/>
         }
     }
+
+
 
     return <>
         <TicketBody>
@@ -33,18 +35,23 @@ function Ticket(ticket) {
                 </Image>
             </Left>
             <Center>
-                <Date>
-                    <Day>TUESDAY</Day>
+                <DateInfo>
+                    <Day>{new Date(getEvent(ticket).Date).toLocaleDateString("en-GB", {
+                    weekday: "long"})}
+                    </Day>
                     <FullDate>{getEvent(ticket).Date}</FullDate>
-                    <Year>2021</Year>
-                </Date>
+                    <Year>{new Date(getEvent(ticket).Date).toLocaleDateString("en-GB", {
+                    year: "numeric"})}
+                  </Year>
+                </DateInfo>
                 <ArtistName>
                     <h1>{getArtist(ticket).Name}</h1>
-                    <h2>Live</h2>
+                    {getEvent(ticket).LiveStream < 1 ? <h2>Live</h2> : <h2>Stream</h2>}
                 </ArtistName>
                 <Time>
                     <p>
-                        8:00 PM <span>TO</span> 11:00 PM
+                        <span>START AT</span> {new Date(getEvent(ticket).Date).toLocaleTimeString("en-GB", {
+                    hour: "2-digit", minute: "2-digit"})}
                     </p>
                     <p>{getEvent(ticket).City}</p>
                 </Time>
@@ -53,10 +60,8 @@ function Ticket(ticket) {
                     <EventName>{getEvent(ticket).Name}</EventName>
                     <Time>
                         <p>
-                            8:00 PM <span>TO</span> 11:00 PM
-                        </p>
-                        <p>
-                            DOORS <span>@</span> 7:00 PM
+                        <span>START AT</span> {new Date(getEvent(ticket).Date).toLocaleTimeString("en-GB", {
+                    hour: "2-digit", minute: "2-digit"})}
                         </p>
                     </Time>
                     <LiveOrStream>{Stream(ticket)}</LiveOrStream>
@@ -138,7 +143,7 @@ span {
 }
 `;
 
-const Date = styled.p`
+const DateInfo = styled.p`
 font-weight: 700;
 border-top: 1px solid gray;
 border-bottom: 1px solid gray;

@@ -10,6 +10,9 @@ function YourTickets() {
   const { tickets } = useContext(TicketContext);
   const { getUserId } = useContext(UserContext);
 
+  if(!tickets[0]) return <></>
+  if(!getUserId()) return <></>
+  
   function getUsersTickets() {
     let temp = [];
     tickets.forEach((ticket) => {

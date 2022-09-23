@@ -28,36 +28,40 @@ function BuyTicket({ event }) {
 	return (
 		<>
 			<TicketBody>
-				<Left>
-					<Image></Image>
-				</Left>
-				<Center>
-					<Date>
-						<Day>TUESDAY</Day>
-						<FullDate>{event.Date}</FullDate>
-						<Year>2021</Year>
-					</Date>
-					<ArtistName>
-						<h1>{getArtist(event).Name}</h1>
-						<h2>Live</h2>
-					</ArtistName>
-					<Time>
-						<p>
-							8:00 PM <span>TO</span> 11:00 PM
-						</p>
-						<p>{event.City}</p>
-					</Time>
-				</Center>
-				<Right>
-					<EventName>{event.Name}</EventName>
-					<Time>
-						<p>
-							8:00 PM <span>TO</span> 11:00 PM
-						</p>
-						<p>
-							DOORS <span>@</span> 7:00 PM
-						</p>
-					</Time>
+            <Left>
+                <Image>
+                </Image>
+            </Left>
+            <Center>
+                <DateInfo>
+                    <Day>{new Date(event.Date).toLocaleDateString("en-GB", {
+                    weekday: "long"})}
+                    </Day>
+                    <FullDate>{event.Date}</FullDate>
+                    <Year>{new Date(event.Date).toLocaleDateString("en-GB", {
+                    year: "numeric"})}
+                  </Year>
+                </DateInfo>
+                <ArtistName>
+                    <h1>{getArtist(event).Name}</h1>
+                    {event.LiveStream < 1 ? <h2>Live</h2> : <h2>Stream</h2>}
+                </ArtistName>
+                <Time>
+                    <p>
+                        <span>START AT</span> {new Date(event.Date).toLocaleTimeString("en-GB", {
+                    hour: "2-digit", minute: "2-digit"})}
+                    </p>
+                    <p>{event.City}</p>
+                </Time>
+            </Center>
+            <Right>
+                    <EventName>{event.Name}</EventName>
+                    <Time>
+                        <p>
+                        <span>START AT</span> {new Date(event.Date).toLocaleTimeString("en-GB", {
+                    hour: "2-digit", minute: "2-digit"})}
+                        </p>
+                    </Time>
 					<form onSubmit={onSubmit}>
 						<AmountInput value={quantity} onChange={(e) => setQuantity(e.target.value)} label="Amount" type="number" min="1" />
 						<BuyButton type="submit" value="Buy ticket" onClick={addToCart} />
@@ -140,7 +144,7 @@ const Time = styled.div`
 	}
 `;
 
-const Date = styled.p`
+const DateInfo = styled.p`
 	font-weight: 700;
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
