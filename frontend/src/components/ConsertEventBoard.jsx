@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ConsertEvent from "./ConsertEvent";
 
 function ConsertEventBoard({ events }) {
+	console.log("events", events)
 	return (
 		<Container>
 			<EventsTitle>Upcoming events</EventsTitle>

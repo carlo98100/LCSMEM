@@ -1,67 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import ConsertEventBoard from "../Components/ConsertEventBoard";
-import LoadingPage from "./LoadingPage";
+import ArtistContext from "../contexts/ArtistList";
+import EventContext from "../contexts/EventList";
 
 function ArtistPage() {
 	const { artistId } = useParams();
-	const [form, setForm] = useState([]);
-	const [artistInformation, setArtistInformation] = useState({});
+	const { artists } = useContext(ArtistContext)
+	const { events } = useContext(EventContext)
 
-	useEffect(() => {
-		GetEventInformation(artistId);
-		GetArtistInformation(artistId);
-	}, []);
+	if(!artists?.length || !events?.length ) return <></>
 
-	const [fetching, setFetching] = useState(false);
+	const artist = artists?.find?.(artist => artist.Id == artistId)
+	
+	const artistEvents = events?.filter?.(event => event.ArtistId == artist.Id)
+	console.log("artistEvents", artistEvents)
 
-	async function GetEventInformation(id) {
-		setFetching(true);
-		try {
-			const response = await fetch(`/data/events/${id}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const jsonData = await response.json();
-			setForm(jsonData);
-		} catch (err) {
-			console.error(err);
-		}
-		setFetching(false);
-	}
-
-	async function GetArtistInformation(id) {
-		try {
-			const response = await fetch(`/data/Artist/${id}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const jsonData = await response.json();
-			setArtistInformation(jsonData);
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
-	return fetching ? (
-		<LoadingPage />
-	) : (
+	return  (
 		<Container>
 			<LeftContainer>
-				<ConsertImage src={artistInformation.Image} />
-				<ConsertTitle>{artistInformation.Name}</ConsertTitle>
+				<ConsertImage src={artist.Image} />
+				<ConsertTitle>{artist.Name}</ConsertTitle>
 
-				<ConsertDescription>{artistInformation.Description}</ConsertDescription>
+				<ConsertDescription>{artist.Description}</ConsertDescription>
 			</LeftContainer>
 
 			<RightContainer>
-				<ConsertEventBoard events={form} />
+				<ConsertEventBoard events={artistEvents} />
 			</RightContainer>
 		</Container>
 	);
