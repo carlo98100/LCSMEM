@@ -19,8 +19,6 @@ function Signup() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(form));
-    console.log("sending", form);
     try {
       const response = await fetch("/data/users", {
         method: "POST", // GET, POST, PUT, DELETE, etc.
@@ -32,13 +30,12 @@ function Signup() {
       });
 
       if (response.changes != 0) {
-        console.log("success");
         //fetch login user
         //if login user succed store in context
         //useNavigate kolla in, navigate (/home), ta med replace:true så att det replacar routen och användaren inte kommer tillbaka till skapa konto ifall de klickar bakåt
         navigate("/", { replace: true });
       } else {
-        console.log("failed");
+        console.error("err");
       }
     } catch (err) {
       console.error(err);
